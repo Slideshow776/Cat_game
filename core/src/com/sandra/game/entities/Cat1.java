@@ -17,7 +17,6 @@ import com.sandra.game.utils.Utils;
 public class Cat1 extends Entity{
 
     private World b2d_world;
-    private Boolean collision;
 
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;

@@ -58,38 +58,18 @@ public class Level_1_1 implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
 
-        box2d_init();              
-
-        AssetManager assetManager = new AssetManager();
-        Assets.instance.init(assetManager);
-
-        // entities
-        entities_init();        
-
-        entities = new DelayedRemovalArray<Entity>();
-        entities.addAll(cat1s);
-        controls = new Controls(entities);
-
-        //sounds
-        purr1 = Gdx.audio.newSound(Gdx.files.internal("sounds/purr1.wav"));
-        purr1.play();
-
-        //music
-        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
-        generic_music.setLooping(true);
-        generic_music.setVolume(.1f);
-    }
-
-    private void box2d_init() {
+        // box2d
         b2d_world = new World(new Vector2(0, 0), true);
         myContactListener = new MyContactListener();
         b2d_world.setContactListener(myContactListener);
         if (Constants.B2D_DEBUGGING) {b2d_Renderer = new Box2DDebugRenderer();}
         box2d = new box2D(b2d_world);
-        box2d.set_world_bounds();
-    }
+        box2d.set_world_bounds();             
 
-    private void entities_init() {
+        AssetManager assetManager = new AssetManager();
+        Assets.instance.init(assetManager);
+
+        // entities
         cat1s = new DelayedRemovalArray<Entity>();
         cat1s.add(new Cat1(new Vector2(
                         Constants.GAME_WIDTH / 2,
@@ -110,7 +90,20 @@ public class Level_1_1 implements Screen {
         cat1s.add(new Cat1(new Vector2(
                         Constants.GAME_WIDTH / 2 - 300,
                         Constants.GAME_HEIGHT / 2 + 225),
-                    b2d_world));
+                    b2d_world));      
+
+        entities = new DelayedRemovalArray<Entity>();
+        entities.addAll(cat1s);
+        controls = new Controls(entities);
+
+        //sounds
+        purr1 = Gdx.audio.newSound(Gdx.files.internal("sounds/purr1.wav"));
+        purr1.play();
+
+        //music
+        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
+        generic_music.setLooping(true);
+        generic_music.setVolume(.1f);
     }
 
     private void update(float delta) {
@@ -124,7 +117,6 @@ public class Level_1_1 implements Screen {
     public void render(float delta) {	
         update(delta);		
         //camera.update();
-        if (Constants.B2D_DEBUGGING) {b2d_Renderer.render(b2d_world, camera.combined);}
         
         //Gdx.gl.glClearColor(1, .7f, 1, 1); // light pink
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
@@ -133,6 +125,8 @@ public class Level_1_1 implements Screen {
         game.batch.begin();        
         for (Entity cat1: cat1s) {cat1.render(game.batch);}        
         game.batch.end();
+        
+        if (Constants.B2D_DEBUGGING) {b2d_Renderer.render(b2d_world, camera.combined);}
     }
 
     @Override
