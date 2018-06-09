@@ -19,11 +19,11 @@ public class MyContactListener implements ContactListener{
 		
 		if(fa.getUserData() != null && fa.getUserData().equals("world")) {
 			entityCollidedWithWorld = true;
-			System.out.println(TAG + ": fa COLLIEDED!");
+			// System.out.println(TAG + ": fa COLLIEDED!");
 		}
 		if(fb.getUserData() != null && fb.getUserData().equals("world")) {
 			entityCollidedWithWorld = true;
-			System.out.println(TAG + ": fb COLLIEDED!");
+			// System.out.println(TAG + ": fb COLLIEDED!");
 		}
 	}
 	

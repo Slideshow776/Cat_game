@@ -22,10 +22,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
+import com.sandra.game.entities.Entity;
+import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.MyContactListener;
 import com.sandra.game.utils.box2D;
+
+import org.w3c.dom.EntityReference;
 
 public class Level_1_1 implements Screen {
 
@@ -42,8 +46,11 @@ public class Level_1_1 implements Screen {
 
     private Texture img;
     private Sound purr1;
-    private Music rain_music;
-    private DelayedRemovalArray<Cat1> cat1s;
+    private Music generic_music;
+    private DelayedRemovalArray<Entity> cat1s;
+    private DelayedRemovalArray<Entity> entities;
+
+    private Controls controls;
     
     public Level_1_1(Cat_game game) {
         this.game = game;
@@ -51,88 +58,80 @@ public class Level_1_1 implements Screen {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
 
-        b2d_world = new World(new Vector2(0, 0), true);
-        myContactListener = new MyContactListener();
-        b2d_world.setContactListener(myContactListener);
-        if (Constants.B2D_DEBUGGING) {b2d_Renderer = new Box2DDebugRenderer();}
-        box2d = new box2D(b2d_world);
-        box2d.set_world_bounds();        
+        box2d_init();              
 
-        AssetManager am = new AssetManager();
-        Assets.instance.init(am);
+        AssetManager assetManager = new AssetManager();
+        Assets.instance.init(assetManager);
 
-        // images
-        cat1s = new DelayedRemovalArray<Cat1>();
-        cat1s.add(new Cat1(new Vector2(
-                        (Constants.GAME_WIDTH / 2) / Constants.PPM,
-                        (Constants.GAME_HEIGHT / 2) / Constants.PPM),
-                    b2d_world));
-        cat1s.add(new Cat1(new Vector2(
-                        (Constants.GAME_WIDTH / 2 + 200) / Constants.PPM,
-                        (Constants.GAME_HEIGHT / 2 + 200) / Constants.PPM),
-                    b2d_world));
-        cat1s.add(new Cat1(new Vector2(
-                        (Constants.GAME_WIDTH / 2 - 100) / Constants.PPM,
-                        (Constants.GAME_HEIGHT / 2 - 100) / Constants.PPM),
-                    b2d_world));
-        cat1s.add(new Cat1(new Vector2(
-                        (Constants.GAME_WIDTH / 2 + 150) / Constants.PPM,
-                        (Constants.GAME_HEIGHT / 2 - 300) / Constants.PPM),
-                    b2d_world));
-        cat1s.add(new Cat1(new Vector2(
-                        (Constants.GAME_WIDTH / 2 - 300) / Constants.PPM,
-                        (Constants.GAME_HEIGHT / 2 + 225) / Constants.PPM),
-                    b2d_world));
+        // entities
+        entities_init();        
+
+        entities = new DelayedRemovalArray<Entity>();
+        entities.addAll(cat1s);
+        controls = new Controls(entities);
 
         //sounds
         purr1 = Gdx.audio.newSound(Gdx.files.internal("sounds/purr1.wav"));
         purr1.play();
 
         //music
-        rain_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
-        rain_music.setLooping(true);
-        rain_music.setVolume(.1f);
+        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
+        generic_music.setLooping(true);
+        generic_music.setVolume(.1f);
+    }
 
-        if (Gdx.app.getType() == ApplicationType.Desktop) {
-            System.out.println(TAG + ": I'm running on desktop!");
-        }
-    }    
+    private void box2d_init() {
+        b2d_world = new World(new Vector2(0, 0), true);
+        myContactListener = new MyContactListener();
+        b2d_world.setContactListener(myContactListener);
+        if (Constants.B2D_DEBUGGING) {b2d_Renderer = new Box2DDebugRenderer();}
+        box2d = new box2D(b2d_world);
+        box2d.set_world_bounds();
+    }
+
+    private void entities_init() {
+        cat1s = new DelayedRemovalArray<Entity>();
+        cat1s.add(new Cat1(new Vector2(
+                        Constants.GAME_WIDTH / 2,
+                        Constants.GAME_HEIGHT / 2),
+                    b2d_world));
+        cat1s.add(new Cat1(new Vector2(
+                        Constants.GAME_WIDTH / 2 + 200,
+                        Constants.GAME_HEIGHT / 2 + 200),
+                    b2d_world));
+        cat1s.add(new Cat1(new Vector2(
+                        Constants.GAME_WIDTH / 2 - 100,
+                        Constants.GAME_HEIGHT / 2 - 100),
+                    b2d_world));
+        cat1s.add(new Cat1(new Vector2(
+                        Constants.GAME_WIDTH / 2 + 150,
+                        Constants.GAME_HEIGHT / 2 - 300),
+                    b2d_world));
+        cat1s.add(new Cat1(new Vector2(
+                        Constants.GAME_WIDTH / 2 - 300,
+                        Constants.GAME_HEIGHT / 2 + 225),
+                    b2d_world));
+    }
 
     private void update(float delta) {
-        Gdx.app.log(TAG, Constants.GAME_WIDTH + ", " + Constants.GAME_HEIGHT); ////////////////////////
-        b2d_world.step(
-            Constants.B2D_TIMESTEP,
-            Constants.B2D_VELOCITY_ITERATIONS,
-            Constants.B2D_POSITION_ITERATIONS
-            );
-
-        for (Cat1 cat1:cat1s) {
-            cat1.update(delta, myContactListener.getEntityCollision());
-        }
+        b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
+        controls.update(delta);
+        game.batch.setProjectionMatrix(camera.combined);
+        for (Entity cat1:cat1s) {cat1.update(delta, myContactListener.getEntityCollision());}
     }
 
     @Override
     public void render(float delta) {	
         update(delta);		
-        camera.update();
+        //camera.update();
+        if (Constants.B2D_DEBUGGING) {b2d_Renderer.render(b2d_world, camera.combined);}
         
         //Gdx.gl.glClearColor(1, .7f, 1, 1); // light pink
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        if (Constants.B2D_DEBUGGING) {
-            game.batch.setProjectionMatrix(camera.combined);
-            b2d_Renderer.render(b2d_world, camera.combined);
-        }
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);                
 
-        game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
-        
-        
-        for (Cat1 cat1: cat1s) {
-            cat1.render(game.batch);
-        }
-        
+        game.batch.begin();        
+        for (Entity cat1: cat1s) {cat1.render(game.batch);}        
         game.batch.end();
     }
 
@@ -158,7 +157,7 @@ public class Level_1_1 implements Screen {
 
 	@Override
 	public void show() {
-        rain_music.play();		
+        generic_music.play();		
     }
 
     @Override
@@ -167,7 +166,5 @@ public class Level_1_1 implements Screen {
         Assets.instance.dispose();
 
         System.out.println("level 1-1 disposed!");
-    }
-
-    
+    }    
 }

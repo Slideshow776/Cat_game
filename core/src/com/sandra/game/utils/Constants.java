@@ -3,12 +3,11 @@ package com.sandra.game.utils;
 import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
-    // Game
-    public static final String TEXTURE_ATLAS = "images/cat_game.pack.atlas";
-    public static final float ENTETIES_ACCELERATION = .05f;
+    // System
     public static final int GAME_WIDTH = 800;
     public static final int GAME_HEIGHT = 600;
-
+    public static final String TEXTURE_ATLAS = "images/cat_game.pack.atlas";
+    
     // Box2d
     public static final int PPM = 100;
     public static final boolean B2D_DEBUGGING = true;
@@ -18,6 +17,10 @@ public class Constants {
     public static final float B2D_WORLD_BOUNDS_OFFSET = 20f;
     public static final short B2D_BIT_WORLD = 2;
     public static final short B2D_BIT_CAT1S = 4;
+    
+    // Entities
+    public static final float ENTETIES_ACCELERATION = .05f;
+    public static final float ENTETIES_MAX_VELOCITY = .012f;
 
     // Cat1
     public static final String CAT1_SPRITE = "cat1";
