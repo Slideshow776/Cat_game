@@ -42,22 +42,22 @@ public class Cat1 extends Entity{
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
         bdef.position.set(
-            (render_position.x + Constants.CAT1_WIDTH / 2) / Constants.PPM,
-            (render_position.y + Constants.CAT1_HEIGHT / 2) / Constants.PPM
+            (render_position.x + Constants.CAT1_PIXEL_WIDTH / 2) / Constants.PPM,
+            (render_position.y + Constants.CAT1_PIXEL_HEIGHT / 2) / Constants.PPM
         );
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(23f / Constants.PPM, 12.5f / Constants.PPM);
+        shape.setAsBox(Constants.CAT1_HALF_WIDTH, Constants.CAT1_HALF_HEIGHT);
         FixtureDef fdef = new FixtureDef();
         fdef.shape = shape;
-        fdef.density = .65f;
+        fdef.density = Constants.CAT1_DENSITY;
         //fdef.friction = 50f;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
 		fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S;
 
 		this.body = b2d_world.createBody(bdef);
-        this.body.setLinearDamping(1f);
-        this.body.createFixture(fdef).setUserData("cat1");
+        this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
+        this.body.createFixture(fdef).setUserData(Constants.CAT1_SPRITE);
     }    
 }
     

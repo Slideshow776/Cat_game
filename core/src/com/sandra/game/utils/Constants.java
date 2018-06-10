@@ -19,13 +19,17 @@ public class Constants {
     public static final short B2D_BIT_CAT1S = 4;
     
     // Entities
-    public static final float ENTETIES_ACCELERATION = .05f;
-    public static final float ENTETIES_MAX_VELOCITY = .012f;
+    public static final float ENTETIES_ACCELERATION = .002f;
+    public static final float ENTETIES_MAX_VELOCITY = .004f;
+    public static final float ENTITIES_LINEAR_DAMPING = 1f;
 
     // Cat1
     public static final String CAT1_SPRITE = "cat1";
     public static final Vector2 CAT1_CENTER = new Vector2(0, 0);
     public static final float CAT1_MOVE_SPEED = 50f;
-    public static final float CAT1_WIDTH = 27f;
-    public static final float CAT1_HEIGHT = 21f;
+    public static final float CAT1_PIXEL_WIDTH = 27f;
+    public static final float CAT1_PIXEL_HEIGHT = 21f;
+    public static final float CAT1_DENSITY = .65f;
+    public static final float CAT1_HALF_WIDTH = 23f / Constants.PPM;    // cat length = .46m, from bird's perspective
+    public static final float CAT1_HALF_HEIGHT = 12.5f / Constants.PPM; // cat width = .25m, from bird's perspective
 }

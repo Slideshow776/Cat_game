@@ -1,6 +1,7 @@
 package com.sandra.game.handlers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.entities.Entity;
@@ -8,6 +9,7 @@ import com.sandra.game.utils.Constants;
 
 public class Controls {
     
+    private final String TAG = Controls.class.getName();
     private DelayedRemovalArray<Entity> entities;
 
     public Controls(DelayedRemovalArray<Entity> entities) {
@@ -16,54 +18,95 @@ public class Controls {
 
     public void update(float delta) {
         for (Entity entity: entities) {
-            // android_movement(delta, entity); // TODO: if both are active get_velocity will be set to 0 and something else at the same time ...
-            desktop_movement(delta, entity);
+            if(Gdx.app.getType() == ApplicationType.Android) {android_movement(delta, entity);}
+            else if(Gdx.app.getType() == ApplicationType.Desktop) {desktop_movement(delta, entity);}
         }
     }
 
-    public void android_movement(float delta, Entity entity) {
-        System.out.println(
-            "getAccelerometerX: " +
-            Gdx.input.getAccelerometerX() +
-             ", getAccelerometerY: " +
-            Gdx.input.getAccelerometerY()
-        );
-        if ((Gdx.input.getAccelerometerX() < 0) && entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {          // up
-            entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
-        } else if ((Gdx.input.getAccelerometerX() > 0) && entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {  // down
-            entity.get_velocity().y -= delta * Constants.ENTETIES_ACCELERATION;
+    public void android_movement(float delta, Entity entity) {  // Accelerometer  = x = y = [-10, 10]
+        if (Gdx.input.getAccelerometerX() < -1) { //up
+            if (entity.get_velocity().y >= Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
+            }
+        } else if (Gdx.input.getAccelerometerX() > 1) { // down
+            if (entity.get_velocity().y <= -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y -= delta * Constants.ENTETIES_ACCELERATION;
+            }
         } else {entity.get_velocity().y = 0;}
         
-        if ((Gdx.input.getAccelerometerY() < 0) && entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {         // left
-            entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
-        } else if ((Gdx.input.getAccelerometerY() > 0) && entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {   // right
-            entity.get_velocity().x += delta * Constants.ENTETIES_ACCELERATION;
+        if (Gdx.input.getAccelerometerY() < -1) { // left
+            if (entity.get_velocity().x <= -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
+            }
+        } else if (Gdx.input.getAccelerometerY() > 1) { // right
+            if (entity.get_velocity().x >= Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x += delta * Constants.ENTETIES_ACCELERATION;
+            }
         } else {entity.get_velocity().x = 0;}
-        
+
         entity.get_body().applyLinearImpulse(entity.get_velocity().x, entity.get_velocity().y, entity.get_body().getPosition().x, entity.get_body().getPosition().y, true);
         entity.get_render_position().set(
-            entity.get_body().getPosition().x - Constants.CAT1_WIDTH / 2 / Constants.PPM,
-            entity.get_body().getPosition().y - Constants.CAT1_HEIGHT / 2 / Constants.PPM
+            entity.get_body().getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
+            entity.get_body().getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
         );
     }
 
     public void desktop_movement(float delta, Entity entity) {
-        if (Gdx.input.isKeyPressed(Keys.W) && entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {           // up
-            entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
-        } else if (Gdx.input.isKeyPressed(Keys.S) && entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {   // down
-            entity.get_velocity().y -= delta * Constants.ENTETIES_ACCELERATION;
+        if (Gdx.input.isKeyPressed(Keys.W)) {
+            if (entity.get_velocity().y >= Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
+            }
+        } else if (Gdx.input.isKeyPressed(Keys.S)) {
+            if (entity.get_velocity().y <= -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY;     // ensures a constant speed
+            } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {  // down
+                entity.get_velocity().y -= delta * Constants.ENTETIES_ACCELERATION;
+            }
         } else {entity.get_velocity().y = 0;}
         
-        if (Gdx.input.isKeyPressed(Keys.A) && entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {          // left
-            entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
-        } else if (Gdx.input.isKeyPressed(Keys.D) && entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {    // right
-            entity.get_velocity().x += delta * Constants.ENTETIES_ACCELERATION;
+        if (Gdx.input.isKeyPressed(Keys.A)) {
+            if (entity.get_velocity().x <= -Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x = -Constants.ENTETIES_MAX_VELOCITY;     // ensures a constant speed
+            } else if (entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {  // left
+                entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
+            }
+        } else if(Gdx.input.isKeyPressed(Keys.D)) {
+            if (entity.get_velocity().x >= Constants.ENTETIES_MAX_VELOCITY) {
+                entity.get_velocity().x = Constants.ENTETIES_MAX_VELOCITY;      // ensures a constant speed
+            } else if (entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {   // right
+                entity.get_velocity().x += delta * Constants.ENTETIES_ACCELERATION;
+            }
         } else {entity.get_velocity().x = 0;}
-        
-        entity.get_body().applyLinearImpulse(entity.get_velocity().x, entity.get_velocity().y, entity.get_body().getPosition().x, entity.get_body().getPosition().y, true);
-        entity.get_render_position().set(
-            entity.get_body().getPosition().x - Constants.CAT1_WIDTH / 2 / Constants.PPM,
-            entity.get_body().getPosition().y - Constants.CAT1_HEIGHT / 2 / Constants.PPM
+
+        entity.get_body().applyLinearImpulse(
+            entity.get_velocity().x,
+            entity.get_velocity().y,
+            entity.get_body().getPosition().x,
+            entity.get_body().getPosition().y,
+            true
         );
+        entity.get_render_position().set(
+            entity.get_body().getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
+            entity.get_body().getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
+        );
+    }
+
+    public void removeEntity(String id) {
+        for (int i=0; i < entities.size; i++) {
+            if (entities.get(i).getId() == id) {
+                entities.removeIndex(i);
+                return;
+            }
+        }
     }
 }
