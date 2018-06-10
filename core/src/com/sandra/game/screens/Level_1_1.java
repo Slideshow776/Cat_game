@@ -38,6 +38,7 @@ public class Level_1_1 implements Screen {
     private Cat_game game;
     private SpriteBatch batch;
     private OrthographicCamera camera;
+    private Boolean pause;
 
     private World b2d_world;
     private Box2DDebugRenderer b2d_Renderer;
@@ -54,6 +55,7 @@ public class Level_1_1 implements Screen {
     
     public Level_1_1(Cat_game game) {
         this.game = game;
+        pause = false;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
@@ -115,7 +117,7 @@ public class Level_1_1 implements Screen {
 
     @Override
     public void render(float delta) {	
-        update(delta);		
+        if (!pause) {update(delta);		}
         //camera.update();
         
         //Gdx.gl.glClearColor(1, .7f, 1, 1); // light pink
@@ -130,35 +132,42 @@ public class Level_1_1 implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-        
-    }
+    public void resize(int width, int height) {}
 
     @Override
     public void pause() {
+        pause = !pause;
+        generic_music.pause();
         
     }
 
     @Override
     public void resume() {
-        
+        pause = !pause;
+        generic_music.play();
     }
 
     @Override
     public void hide() {
-        
+        dispose();
     }
 
 	@Override
 	public void show() {
+        System.out.println("show");
         generic_music.play();		
     }
 
     @Override
     public void dispose () {
-        batch.dispose();
         Assets.instance.dispose();
-
-        System.out.println("level 1-1 disposed!");
+        for (Entity cat1:cat1s) {
+            controls.removeEntity(cat1.getId());
+            cat1.dispose();
+        }
+        generic_music.dispose();
+        purr1.dispose();
+        b2d_world.dispose();
+        b2d_Renderer.dispose();
     }    
 }

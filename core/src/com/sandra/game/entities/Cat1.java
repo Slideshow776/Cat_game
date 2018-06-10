@@ -34,6 +34,7 @@ public class Cat1 extends Entity{
 
     public void update(float delta, boolean collision) {
         this.collision = collision;
+        // System.out.println(collision);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}

@@ -11,6 +11,7 @@ public class DesktopLauncher {
 		int scale = 2; // resolution of lg g4 is 1440 x 2560
 		config.height = (int)1440 / scale;
 		config.width = (int)2560 / scale;
+		config.resizable = false;
 		new LwjglApplication(new Cat_game(), config);
 	}
 }
