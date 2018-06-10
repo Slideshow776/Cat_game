@@ -1,13 +1,20 @@
 
 cat_game.pack.png
-size: 32,32
+size: 64,32
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 cat1
   rotate: false
-  xy: 2, 2
+  xy: 34, 2
   size: 27, 21
   orig: 27, 21
+  offset: 0, 0
+  index: -1
+hole
+  rotate: false
+  xy: 2, 3
+  size: 30, 20
+  orig: 30, 20
   offset: 0, 0
   index: -1

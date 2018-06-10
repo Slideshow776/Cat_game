@@ -2,6 +2,8 @@ package com.sandra.game.entities;
 
 import java.util.UUID;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -24,7 +26,7 @@ public class Cat1 extends Entity{
         id = UUID.randomUUID().toString();
         
         this.b2d_world = b2d_world;
-        init_body();
+        init_body();        
     }
 
     public void render(SpriteBatch batch) {
@@ -45,8 +47,8 @@ public class Cat1 extends Entity{
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
         bdef.position.set(
-            (render_position.x + Constants.CAT1_PIXEL_WIDTH / 2) / Constants.PPM,
-            (render_position.y + Constants.CAT1_PIXEL_HEIGHT / 2) / Constants.PPM
+            (render_position.x + (Constants.CAT1_PIXEL_WIDTH / Constants.PPM) / 2),
+            (render_position.y + (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2)
         );
 
         PolygonShape shape = new PolygonShape();
@@ -57,7 +59,7 @@ public class Cat1 extends Entity{
         //fdef.friction = 50f;
         fdef.restitution = Constants.CAT1_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
-		fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S;
+		fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | Constants.B2D_BIT_HOLE;
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);

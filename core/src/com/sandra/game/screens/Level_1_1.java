@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Entity;
+import com.sandra.game.entities.Hole;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
@@ -36,9 +37,11 @@ public class Level_1_1 implements Screen {
     private MyContactListener myContactListener;
 
     private Sound purr1;
+    private Sound score1;
     private Music generic_music;
     private DelayedRemovalArray<Entity> cat1s;
     private DelayedRemovalArray<Entity> entities;
+    private Entity hole;
 
     private Controls controls;
     
@@ -63,32 +66,39 @@ public class Level_1_1 implements Screen {
         // entities
         cat1s = new DelayedRemovalArray<Entity>();
         cat1s.add(new Cat1(new Vector2(
-                        Constants.GAME_WIDTH / 2,
-                        Constants.GAME_HEIGHT / 2),
+                        (Constants.GAME_WIDTH / 2 + 150) / Constants.PPM,
+                        (Constants.GAME_HEIGHT / 2 - 175) / Constants.PPM),
                     b2d_world));
 
         cat1s.add(new Cat1(new Vector2(
-                        Constants.GAME_WIDTH / 2 + 200,
-                        Constants.GAME_HEIGHT / 2 + 200),
+                        (Constants.GAME_WIDTH / 2 + 200) / Constants.PPM,
+                        (Constants.GAME_HEIGHT / 2 + 200) / Constants.PPM),
                     b2d_world));
         cat1s.add(new Cat1(new Vector2(
-                        Constants.GAME_WIDTH / 2 - 100,
-                        Constants.GAME_HEIGHT / 2 - 100),
+                        (Constants.GAME_WIDTH / 2 - 100) / Constants.PPM,
+                        (Constants.GAME_HEIGHT / 2 - 100) / Constants.PPM),
                     b2d_world));
         cat1s.add(new Cat1(new Vector2(
-                        Constants.GAME_WIDTH / 2 + 150,
-                        Constants.GAME_HEIGHT / 2 - 300),
+                        (Constants.GAME_WIDTH / 2 + 150) / Constants.PPM,
+                        (Constants.GAME_HEIGHT / 2 - 300) / Constants.PPM),
                     b2d_world));
         cat1s.add(new Cat1(new Vector2(
-                        Constants.GAME_WIDTH / 2 - 300,
-                        Constants.GAME_HEIGHT / 2 + 225),
+                        (Constants.GAME_WIDTH / 2 - 300) / Constants.PPM,
+                        (Constants.GAME_HEIGHT / 2 + 225) / Constants.PPM),
                     b2d_world));
 
+        hole = new Hole(new Vector2(
+                (Constants.GAME_WIDTH / 2) / Constants.PPM,
+                (Constants.GAME_HEIGHT / 2) / Constants.PPM),
+            b2d_world);
+
+        // controls
         entities = new DelayedRemovalArray<Entity>();
         entities.addAll(cat1s);
         controls = new Controls(entities);
 
         //sounds
+        score1 = Gdx.audio.newSound(Gdx.files.internal("sounds/score1.wav"));
         purr1 = Gdx.audio.newSound(Gdx.files.internal("sounds/purr1.wav"));
         purr1.play();
 
@@ -102,7 +112,19 @@ public class Level_1_1 implements Screen {
         b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
         controls.update(delta);
         game.batch.setProjectionMatrix(camera.combined);
-        for (Entity cat1:cat1s) {cat1.update(delta);}
+
+        // entities
+        hole.update(delta);
+        for (Entity cat1:cat1s) {
+            cat1.update(delta);
+            System.out.println(cat1.get_body().getUserData());
+            if (cat1.get_body().getUserData() == "win_condition") {
+                System.out.println("TRYING TO REMOVE");
+                score1.play();
+                cat1.dispose();
+                cat1s.removeValue(cat1, false);
+            }
+        }
     }
 
     @Override
@@ -115,7 +137,8 @@ public class Level_1_1 implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);                
 
         game.batch.begin();        
-        for (Entity cat1: cat1s) {cat1.render(game.batch);}        
+        hole.render(game.batch);
+        for (Entity cat1: cat1s) {cat1.render(game.batch);}
         game.batch.end();
         
         if (Constants.B2D_DEBUGGING) {b2d_Renderer.render(b2d_world, camera.combined);}
@@ -155,6 +178,7 @@ public class Level_1_1 implements Screen {
             controls.removeEntity(cat1.getId());
             cat1.dispose();
         }
+        hole.dispose();
         generic_music.dispose();
         purr1.dispose();
         b2d_world.dispose();
