@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 public class MyContactListener implements ContactListener{
 
 	public static final String TAG = MyContactListener.class.getName();
-	private boolean entityCollidedWithWorld = false;
 	
 	@Override
 	public void beginContact(Contact contact) {
@@ -19,16 +18,9 @@ public class MyContactListener implements ContactListener{
 		
 		if(fa.getUserData() != null && fa.getUserData().equals("world") && 
 				fb.getUserData() != null && fb.getUserData().equals(Constants.CAT1_SPRITE)) {
-			entityCollidedWithWorld = true;
-			System.out.println("Set entityCollidedWithWorld to true!");
-		} else {
-			entityCollidedWithWorld = false;
-			System.out.println("Set entityCollidedWithWorld to false!");
+			fb.getBody().setUserData("collision");
 		}
 	}
-	
-	public boolean getEntityCollision() {return entityCollidedWithWorld;}
-	public void setEntityCollision(Boolean b) {entityCollidedWithWorld = b;}
 
 	@Override
 	public void endContact(Contact contact) {}

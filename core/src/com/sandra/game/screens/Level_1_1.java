@@ -113,15 +113,12 @@ public class Level_1_1 implements Screen {
         b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
         controls.update(delta);
         game.batch.setProjectionMatrix(camera.combined);
-        for (Entity cat1:cat1s) {
-            cat1.update(delta, myContactListener.getEntityCollision());
-            if (myContactListener.getEntityCollision()) {myContactListener.setEntityCollision(false);}
-        }
+        for (Entity cat1:cat1s) {cat1.update(delta);}
     }
 
     @Override
     public void render(float delta) {	
-        if (!pause) {update(delta);		}
+        if (!pause) {update(delta);}
         //camera.update();
         
         //Gdx.gl.glClearColor(1, .7f, 1, 1); // light pink

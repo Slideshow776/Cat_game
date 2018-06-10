@@ -23,7 +23,6 @@ public class Cat1 extends Entity{
         velocity = new Vector2(0, 0);
         this.b2d_world = b2d_world;
         set_body();
-        collision = false;
         id = UUID.randomUUID().toString();
     }
 
@@ -32,11 +31,10 @@ public class Cat1 extends Entity{
         Utils.drawTextureRegion(batch, region, render_position, Constants.CAT1_CENTER);
     }
 
-    public void update(float delta, boolean collision) {
-        this.collision = collision;
-        if (collision) {
+    public void update(float delta) {
+        if (body.getUserData() == "collision") {
+            body.setUserData(Constants.CAT1_SPRITE);
             velocity.x = velocity.y = 0;
-            collision = false;
         }
     }
 
