@@ -14,7 +14,7 @@ public abstract class Entity {
     public void dispose() {}
     public void render(SpriteBatch batch) {}
     public void update(float delta) {}
-
+    
     public String getId() {return id;}
     public Body get_body() {return body;}
     public Vector2 get_velocity() {return velocity;}

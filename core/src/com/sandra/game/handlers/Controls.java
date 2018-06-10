@@ -24,13 +24,13 @@ public class Controls {
     }
 
     public void android_movement(float delta, Entity entity) {  // Accelerometer  = x = y = [-10, 10]
-        if (Gdx.input.getAccelerometerX() < -1) { //up
+        if (Gdx.input.getAccelerometerX() < -1) {           // up
             if (entity.get_velocity().y >= Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
             }
-        } else if (Gdx.input.getAccelerometerX() > 1) { // down
+        } else if (Gdx.input.getAccelerometerX() > 1) {     // down
             if (entity.get_velocity().y <= -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {
@@ -38,13 +38,13 @@ public class Controls {
             }
         } else {entity.get_velocity().y = 0;}
         
-        if (Gdx.input.getAccelerometerY() < -1) { // left
+        if (Gdx.input.getAccelerometerY() < -1) {           // left
             if (entity.get_velocity().x <= -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().x = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
             }
-        } else if (Gdx.input.getAccelerometerY() > 1) { // right
+        } else if (Gdx.input.getAccelerometerY() > 1) {     // right
             if (entity.get_velocity().x >= Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().x = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {
@@ -60,30 +60,30 @@ public class Controls {
     }
 
     public void desktop_movement(float delta, Entity entity) {
-        if (Gdx.input.isKeyPressed(Keys.W)) {
+        if (Gdx.input.isKeyPressed(Keys.W)) {           // up
             if (entity.get_velocity().y >= Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
             }
-        } else if (Gdx.input.isKeyPressed(Keys.S)) {
+        } else if (Gdx.input.isKeyPressed(Keys.S)) {    // down
             if (entity.get_velocity().y <= -Constants.ENTETIES_MAX_VELOCITY) {
-                entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY;     // ensures a constant speed
-            } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {  // down
+                entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y -= delta * Constants.ENTETIES_ACCELERATION;
             }
         } else {entity.get_velocity().y = 0;}
         
-        if (Gdx.input.isKeyPressed(Keys.A)) {
+        if (Gdx.input.isKeyPressed(Keys.A)) {           // left
             if (entity.get_velocity().x <= -Constants.ENTETIES_MAX_VELOCITY) {
-                entity.get_velocity().x = -Constants.ENTETIES_MAX_VELOCITY;     // ensures a constant speed
-            } else if (entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {  // left
+                entity.get_velocity().x = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().x > -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().x -= delta * Constants.ENTETIES_ACCELERATION;
             }
-        } else if(Gdx.input.isKeyPressed(Keys.D)) {
+        } else if(Gdx.input.isKeyPressed(Keys.D)) {     // right
             if (entity.get_velocity().x >= Constants.ENTETIES_MAX_VELOCITY) {
-                entity.get_velocity().x = Constants.ENTETIES_MAX_VELOCITY;      // ensures a constant speed
-            } else if (entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {   // right
+                entity.get_velocity().x = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
+            } else if (entity.get_velocity().x < Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().x += delta * Constants.ENTETIES_ACCELERATION;
             }
         } else {entity.get_velocity().x = 0;}

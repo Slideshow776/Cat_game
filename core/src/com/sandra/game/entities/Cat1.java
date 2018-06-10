@@ -21,9 +21,10 @@ public class Cat1 extends Entity{
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;
         velocity = new Vector2(0, 0);
-        this.b2d_world = b2d_world;
-        set_body();
         id = UUID.randomUUID().toString();
+        
+        this.b2d_world = b2d_world;
+        init_body();
     }
 
     public void render(SpriteBatch batch) {
@@ -40,7 +41,7 @@ public class Cat1 extends Entity{
 
     public void dispose() {b2d_world.destroyBody(body);}
 
-    private void set_body() {
+    private void init_body() {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
         bdef.position.set(

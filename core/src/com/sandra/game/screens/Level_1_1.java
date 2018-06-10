@@ -2,7 +2,6 @@ package com.sandra.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -10,15 +9,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
@@ -26,17 +19,14 @@ import com.sandra.game.entities.Entity;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
-import com.sandra.game.utils.MyContactListener;
+import com.sandra.game.handlers.MyContactListener;
 import com.sandra.game.utils.box2D;
-
-import org.w3c.dom.EntityReference;
 
 public class Level_1_1 implements Screen {
 
     public static final String TAG = Level_1_1.class.getName();
 
     private Cat_game game;
-    private SpriteBatch batch;
     private OrthographicCamera camera;
     private Boolean pause;
 
@@ -45,7 +35,6 @@ public class Level_1_1 implements Screen {
     private box2D box2d;
     private MyContactListener myContactListener;
 
-    private Texture img;
     private Sound purr1;
     private Music generic_music;
     private DelayedRemovalArray<Entity> cat1s;
@@ -133,13 +122,14 @@ public class Level_1_1 implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void resize(int width, int height) {
+        
+    }
 
     @Override
     public void pause() {
         pause = !pause;
-        generic_music.pause();
-        
+        generic_music.pause();        
     }
 
     @Override
@@ -155,7 +145,6 @@ public class Level_1_1 implements Screen {
 
 	@Override
 	public void show() {
-        System.out.println("show");
         generic_music.play();		
     }
 
