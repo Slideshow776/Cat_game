@@ -30,6 +30,7 @@ public class Constants {
     public static final float CAT1_PIXEL_WIDTH = 27f;
     public static final float CAT1_PIXEL_HEIGHT = 21f;
     public static final float CAT1_DENSITY = .65f;
+    public static final float CAT1_RESTITUTION = .1f;
     public static final float CAT1_HALF_WIDTH = 23f / Constants.PPM;    // cat length = .46m, from bird's perspective
     public static final float CAT1_HALF_HEIGHT = 12.5f / Constants.PPM; // cat width = .25m, from bird's perspective
 }

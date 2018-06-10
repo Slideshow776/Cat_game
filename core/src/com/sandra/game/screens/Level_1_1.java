@@ -77,6 +77,7 @@ public class Level_1_1 implements Screen {
                         Constants.GAME_WIDTH / 2,
                         Constants.GAME_HEIGHT / 2),
                     b2d_world));
+
         cat1s.add(new Cat1(new Vector2(
                         Constants.GAME_WIDTH / 2 + 200,
                         Constants.GAME_HEIGHT / 2 + 200),
@@ -92,7 +93,7 @@ public class Level_1_1 implements Screen {
         cat1s.add(new Cat1(new Vector2(
                         Constants.GAME_WIDTH / 2 - 300,
                         Constants.GAME_HEIGHT / 2 + 225),
-                    b2d_world));      
+                    b2d_world));
 
         entities = new DelayedRemovalArray<Entity>();
         entities.addAll(cat1s);
@@ -112,7 +113,10 @@ public class Level_1_1 implements Screen {
         b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
         controls.update(delta);
         game.batch.setProjectionMatrix(camera.combined);
-        for (Entity cat1:cat1s) {cat1.update(delta, myContactListener.getEntityCollision());}
+        for (Entity cat1:cat1s) {
+            cat1.update(delta, myContactListener.getEntityCollision());
+            if (myContactListener.getEntityCollision()) {myContactListener.setEntityCollision(false);}
+        }
     }
 
     @Override

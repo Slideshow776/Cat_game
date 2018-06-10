@@ -34,7 +34,10 @@ public class Cat1 extends Entity{
 
     public void update(float delta, boolean collision) {
         this.collision = collision;
-        // System.out.println(collision);
+        if (collision) {
+            velocity.x = velocity.y = 0;
+            collision = false;
+        }
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
@@ -53,6 +56,7 @@ public class Cat1 extends Entity{
         fdef.shape = shape;
         fdef.density = Constants.CAT1_DENSITY;
         //fdef.friction = 50f;
+        fdef.restitution = Constants.CAT1_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
 		fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S;
 

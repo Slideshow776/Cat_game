@@ -17,17 +17,18 @@ public class MyContactListener implements ContactListener{
 		Fixture fa = contact.getFixtureA();
 		Fixture fb = contact.getFixtureB();
 		
-		if(fa.getUserData() != null && fa.getUserData().equals("world")) {
+		if(fa.getUserData() != null && fa.getUserData().equals("world") && 
+				fb.getUserData() != null && fb.getUserData().equals(Constants.CAT1_SPRITE)) {
 			entityCollidedWithWorld = true;
-			// System.out.println(TAG + ": fa COLLIEDED!");
-		}
-		if(fb.getUserData() != null && fb.getUserData().equals("world")) {
-			entityCollidedWithWorld = true;
-			// System.out.println(TAG + ": fb COLLIEDED!");
+			System.out.println("Set entityCollidedWithWorld to true!");
+		} else {
+			entityCollidedWithWorld = false;
+			System.out.println("Set entityCollidedWithWorld to false!");
 		}
 	}
 	
 	public boolean getEntityCollision() {return entityCollidedWithWorld;}
+	public void setEntityCollision(Boolean b) {entityCollidedWithWorld = b;}
 
 	@Override
 	public void endContact(Contact contact) {}

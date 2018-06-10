@@ -18,7 +18,7 @@ public abstract class Entity {
 
     public String getId() {return id;}
     public Body get_body() {return body;}
-    public Boolean collision() {return collision;}
+    public Boolean collided() {return collision;}
     public Vector2 get_velocity() {return velocity;}
     public Vector2 get_render_position() {return render_position;}    
 }
