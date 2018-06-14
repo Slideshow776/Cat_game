@@ -5,7 +5,11 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
 public class Assets implements Disposable, AssetErrorListener {
@@ -15,6 +19,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public Cat1Assets cat1Assets;
     public HoleAssets holeAssets;
+    public CoinAssets coinAssets;
+    public YarnBallAssets yarnBallAssets;
 
     private AssetManager assetManager;
 
@@ -27,6 +33,8 @@ public class Assets implements Disposable, AssetErrorListener {
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         cat1Assets = new Cat1Assets(atlas);
         holeAssets = new HoleAssets(atlas);
+        coinAssets = new CoinAssets(atlas);
+        yarnBallAssets = new YarnBallAssets(atlas);
     }
 
 	@Override
@@ -42,6 +50,37 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public Cat1Assets(TextureAtlas atlas) {
             cat1 = atlas.findRegion(Constants.CAT1_SPRITE);
+        }
+    }
+
+    public class YarnBallAssets {
+        public final Animation<TextureRegion> yarn_ball_animation;
+
+        public YarnBallAssets(TextureAtlas atlas) {
+            Array<TextureRegion> yarn_ball_frames = new Array<TextureRegion>();
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_1));
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_2));
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_3));
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_4));
+
+            yarn_ball_animation = new Animation<TextureRegion>(Constants.YARN_BALL_LOOP_DURATION, yarn_ball_frames, PlayMode.LOOP);
+        }
+    }
+
+    public class CoinAssets {
+        // public final AtlasRegion coin;
+        public final Animation<TextureRegion> coin_animation;
+
+        public CoinAssets(TextureAtlas atlas) {
+            // coin = atlas.findRegion(Constants.COIN_SPRITE_1);
+
+            Array<TextureRegion> coin_frames = new Array<TextureRegion>();
+            coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_1));
+            coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_2));
+            coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_3));
+            coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_4));
+            
+            coin_animation = new Animation<TextureRegion>(Constants.COIN_LOOP_DURATION, coin_frames, PlayMode.LOOP_PINGPONG);
         }
     }
 

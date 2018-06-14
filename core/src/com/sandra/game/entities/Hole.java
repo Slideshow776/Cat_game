@@ -18,26 +18,18 @@ public class Hole extends Entity {
 
     public Hole(Vector2 position, World b2d_world) {
         render_position = position;
-        /*
-        render_position.set(
-            position.x / Constants.PPM,
-            position.y / Constants.PPM
-        );
-        */
         this.b2d_world = b2d_world;
         init_body();
     }
 
     public void render(SpriteBatch batch) {
         final TextureRegion region = Assets.instance.holeAssets.hole;
-        render_position.x = Constants.GAME_WIDTH / 2 / Constants.PPM;
+        render_position.x = Constants.GAME_WIDTH / 2 / Constants.PPM; // TODO: this is wrong
         render_position.y = Constants.GAME_HEIGHT / 2 / Constants.PPM;
         Utils.drawTextureRegion(batch, region, render_position, Constants.HOLE_CENTER);
     }
 
-    public void update(float delta) {
-
-    }
+    public void update(float delta) {}
 
     public void dispose() {b2d_world.destroyBody(body);}
 

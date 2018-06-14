@@ -15,8 +15,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
+import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.entities.Hole;
+import com.sandra.game.entities.Yarn_Ball;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
@@ -38,8 +40,12 @@ public class Level_1_1 implements Screen {
 
     private Sound purr1;
     private Sound score1;
+    private Sound coin1;
+    private Sound bump1;
     private Music generic_music;
     private DelayedRemovalArray<Entity> cat1s;
+    private DelayedRemovalArray<Entity> coins;
+    private DelayedRemovalArray<Entity> yarn_balls;
     private DelayedRemovalArray<Entity> entities;
     private Entity hole;
 
@@ -86,6 +92,30 @@ public class Level_1_1 implements Screen {
                         (Constants.GAME_WIDTH / 2 - 300) / Constants.PPM,
                         (Constants.GAME_HEIGHT / 2 + 225) / Constants.PPM),
                     b2d_world));
+        
+        coins = new DelayedRemovalArray<Entity>();
+        coins.add(new Coin(new Vector2(
+                        (10) / Constants.PPM,
+                        (10) / Constants.PPM),
+                    b2d_world));
+        coins.add(new Coin(new Vector2(
+                        (750) / Constants.PPM,
+                        (300) / Constants.PPM),
+                    b2d_world));
+        coins.add(new Coin(new Vector2(
+                        (450) / Constants.PPM,
+                        (450) / Constants.PPM),
+                    b2d_world));
+        coins.add(new Coin(new Vector2(
+                        (200) / Constants.PPM,
+                        (450) / Constants.PPM),
+                    b2d_world));
+
+        yarn_balls = new DelayedRemovalArray<Entity>();
+        yarn_balls.add(new Yarn_Ball(new Vector2(
+                        (785) / Constants.PPM,
+                        (155) / Constants.PPM),
+                    b2d_world));
 
         hole = new Hole(new Vector2(
                 (Constants.GAME_WIDTH / 2) / Constants.PPM,
@@ -99,8 +129,9 @@ public class Level_1_1 implements Screen {
 
         //sounds
         score1 = Gdx.audio.newSound(Gdx.files.internal("sounds/score1.wav"));
+        coin1 = Gdx.audio.newSound(Gdx.files.internal("sounds/coin1.wav"));
         purr1 = Gdx.audio.newSound(Gdx.files.internal("sounds/purr1.wav"));
-        purr1.play();
+        bump1 = Gdx.audio.newSound(Gdx.files.internal("sounds/yarn_ball_bump1.wav"));
 
         //music
         generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
@@ -117,13 +148,28 @@ public class Level_1_1 implements Screen {
         hole.update(delta);
         for (Entity cat1:cat1s) {
             cat1.update(delta);
-            System.out.println(cat1.get_body().getUserData());
             if (cat1.get_body().getUserData() == "win_condition") {
-                System.out.println("TRYING TO REMOVE");
                 score1.play();
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }
+        }
+
+        for (Entity coin:coins) {
+            coin.update(delta);
+            if (coin.get_body().getUserData() == "remove_me") {
+                coin1.play();
+                coin.dispose();
+                coins.removeValue(coin, false);
+            }
+        }
+
+        for (Entity yarn_ball:yarn_balls) {
+            yarn_ball.update(delta);
+            if (yarn_ball.get_body().getUserData() == "collision") {
+                bump1.play();
+            }
+
         }
     }
 
@@ -139,6 +185,8 @@ public class Level_1_1 implements Screen {
         game.batch.begin();        
         hole.render(game.batch);
         for (Entity cat1: cat1s) {cat1.render(game.batch);}
+        for (Entity coin: coins) {coin.render(game.batch);}
+        for (Entity yarn_ball: yarn_balls) {yarn_ball.render(game.batch);}
         game.batch.end();
         
         if (Constants.B2D_DEBUGGING) {b2d_Renderer.render(b2d_world, camera.combined);}
@@ -168,6 +216,7 @@ public class Level_1_1 implements Screen {
 
 	@Override
 	public void show() {
+        purr1.play();
         generic_music.play();		
     }
 

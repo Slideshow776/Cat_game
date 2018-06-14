@@ -1,20 +1,76 @@
 
 cat_game.pack.png
-size: 64,32
+size: 512,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 cat1
   rotate: false
-  xy: 34, 2
+  xy: 402, 35
   size: 27, 21
   orig: 27, 21
   offset: 0, 0
   index: -1
+coin1
+  rotate: false
+  xy: 266, 24
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coin2
+  rotate: false
+  xy: 300, 24
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coin3
+  rotate: false
+  xy: 334, 24
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+coin4
+  rotate: false
+  xy: 368, 24
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 hole
   rotate: false
-  xy: 2, 3
+  xy: 2, 2
   size: 30, 20
   orig: 30, 20
+  offset: 0, 0
+  index: -1
+yarn_ball1
+  rotate: false
+  xy: 2, 24
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+yarn_ball2
+  rotate: false
+  xy: 68, 24
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+yarn_ball3
+  rotate: false
+  xy: 134, 24
+  size: 64, 32
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
+yarn_ball4
+  rotate: false
+  xy: 200, 24
+  size: 64, 32
+  orig: 64, 32
   offset: 0, 0
   index: -1

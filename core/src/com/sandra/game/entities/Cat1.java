@@ -2,8 +2,6 @@ package com.sandra.game.entities;
 
 import java.util.UUID;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -16,7 +14,7 @@ import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
 
-public class Cat1 extends Entity{
+public class Cat1 extends Entity {
 
     private World b2d_world;
 
@@ -59,7 +57,8 @@ public class Cat1 extends Entity{
         //fdef.friction = 50f;
         fdef.restitution = Constants.CAT1_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
-		fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | Constants.B2D_BIT_HOLE;
+        fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | 
+            Constants.B2D_BIT_HOLE | Constants.B2D_BIT_COINS | Constants.B2D_YARN_BALLS;
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);

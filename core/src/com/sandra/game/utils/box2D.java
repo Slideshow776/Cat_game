@@ -1,6 +1,5 @@
 package com.sandra.game.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -33,11 +32,11 @@ public class box2D {
         );
         FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
-		fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;   // BIT_WORLD;
-		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;       // BIT_PLAYER;
+		fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
+		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
 		Body world_lower = b2d_world.createBody(bdef);
-		world_lower.createFixture(fdef).setUserData("world");
+		world_lower.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
         
         // Upper -------------------------------
 		bdef.position.set(
@@ -48,10 +47,10 @@ public class box2D {
         //shape.setAsBox(Gdx.graphics.getWidth(), Constants.B2D_WORLD_BOUNDS_OFFSET);
 		fdef.shape = shape;
 		fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
-		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;
+		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_upper = b2d_world.createBody(bdef);
-        world_upper.createFixture(fdef).setUserData("world");
+        world_upper.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
         
         // Left --------------------------------
         bdef.position.set(
@@ -65,10 +64,10 @@ public class box2D {
         );
 		fdef.shape = shape;
 		fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
-		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;
+		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_left = b2d_world.createBody(bdef);
-        world_left.createFixture(fdef).setUserData("world");
+        world_left.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
 
         // Right -------------------------------
         bdef.position.set(
@@ -81,9 +80,9 @@ public class box2D {
         //shape.setAsBox(Constants.B2D_WORLD_BOUNDS_OFFSET, Gdx.graphics.getHeight());
 		fdef.shape = shape;
 		fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
-		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;
+		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_right = b2d_world.createBody(bdef);
-        world_right.createFixture(fdef).setUserData("world");
+        world_right.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
     }
 }

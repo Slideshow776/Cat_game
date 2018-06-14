@@ -43,7 +43,7 @@ public class Utils {
                 false);
     }
 
-    public static float secondsSince(long timeNanos) {
-        return MathUtils.nanoToSec * (TimeUtils.nanoTime() - timeNanos);
+    public static float secondsSince(float animation_start_time) {
+        return MathUtils.nanoToSec * (TimeUtils.nanoTime() - animation_start_time);
     }
 }
