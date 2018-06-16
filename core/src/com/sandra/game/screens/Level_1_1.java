@@ -92,7 +92,7 @@ public class Level_1_1 implements Screen {
                         (Constants.GAME_WIDTH / 2 - 300) / Constants.PPM,
                         (Constants.GAME_HEIGHT / 2 + 225) / Constants.PPM),
                     b2d_world));
-        
+
         coins = new DelayedRemovalArray<Entity>();
         coins.add(new Coin(new Vector2(
                         (10) / Constants.PPM,
@@ -147,28 +147,28 @@ public class Level_1_1 implements Screen {
         // entities
         hole.update(delta);
         for (Entity cat1:cat1s) {
-            cat1.update(delta);
             if (cat1.get_body().getUserData() == "win_condition") {
                 score1.play();
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }
+            cat1.update(delta);
         }
 
         for (Entity coin:coins) {
-            coin.update(delta);
             if (coin.get_body().getUserData() == "remove_me") {
                 coin1.play();
                 coin.dispose();
                 coins.removeValue(coin, false);
             }
+            coin.update(delta);
         }
 
         for (Entity yarn_ball:yarn_balls) {
-            yarn_ball.update(delta);
             if (yarn_ball.get_body().getUserData() == "collision") {
                 bump1.play();
             }
+            yarn_ball.update(delta);
 
         }
     }

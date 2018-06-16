@@ -1,7 +1,5 @@
 package com.sandra.game.entities;
 
-import javax.xml.bind.ValidationEventHandler;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -17,45 +15,47 @@ import com.sandra.game.utils.Constants;
 
 public class Yarn_Ball extends Entity {
     private World b2d_world;
-	private float animation_start_time;
+    private float animation_start_time;
+    private Vector2 original_velocity;
 
     public Yarn_Ball(Vector2 position, World b2d_world) {
         render_position = position;
-        velocity = new Vector2(-.1f, 0);
-        
+        velocity = new Vector2(.1f, .05f); // initial velocity should only be positive
         animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;
-        init_body();
-        body.applyLinearImpulse(velocity.x, velocity.y, body.getPosition().x, body.getPosition().y, true);
+        init_body();       
+
+        body.applyLinearImpulse(velocity, body.getWorldCenter(), true);
+        original_velocity = new Vector2(body.getLinearVelocity());
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time); 
+        float animation_time_seconds = Utils.secondsSince(animation_start_time);
         TextureRegion region = Assets.instance.yarnBallAssets.yarn_ball_animation.getKeyFrame(animation_time_seconds);
-        Utils.drawTextureRegion(batch, region, render_position);
+        Utils.drawTextureRegion(batch, region, render_position); 
     }
 
     public void update(float delta) {
-
         if (body.getUserData() == "collision") {
             body.setUserData(Constants.YARN_BALL_SPRITE_1);
-            velocity.x *= -1;
-            velocity.y *= -1;
-        }
 
-        if (velocity.x >= Constants.ENTETIES_MAX_VELOCITY) {
-            velocity.x = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
-        }
-        else if (velocity.x <= Constants.ENTETIES_MAX_VELOCITY) {
-            velocity.x = -Constants.ENTETIES_MAX_VELOCITY;
-        }
-
-        if (velocity.y >= Constants.ENTETIES_MAX_VELOCITY) {
-            velocity.y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
-        }
-        else if (velocity.y <= Constants.ENTETIES_MAX_VELOCITY) {
-            velocity.y = -Constants.ENTETIES_MAX_VELOCITY;
+            if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||          // ++
+                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
+                body.applyLinearImpulse(velocity, body.getWorldCenter(), true);
+            } else if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||   // +-
+                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // -+
+                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x*-1, velocity.y, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // --
+                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x*-1, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            }
         }
 
         render_position.set(
@@ -70,7 +70,7 @@ public class Yarn_Ball extends Entity {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
         bdef.position.set(
-            (render_position.x + (Constants.YARN_BALL_PIXEL_WIDTH / Constants.PPM) / 2),
+            (render_position.x + (Constants.YARN_BALL_PIXEL_WIDTH / 2 / Constants.PPM) / 2),
             (render_position.y + (Constants.YARN_BALL_PIXEL_HEIGHT / Constants.PPM) / 2)
         );
 
@@ -79,7 +79,7 @@ public class Yarn_Ball extends Entity {
         FixtureDef fdef = new FixtureDef();
         fdef.shape = shape;
         fdef.density = Constants.YARN_BALL_DENSITY;
-        //fdef.friction = 50f;
+        fdef.friction = 0; // so it doesn't stick to the walls.
         fdef.restitution = Constants.YARN_BALL_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_YARN_BALLS;
         fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;

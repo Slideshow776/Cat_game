@@ -60,7 +60,7 @@ public class Constants {
     public static final float YARN_BALL_PIXEL_WIDTH = 64f;
     public static final float YARN_BALL_PIXEL_HEIGHT = 32f;
     public static final float YARN_BALL_DENSITY = .65f;
-    public static final float YARN_BALL_RESTITUTION = 2f;
+    public static final float YARN_BALL_RESTITUTION = 1f;
     public static final float YARN_BALL_RADIUS = 14f / PPM;
     public static final float YARN_BALL_LOOP_DURATION = .15f; 
 

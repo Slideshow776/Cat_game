@@ -1,4 +1,3 @@
-
 package com.sandra.game.handlers;
 
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -34,8 +33,13 @@ public class MyContactListener implements ContactListener{
 				fb.getUserData() != null && fb.getUserData().equals(Constants.COIN_SPRITE_1)) {
 			fb.getBody().setUserData("remove_me");
 		}
+		
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_IDENTITY) &&		// world vs yarn ball
+				fb.getUserData() != null && fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
+			fb.getBody().setUserData("collision");
+		}
 
-		if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_IDENTITY) &&		// world vs cat1
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_SPRITE) &&		// cat vs yarn ball
 				fb.getUserData() != null && fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 			fb.getBody().setUserData("collision");
 		}
