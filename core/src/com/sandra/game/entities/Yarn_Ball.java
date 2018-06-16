@@ -20,7 +20,7 @@ public class Yarn_Ball extends Entity {
 
     public Yarn_Ball(Vector2 position, World b2d_world) {
         render_position = position;
-        velocity = new Vector2(.1f, .05f); // initial velocity should only be positive
+        velocity = new Vector2(.1f, .1f);
         animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;
@@ -37,34 +37,38 @@ public class Yarn_Ball extends Entity {
     }
 
     public void update(float delta) {
-        if (body.getUserData() == "collision") {
+        if (body.getUserData() == "collision" || 
+                (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0)) { // or if it stops completely
             body.setUserData(Constants.YARN_BALL_SPRITE_1);
-
-            if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||          // ++
-                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
-                body.applyLinearImpulse(velocity, body.getWorldCenter(), true);
-            } else if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||   // +-
-                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
-                body.setLinearVelocity(0, 0);
-                body.applyLinearImpulse(velocity.x, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
-            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // -+
-                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
-                body.setLinearVelocity(0, 0);
-                body.applyLinearImpulse(velocity.x*-1, velocity.y, body.getWorldCenter().x, body.getWorldCenter().y, true);
-            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // --
-                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
-                body.setLinearVelocity(0, 0);
-                body.applyLinearImpulse(velocity.x*-1, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
-            }
+            bounce_off_of_things();            
         }
 
         render_position.set(
-            body.getPosition().x - Constants.YARN_BALL_PIXEL_WIDTH / 2 / 2 / Constants.PPM,
+            body.getPosition().x - Constants.YARN_BALL_PIXEL_WIDTH / 2 / 2 / Constants.PPM, // ekstra half divide because sprite width=2xheight
             body.getPosition().y - Constants.YARN_BALL_PIXEL_HEIGHT / 2 / Constants.PPM
         );
     }
 
     public void dispose() {}
+
+    private void bounce_off_of_things() { // imagine a cartesian coordinate system
+        if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||              // 1st quadrant
+                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
+                body.applyLinearImpulse(velocity, body.getWorldCenter(), true);
+            } else if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||   // 4th quadrant
+                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // 2nd quadrant
+                    (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x*-1, velocity.y, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            } else if (((body.getLinearVelocity().x > -original_velocity.x) && body.getLinearVelocity().x <= 0) ||  // 3rd quadrant
+                    (body.getLinearVelocity().y > -original_velocity.y) && body.getLinearVelocity().y <= 0) {
+                body.setLinearVelocity(0, 0);
+                body.applyLinearImpulse(velocity.x*-1, velocity.y*-1, body.getWorldCenter().x, body.getWorldCenter().y, true);
+            }
+    }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();

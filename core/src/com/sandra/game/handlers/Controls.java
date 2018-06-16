@@ -23,14 +23,20 @@ public class Controls {
         }
     }
 
+
+    /*
+        When the accelerometer is zero the phone is flat and elveled with the ground.
+        The up and down movement is set differently such that the player can play with the phone
+        tilted towards hens face, thus making it more comfortable to play.
+    */
     public void android_movement(float delta, Entity entity) {  // Accelerometer  = x = y = [-10, 10]
-        if (Gdx.input.getAccelerometerX() < -1) {           // up
+        if (Gdx.input.getAccelerometerX() < 3) {           // up
             if (entity.get_velocity().y >= Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y = Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().y < Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y += delta * Constants.ENTETIES_ACCELERATION;
             }
-        } else if (Gdx.input.getAccelerometerX() > 1) {     // down
+        } else if (Gdx.input.getAccelerometerX() > 5) {     // down
             if (entity.get_velocity().y <= -Constants.ENTETIES_MAX_VELOCITY) {
                 entity.get_velocity().y = -Constants.ENTETIES_MAX_VELOCITY; // ensures a constant speed
             } else if (entity.get_velocity().y > -Constants.ENTETIES_MAX_VELOCITY) {
