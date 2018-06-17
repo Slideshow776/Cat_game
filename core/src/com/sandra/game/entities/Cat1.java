@@ -37,6 +37,10 @@ public class Cat1 extends Entity {
             body.setUserData(Constants.CAT1_SPRITE);
             velocity.x = velocity.y = 0;
         }
+        render_position.set(
+            body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
+            body.getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
+        );
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
