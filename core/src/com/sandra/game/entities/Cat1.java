@@ -48,6 +48,7 @@ public class Cat1 extends Entity {
     private void init_body() {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
+        bdef.fixedRotation = true;
         bdef.position.set(
             (render_position.x + (Constants.CAT1_PIXEL_WIDTH / Constants.PPM) / 2),
             (render_position.y + (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2)

@@ -24,8 +24,6 @@ public class Hole extends Entity {
 
     public void render(SpriteBatch batch) {
         final TextureRegion region = Assets.instance.holeAssets.hole;
-        render_position.x = Constants.GAME_WIDTH / 2 / Constants.PPM; // TODO: this is wrong
-        render_position.y = Constants.GAME_HEIGHT / 2 / Constants.PPM;
         Utils.drawTextureRegion(batch, region, render_position, Constants.HOLE_CENTER);
     }
 

@@ -20,7 +20,7 @@ public class Yarn_Ball extends Entity {
 
     public Yarn_Ball(Vector2 position, World b2d_world) {
         render_position = position;
-        velocity = new Vector2(.1f, .1f);
+        velocity = new Vector2(Constants.YARN_BALL_VELOCITY, Constants.YARN_BALL_VELOCITY);
         animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;

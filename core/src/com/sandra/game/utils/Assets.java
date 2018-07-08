@@ -68,12 +68,9 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class CoinAssets {
-        // public final AtlasRegion coin;
         public final Animation<TextureRegion> coin_animation;
 
         public CoinAssets(TextureAtlas atlas) {
-            // coin = atlas.findRegion(Constants.COIN_SPRITE_1);
-
             Array<TextureRegion> coin_frames = new Array<TextureRegion>();
             coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_1));
             coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_2));
