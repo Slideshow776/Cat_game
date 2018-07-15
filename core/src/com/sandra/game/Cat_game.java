@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sandra.game.screens.Level_1_1;
 import com.sandra.game.screens.Splash_intro;
+import com.sandra.game.screens.Menu;
 
 public class Cat_game extends Game {
 	
@@ -13,7 +14,8 @@ public class Cat_game extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		// setScreen(new Level_1_1(this));
-		setScreen(new Splash_intro(this));
+		// setScreen(new Splash_intro(this));
+		setScreen(new Menu(this));
 	}
 
 	public void render() {

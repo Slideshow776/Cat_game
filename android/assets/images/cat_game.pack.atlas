@@ -1,75 +1,89 @@
 
 cat_game.pack.png
-size: 512,64
+size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 cat1
   rotate: false
-  xy: 402, 35
+  xy: 578, 25
   size: 27, 21
   orig: 27, 21
   offset: 0, 0
   index: -1
 coin1
   rotate: false
-  xy: 266, 24
+  xy: 544, 48
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin2
   rotate: false
-  xy: 300, 24
+  xy: 610, 82
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin3
   rotate: false
-  xy: 334, 24
+  xy: 544, 14
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin4
   rotate: false
-  xy: 368, 24
+  xy: 578, 48
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 hole
   rotate: false
-  xy: 2, 2
+  xy: 644, 94
   size: 30, 20
   orig: 30, 20
   offset: 0, 0
   index: -1
+level1_1_btn
+  rotate: false
+  xy: 2, 2
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level1_1_btn_selected
+  rotate: false
+  xy: 240, 2
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
 yarn_ball1
   rotate: false
-  xy: 2, 24
+  xy: 478, 82
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball2
   rotate: false
-  xy: 68, 24
+  xy: 478, 48
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball3
   rotate: false
-  xy: 134, 24
+  xy: 544, 82
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball4
   rotate: false
-  xy: 200, 24
+  xy: 478, 14
   size: 64, 32
   orig: 64, 32
   offset: 0, 0

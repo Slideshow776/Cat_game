@@ -21,6 +21,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public HoleAssets holeAssets;
     public CoinAssets coinAssets;
     public YarnBallAssets yarnBallAssets;
+    public ButtonsAssets buttonsAssets;
 
     private AssetManager assetManager;
 
@@ -35,6 +36,7 @@ public class Assets implements Disposable, AssetErrorListener {
         holeAssets = new HoleAssets(atlas);
         coinAssets = new CoinAssets(atlas);
         yarnBallAssets = new YarnBallAssets(atlas);
+        buttonsAssets = new ButtonsAssets(atlas);
     }
 
 	@Override
@@ -44,6 +46,16 @@ public class Assets implements Disposable, AssetErrorListener {
 
 	@Override
 	public void dispose() {assetManager.dispose();}
+
+    public class ButtonsAssets {
+        public final AtlasRegion button;
+        //public final AtlasRegion button_selected;
+
+        public ButtonsAssets(TextureAtlas atlas) {
+            button = atlas.findRegion(Constants.BUTTON);
+            //button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
+        }
+    }
 
     public class Cat1Assets {
         public final AtlasRegion cat1;

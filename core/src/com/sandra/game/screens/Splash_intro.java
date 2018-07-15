@@ -1,11 +1,8 @@
 package com.sandra.game.screens;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -19,19 +16,18 @@ public class Splash_intro implements Screen {
     private Cat_game game;
 	private Sprite splash_image;
 	private SpriteBatch sb;	
-	private BitmapFont font_created_by;
-	private BitmapFont font_sandra_moen;
-
+	
 	private float alpha = 0;
 	private float alphaSpeed = 0;	
 	private boolean pause = false;
 
-	public Splash_intro(Cat_game game) {
-		this.game = game;
-		System.out.println("TEST: " + game);
-	}
+	private BitmapFont font_created_by;
+	private BitmapFont font_sandra_moen;
+	private float scale = 1.5f;
 
-	public void show() {		
+	public Splash_intro(Cat_game game) {this.game = game;}
+
+	public void show() {
 		splash_image = new Sprite(new Texture("images/splash_intro.jpg"));
 		splash_image.setSize(splash_image.getWidth() / 2, splash_image.getHeight() / 2);
 		splash_image.setPosition(
@@ -39,12 +35,12 @@ public class Splash_intro implements Screen {
 				Gdx.graphics.getHeight() / 2 - splash_image.getHeight() / 2
 		);
 		font_created_by = new BitmapFont();
-		font_created_by.getData().setScale(3);
+		font_created_by.getData().setScale(scale);
 		font_created_by.getRegion().getTexture().setFilter((TextureFilter.Linear), TextureFilter.Linear);
 		font_created_by.setColor(1, 1, 1, alpha);
 
 		font_sandra_moen = new BitmapFont();
-		font_sandra_moen.getData().setScale(3);
+		font_sandra_moen.getData().setScale(scale);
 		font_sandra_moen.getRegion().getTexture().setFilter((TextureFilter.Linear), TextureFilter.Linear);
 		font_sandra_moen.setColor(1, 0, 1, alpha);
 	}
@@ -55,10 +51,10 @@ public class Splash_intro implements Screen {
         game.batch.begin();
 		splash_image.draw(game.batch, alpha);
 		
-		font_created_by.draw(game.batch, "Created by", 250, 100);
+		font_created_by.draw(game.batch, "Created by", Gdx.graphics.getWidth()-320, Gdx.graphics.getHeight() / 2);
 		font_created_by.setColor(1, 1, 1, alpha+.1f);
 		
-		font_sandra_moen.draw(game.batch, "Sandra Moen", 500, 100);
+		font_sandra_moen.draw(game.batch, "Sandra Moen", Gdx.graphics.getWidth()-200, Gdx.graphics.getHeight() / 2);
 		font_sandra_moen.setColor(1, 0, 1, alpha+.1f);
 		
         game.batch.end(); 
