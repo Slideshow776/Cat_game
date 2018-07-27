@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
@@ -56,13 +57,16 @@ public class Level_1_1 implements Screen {
    
     private TiledMap map;
     private OrthoCachedTiledMapRenderer mapRenderer;
+
+	private Stage stage;
     
     public Level_1_1(Cat_game game) {
         this.game = game;
         pause = false;
-
+        
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
+        camera.setToOrtho(false, Constants.GAME_WIDTH / 90f, Constants.GAME_HEIGHT / 90f);
+        game.batch.setProjectionMatrix(camera.combined);
 
         // box2d
         b2d_world = new World(new Vector2(0, 0), true);
@@ -178,7 +182,14 @@ public class Level_1_1 implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void resize(int width, int height) {
+        /* camera.setToOrtho(
+            false,
+            (Constants.GAME_WIDTH) / Constants.PPM,
+            (Constants.GAME_HEIGHT) / Constants.PPM
+        );
+        game.batch.setProjectionMatrix(camera.combined); */
+    }
 
     @Override
     public void pause() {

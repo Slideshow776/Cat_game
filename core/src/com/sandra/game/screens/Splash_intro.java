@@ -4,12 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sandra.game.Cat_game;
+import com.sandra.game.utils.Constants;
 
 public class Splash_intro implements Screen {
 
@@ -21,58 +23,42 @@ public class Splash_intro implements Screen {
 	private float alphaSpeed = 0;	
 	private boolean pause = false;
 
-	private BitmapFont font_created_by;
-	private BitmapFont font_sandra_moen;
-	private float scale = 1.5f;
+	OrthographicCamera camera;
 
 	public Splash_intro(Cat_game game) {this.game = game;}
 
 	public void show() {
-		splash_image = new Sprite(new Texture("images/splash_intro.jpg"));
-		splash_image.setSize(splash_image.getWidth() / 2, splash_image.getHeight() / 2);
-		splash_image.setPosition(
-				Gdx.graphics.getWidth() / 2 / - splash_image.getWidth() / 2,
-				Gdx.graphics.getHeight() / 2 - splash_image.getHeight() / 2
-		);
-		font_created_by = new BitmapFont();
-		font_created_by.getData().setScale(scale);
-		font_created_by.getRegion().getTexture().setFilter((TextureFilter.Linear), TextureFilter.Linear);
-		font_created_by.setColor(1, 1, 1, alpha);
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        game.batch.setProjectionMatrix(camera.combined);
 
-		font_sandra_moen = new BitmapFont();
-		font_sandra_moen.getData().setScale(scale);
-		font_sandra_moen.getRegion().getTexture().setFilter((TextureFilter.Linear), TextureFilter.Linear);
-		font_sandra_moen.setColor(1, 0, 1, alpha);
+		splash_image = new Sprite(new Texture("images/splash_intro2.jpg"));
+		splash_image.setSize(splash_image.getWidth() / 3.9f, splash_image.getHeight() / 3.4f);
+		splash_image.setPosition(
+			Constants.GAME_WIDTH / 2  - splash_image.getWidth() / 2.4f,
+			Constants.GAME_HEIGHT / 2 - splash_image.getHeight() / 2
+		);
 	}
 
 	public void render(float delta) {		
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		
         game.batch.begin();
-		splash_image.draw(game.batch, alpha);
-		
-		font_created_by.draw(game.batch, "Created by", Gdx.graphics.getWidth()-320, Gdx.graphics.getHeight() / 2);
-		font_created_by.setColor(1, 1, 1, alpha+.1f);
-		
-		font_sandra_moen.draw(game.batch, "Sandra Moen", Gdx.graphics.getWidth()-200, Gdx.graphics.getHeight() / 2);
-		font_sandra_moen.setColor(1, 0, 1, alpha+.1f);
-		
+		splash_image.draw(game.batch, alpha);		
         game.batch.end(); 
 
 		if(!pause) {update();}
 	}
 
-	public void dispose() {
-		splash_image.getTexture().dispose();
-		font_created_by.dispose();
-	}
-
+	public void dispose() {splash_image.getTexture().dispose();}
 	public void resize(int width, int height) {}
 	public void hide() {dispose();}	
 	public void pause() {pause = true;}
 	public void resume() {pause = false;}	
 
 	private void update() { // alpha fade in/out
+        game.batch.setProjectionMatrix(camera.combined);
+
 		alpha = (float) Math.sin(alphaSpeed);
 		if(alpha < 0) {
 			try {Thread.sleep(250);} // creates a dramatic pause between splash and next game-state.

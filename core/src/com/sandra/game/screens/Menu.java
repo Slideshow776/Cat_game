@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.MenuInputListener;
 import com.sandra.game.utils.Assets;
@@ -28,7 +29,6 @@ public class Menu implements Screen {
     private Button level_1_1_btn;
 	private Sprite level_1_1_btn_sprite;
     private MenuInputListener level_1_1_btn_listener;
-	private FitViewport viewport;
 
     public Menu(Cat_game game) {
         this.game = game;
@@ -38,19 +38,20 @@ public class Menu implements Screen {
     public void show() {
         AssetManager assetManager = new AssetManager();
         Assets.instance.init(assetManager);
-
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
-        viewport = new FitViewport(Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM, camera);
+        
+		camera = new OrthographicCamera();
+        camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        game.batch.setProjectionMatrix(camera.combined);
 
         // Stage        
         stage = new Stage();
+        //stage = new Stage(new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
 
         level_1_1_btn = new Button();
         level_1_1_btn_sprite = new Sprite(Assets.instance.buttonsAssets.button);
-        level_1_1_btn.setSize(100 / Constants.PPM, 100 / Constants.PPM);
-        level_1_1_btn.setPosition(750 / Constants.PPM, 550 / Constants.PPM);
+        level_1_1_btn.setSize(100, 100);
+        level_1_1_btn.setPosition(550, 450);
         level_1_1_btn_listener = new MenuInputListener();
         level_1_1_btn.addListener(level_1_1_btn_listener);
 
@@ -60,17 +61,11 @@ public class Menu implements Screen {
         table.add(level_1_1_btn);
 
         stage.addActor(table);
-        stage.setViewport(viewport);
-
-        System.out.println("button: " + level_1_1_btn.getX() + ", " + level_1_1_btn.getY());
-        System.out.println("game: " + Gdx.graphics.getWidth() + ", " + Gdx.graphics.getHeight());
-        System.out.println("viewport: " + viewport.getWorldWidth() + ", " + viewport.getWorldHeight());
     }
 
     @Override
     public void render(float delta) {
         if (!pause) {update(delta);}
-        camera.update();
 
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(1, 0, 1, 1); // magenta
@@ -99,17 +94,17 @@ public class Menu implements Screen {
     public void hide() {}
 
     @Override
-    public void dispose() {}
+    public void dispose() {
+        stage.dispose();
+    }
 
     private void update(float delta) {
-        game.batch.setProjectionMatrix(camera.combined);
-
         stage.act(delta);
-        stage.getViewport().update(Gdx.graphics.getWidth()+310, Gdx.graphics.getHeight()); // 310 offset, for some reason
+        //stage.getViewport().update(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
 		if(level_1_1_btn_listener.getTouched()) {
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
             dispose();
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
 		}    
     }
 }
