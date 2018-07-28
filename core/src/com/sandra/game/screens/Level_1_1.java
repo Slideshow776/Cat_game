@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
@@ -57,6 +58,7 @@ public class Level_1_1 implements Screen {
    
     private TiledMap map;
     private OrthoCachedTiledMapRenderer mapRenderer;
+    private FitViewport viewport;
 
 	private Stage stage;
     
@@ -65,7 +67,7 @@ public class Level_1_1 implements Screen {
         pause = false;
         
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.GAME_WIDTH / 90f, Constants.GAME_HEIGHT / 90f);
+        camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         game.batch.setProjectionMatrix(camera.combined);
 
         // box2d
@@ -127,6 +129,7 @@ public class Level_1_1 implements Screen {
     }
 
     private void update(float delta) {
+        camera.update();       
         b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
         controls.update(delta);
         game.batch.setProjectionMatrix(camera.combined);
@@ -164,7 +167,6 @@ public class Level_1_1 implements Screen {
     @Override
     public void render(float delta) {	
         if (!pause) {update(delta);}
-        camera.update();       
         
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);        

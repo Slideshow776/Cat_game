@@ -13,9 +13,9 @@ public class Cat_game extends Game {
 	@Override
 	public void create() {
 		batch = new SpriteBatch();
+		setScreen(new Splash_intro(this));
+		// setScreen(new Menu(this));
 		// setScreen(new Level_1_1(this));
-		// setScreen(new Splash_intro(this));
-		setScreen(new Menu(this));
 	}
 
 	public void render() {
@@ -25,6 +25,5 @@ public class Cat_game extends Game {
 	public void dispose() {
 		batch.dispose();
 		super.dispose();
-	}
-	
+	}	
 }

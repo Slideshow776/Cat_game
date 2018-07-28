@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.MenuInputListener;
@@ -43,9 +44,8 @@ public class Menu implements Screen {
         camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         game.batch.setProjectionMatrix(camera.combined);
 
-        // Stage        
-        stage = new Stage();
-        //stage = new Stage(new FitViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
+        // Stage
+        stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
 
         level_1_1_btn = new Button();
@@ -99,6 +99,9 @@ public class Menu implements Screen {
     }
 
     private void update(float delta) {
+        camera.update();
+        game.batch.setProjectionMatrix(camera.combined);
+        
         stage.act(delta);
         //stage.getViewport().update(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
 
