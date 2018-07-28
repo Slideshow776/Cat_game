@@ -10,9 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.MenuInputListener;
 import com.sandra.game.utils.Assets;
@@ -48,12 +46,7 @@ public class Menu implements Screen {
         stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
 
-        level_1_1_btn = new Button();
-        level_1_1_btn_sprite = new Sprite(Assets.instance.buttonsAssets.button);
-        level_1_1_btn.setSize(100, 100);
-        level_1_1_btn.setPosition(550, 450);
-        level_1_1_btn_listener = new MenuInputListener();
-        level_1_1_btn.addListener(level_1_1_btn_listener);
+        button_init();
 
         table = new Table();
         table.setFillParent(true);
@@ -98,6 +91,15 @@ public class Menu implements Screen {
         stage.dispose();
     }
 
+    private void button_init() {
+        level_1_1_btn = new Button();
+        level_1_1_btn_sprite = new Sprite(Assets.instance.buttonsAssets.button);
+        level_1_1_btn.setSize(100, 100);
+        level_1_1_btn.setPosition(550, 450);
+        level_1_1_btn_listener = new MenuInputListener();
+        level_1_1_btn.addListener(level_1_1_btn_listener);
+    }
+
     private void update(float delta) {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
@@ -107,7 +109,8 @@ public class Menu implements Screen {
 
 		if(level_1_1_btn_listener.getTouched()) {
             dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
+            // ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
 		}    
     }
 }

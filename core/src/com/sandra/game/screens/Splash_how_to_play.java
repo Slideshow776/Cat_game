@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.sandra.game.Cat_game;
 import com.sandra.game.utils.Constants;
 
-public class Splash_intro implements Screen {
+public class Splash_how_to_play implements Screen {
 
     private Cat_game game;
 	private Sprite splash_image;
@@ -21,7 +21,7 @@ public class Splash_intro implements Screen {
 
 	OrthographicCamera camera;
 
-	public Splash_intro(Cat_game game) {
+	public Splash_how_to_play(Cat_game game) {
 		this.game = game;
 	}
 
@@ -30,12 +30,9 @@ public class Splash_intro implements Screen {
 		camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         game.batch.setProjectionMatrix(camera.combined);
 
-		splash_image = new Sprite(new Texture("images/splash_intro2.jpg"));
-		splash_image.setSize(splash_image.getWidth() / 3.9f, splash_image.getHeight() / 3.4f);
-		splash_image.setPosition(
-			Constants.GAME_WIDTH / 2  - splash_image.getWidth() / 2.4f,
-			Constants.GAME_HEIGHT / 2 - splash_image.getHeight() / 2
-		);
+		splash_image = new Sprite(new Texture("images/splash_how_to_play.jpg"));
+		splash_image.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+		splash_image.setPosition(0, 0);
 	}
 
 	public void render(float delta) {		
@@ -62,7 +59,7 @@ public class Splash_intro implements Screen {
 		if(alpha < 0) {
 			try {Thread.sleep(250);} // creates a dramatic pause between splash and next game-state.
 			catch (InterruptedException e) {e.printStackTrace();}
-			((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game));
+			((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
 		}
 		else if(alpha > .6f) {alphaSpeed+=.016f;} // peek speed
 		else {alphaSpeed+=.008f;} // standard speed
