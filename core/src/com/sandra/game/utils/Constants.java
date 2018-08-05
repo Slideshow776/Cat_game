@@ -40,10 +40,15 @@ public class Constants {
     public static final float COIN_PIXEL_HEIGHT = 32;
 
     // Cat1
-    public static final String CAT1_SPRITE = "cat1";
+    public static final String CAT1_SPRITE_1 = "cat11";
+    public static final String CAT1_SPRITE_2 = "cat12";
+    public static final String CAT1_SPRITE_3 = "cat13";
+    public static final String CAT1_SPRITE_4 = "cat14";
+    public static final String CAT1_SPRITE_5 = "cat15";
+    public static final float CAT1_LOOP_DURATION = .15f;
     public static final Vector2 CAT1_CENTER = new Vector2(0, 0);
     public static final float CAT1_MOVE_SPEED = 50f;
-    public static final float CAT1_PIXEL_WIDTH = 27f;
+    public static final float CAT1_PIXEL_WIDTH = 31f;
     public static final float CAT1_PIXEL_HEIGHT = 21f;
     public static final float CAT1_DENSITY = 1.0f;
     public static final float CAT1_RESTITUTION = .1f;

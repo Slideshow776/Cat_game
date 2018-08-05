@@ -45,7 +45,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 
 	@Override
-	public void dispose() {assetManager.dispose();}
+	public void dispose() {
+        assetManager.dispose();
+    }
 
     public class ButtonsAssets {
         public final AtlasRegion button;
@@ -58,10 +60,17 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class Cat1Assets {
-        public final AtlasRegion cat1;
+        public final Animation<TextureRegion> cat1_animation;
 
         public Cat1Assets(TextureAtlas atlas) {
-            cat1 = atlas.findRegion(Constants.CAT1_SPRITE);
+            Array<TextureRegion> cat1_frames = new Array<TextureRegion>();
+            cat1_frames.add(atlas.findRegion(Constants.CAT1_SPRITE_1));
+            cat1_frames.add(atlas.findRegion(Constants.CAT1_SPRITE_2));
+            cat1_frames.add(atlas.findRegion(Constants.CAT1_SPRITE_3));
+            cat1_frames.add(atlas.findRegion(Constants.CAT1_SPRITE_4));
+            cat1_frames.add(atlas.findRegion(Constants.CAT1_SPRITE_5));
+
+            cat1_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_frames, PlayMode.LOOP_PINGPONG);
         }
     }
 

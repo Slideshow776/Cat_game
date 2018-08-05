@@ -10,31 +10,34 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
 
 public class Cat1 extends Entity {
-
     private World b2d_world;
+    private float animation_start_time;
 
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;
         velocity = new Vector2(0, 0);
         id = UUID.randomUUID().toString();
+        animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;
         init_body();        
     }
 
     public void render(SpriteBatch batch) {
-        final TextureRegion region = Assets.instance.cat1Assets.cat1;
-        Utils.drawTextureRegion(batch, region, render_position, Constants.CAT1_CENTER);
+        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        TextureRegion region = Assets.instance.cat1Assets.cat1_animation.getKeyFrame(animation_time_seconds);
+        Utils.drawTextureRegion(batch, region, render_position); 
     }
 
     public void update(float delta) {
         if (body.getUserData() == "collision") {
-            body.setUserData(Constants.CAT1_SPRITE);
+            body.setUserData(Constants.CAT1_SPRITE_1);
             velocity.x = velocity.y = 0;
         }
         render_position.set(
@@ -67,7 +70,7 @@ public class Cat1 extends Entity {
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
-        this.body.createFixture(fdef).setUserData(Constants.CAT1_SPRITE);
+        this.body.createFixture(fdef).setUserData(Constants.CAT1_SPRITE_1);
     }    
 }
     

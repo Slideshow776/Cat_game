@@ -4,86 +4,114 @@ size: 1024,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-cat1
+cat11
   rotate: false
-  xy: 578, 25
-  size: 27, 21
-  orig: 27, 21
+  xy: 478, 2
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+cat12
+  rotate: false
+  xy: 511, 2
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+cat13
+  rotate: false
+  xy: 544, 2
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+cat14
+  rotate: false
+  xy: 577, 2
+  size: 31, 22
+  orig: 31, 22
+  offset: 0, 0
+  index: -1
+cat15
+  rotate: false
+  xy: 644, 104
+  size: 31, 22
+  orig: 31, 22
   offset: 0, 0
   index: -1
 coin1
   rotate: false
-  xy: 544, 48
+  xy: 544, 60
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin2
   rotate: false
-  xy: 610, 82
+  xy: 610, 94
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin3
   rotate: false
-  xy: 544, 14
+  xy: 544, 26
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin4
   rotate: false
-  xy: 578, 48
+  xy: 578, 60
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 hole
   rotate: false
-  xy: 644, 94
+  xy: 612, 72
   size: 30, 20
   orig: 30, 20
   offset: 0, 0
   index: -1
 level1_1_btn
   rotate: false
-  xy: 2, 2
+  xy: 2, 14
   size: 236, 112
   orig: 236, 112
   offset: 0, 0
   index: -1
 level1_1_btn_selected
   rotate: false
-  xy: 240, 2
+  xy: 240, 14
   size: 236, 112
   orig: 236, 112
   offset: 0, 0
   index: -1
 yarn_ball1
   rotate: false
-  xy: 478, 82
+  xy: 478, 94
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball2
   rotate: false
-  xy: 478, 48
+  xy: 478, 60
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball3
   rotate: false
-  xy: 544, 82
+  xy: 544, 94
   size: 64, 32
   orig: 64, 32
   offset: 0, 0
   index: -1
 yarn_ball4
   rotate: false
-  xy: 478, 14
+  xy: 478, 26
   size: 64, 32
   orig: 64, 32
   offset: 0, 0

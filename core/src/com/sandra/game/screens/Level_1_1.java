@@ -108,8 +108,8 @@ public class Level_1_1 implements Screen {
         map = new TmxMapLoader().load("levels/level1-1.tmx");
         mapRenderer = new OrthoCachedTiledMapRenderer(map, 1 / Constants.PPM, 8191); // 8191 is max
         mapRenderer.setView(camera);
-
-        create_world_boundaries();
+        
+        box2d.set_world_impassables(map);
 
         // Entities
         cat1s = new DelayedRemovalArray<Entity>();
@@ -128,32 +128,6 @@ public class Level_1_1 implements Screen {
         entities = new DelayedRemovalArray<Entity>();
         entities.addAll(cat1s);
         controls = new Controls(entities);
-    }
-
-    private void create_world_boundaries() {
-        for (MapObject object : map.getLayers().get("impassable").getObjects().getByType(RectangleMapObject.class)) {
-            Vector2 position = new Vector2(((RectangleMapObject) object).getRectangle().getX() / Constants.PPM,
-                    ((RectangleMapObject) object).getRectangle().getY() / Constants.PPM);
-            float width = ((RectangleMapObject) object).getRectangle().getWidth() / Constants.PPM;
-            float height = ((RectangleMapObject) object).getRectangle().getWidth() / Constants.PPM;
-
-            BodyDef bdef = new BodyDef();
-            bdef.type = BodyType.StaticBody;
-            bdef.position.set(
-                position.x + width / 2,
-                position.y + height / 2
-            );
-
-            PolygonShape shape = new PolygonShape();
-            shape.setAsBox(width / 2, height / 2);
-            FixtureDef fdef = new FixtureDef();
-            fdef.shape = shape;
-            fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
-            fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
-
-            Body world_lower = b2d_world.createBody(bdef);
-            world_lower.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
-        }
     }
 
     private void populate_entity_from_map(String entity, DelayedRemovalArray<Entity> entity_list) {
