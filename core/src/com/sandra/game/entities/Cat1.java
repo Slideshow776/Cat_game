@@ -14,10 +14,18 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
+import com.sandra.game.utils.Enums.Action;
+import com.sandra.game.utils.Enums.Direction;
+import com.sandra.game.utils.Enums;
 
 public class Cat1 extends Entity {
     private World b2d_world;
+
+    private TextureRegion region;
     private float animation_start_time;
+
+	private Action action;
+	private Direction direction;
 
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;
@@ -27,23 +35,44 @@ public class Cat1 extends Entity {
         
         this.b2d_world = b2d_world;
         init_body();        
+        action = Enums.Action.IDLE;
+        direction = Enums.Direction.LEFT;
     }
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
-        TextureRegion region = Assets.instance.cat1Assets.cat1_animation.getKeyFrame(animation_time_seconds);
-        Utils.drawTextureRegion(batch, region, render_position); 
+
+        if(action == Enums.Action.IDLE) {
+            region = Assets.instance.cat1Assets.cat1_idle_animation.getKeyFrame(animation_time_seconds);
+        }
+        else if (action == Enums.Action.SLIDING) {
+            region = Assets.instance.cat1Assets.cat1_sliding_animation.getKeyFrame(animation_time_seconds);            
+        }
+
+        if (direction == Enums.Direction.LEFT) {
+            Utils.drawTextureRegion(batch, region, render_position);
+        }
+        else if (direction == Enums.Direction.RIGHT) {
+            Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, true);
+        }
     }
 
     public void update(float delta) {
         if (body.getUserData() == "collision") {
-            body.setUserData(Constants.CAT1_SPRITE_1);
+            body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
             velocity.x = velocity.y = 0;
         }
+
         render_position.set(
             body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
             body.getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
         );
+
+        if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
+        else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
+
+        if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {action = Enums.Action.IDLE;}
+        else {action = Enums.Action.SLIDING;}
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
@@ -70,7 +99,7 @@ public class Cat1 extends Entity {
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
-        this.body.createFixture(fdef).setUserData(Constants.CAT1_SPRITE_1);
+        this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1);
     }    
 }
     

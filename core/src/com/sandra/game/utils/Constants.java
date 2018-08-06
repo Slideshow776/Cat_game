@@ -40,11 +40,18 @@ public class Constants {
     public static final float COIN_PIXEL_HEIGHT = 32;
 
     // Cat1
-    public static final String CAT1_SPRITE_1 = "cat11";
-    public static final String CAT1_SPRITE_2 = "cat12";
-    public static final String CAT1_SPRITE_3 = "cat13";
-    public static final String CAT1_SPRITE_4 = "cat14";
-    public static final String CAT1_SPRITE_5 = "cat15";
+    public static final String CAT1_IDLE_SPRITE_1 = "cat11";
+    public static final String CAT1_IDLE_SPRITE_2 = "cat12";
+    public static final String CAT1_IDLE_SPRITE_3 = "cat13";
+    public static final String CAT1_IDLE_SPRITE_4 = "cat14";
+    public static final String CAT1_IDLE_SPRITE_5 = "cat15";
+    public static final String CAT1_SLIDE_SPRITE_1 = "cat1Slide1";
+    public static final String CAT1_SLIDE_SPRITE_2 = "cat1Slide2";
+    public static final String CAT1_SLIDE_SPRITE_3 = "cat1Slide3";
+    public static final String CAT1_SLIDE_SPRITE_4 = "cat1Slide4";
+    public static final String CAT1_SLIDE_SPRITE_5 = "cat1Slide5";
+    public static final String CAT1_SLIDE_SPRITE_6 = "cat1Slide6";
+    public static final String CAT1_SLIDE_SPRITE_7 = "cat1Slide7";
     public static final float CAT1_LOOP_DURATION = .15f;
     public static final Vector2 CAT1_CENTER = new Vector2(0, 0);
     public static final float CAT1_MOVE_SPEED = 50f;

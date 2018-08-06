@@ -39,6 +39,55 @@ cat15
   orig: 31, 22
   offset: 0, 0
   index: -1
+cat1Slide1
+  rotate: false
+  xy: 578, 33
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide2
+  rotate: false
+  xy: 644, 77
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide3
+  rotate: false
+  xy: 677, 101
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide4
+  rotate: false
+  xy: 700, 101
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide5
+  rotate: false
+  xy: 723, 101
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide6
+  rotate: false
+  xy: 746, 101
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
+cat1Slide7
+  rotate: false
+  xy: 769, 101
+  size: 21, 25
+  orig: 21, 25
+  offset: 0, 0
+  index: -1
 coin1
   rotate: false
   xy: 544, 60

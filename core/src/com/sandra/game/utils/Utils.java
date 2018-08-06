@@ -43,6 +43,29 @@ public class Utils {
                 false);
     }
 
+    public static void drawTextureRegion(SpriteBatch batch, TextureRegion region, float x, float y, boolean flipx) {
+        if (Gdx.app.getType() == ApplicationType.Desktop) {scaleX = scaleY = .5f;}
+        else {scaleX = scaleY = 1f;}
+        //System.out.println(region.getRegionWidth() + ", " + region.getRegionHeight() + " ");
+        batch.draw(
+                region.getTexture(),
+                x,
+                y,
+                0,
+                0,
+                (region.getRegionWidth()*1f) / Constants.PPM,    // pixel width
+                (region.getRegionHeight()*1f) / Constants.PPM,   // pixel height
+                1,
+                1,
+                0,
+                region.getRegionX(),
+                region.getRegionY(),
+                region.getRegionWidth(),
+                region.getRegionHeight(),
+                flipx,
+                false);
+    }
+
     public static float secondsSince(float animation_start_time) {
         return MathUtils.nanoToSec * (TimeUtils.nanoTime() - animation_start_time);
     }
