@@ -45,8 +45,8 @@ public class box2D {
             fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
             fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
-            Body world_lower = b2d_world.createBody(bdef);
-            world_lower.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
+            Body impassable = b2d_world.createBody(bdef);
+            impassable.createFixture(fdef).setUserData(Constants.B2D_WORLD);
         }
     }
 
@@ -70,7 +70,7 @@ public class box2D {
 		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
 		Body world_lower = b2d_world.createBody(bdef);
-		world_lower.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
+		world_lower.createFixture(fdef).setUserData(Constants.B2D_WORLD);
         
         // Upper -------------------------------
 		bdef.position.set(
@@ -84,7 +84,7 @@ public class box2D {
 		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_upper = b2d_world.createBody(bdef);
-        world_upper.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
+        world_upper.createFixture(fdef).setUserData(Constants.B2D_WORLD);
         
         // Left --------------------------------
         bdef.position.set(
@@ -101,7 +101,7 @@ public class box2D {
 		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_left = b2d_world.createBody(bdef);
-        world_left.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
+        world_left.createFixture(fdef).setUserData(Constants.B2D_WORLD);
 
         // Right -------------------------------
         bdef.position.set(
@@ -113,6 +113,6 @@ public class box2D {
 		fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
 
         Body world_right = b2d_world.createBody(bdef);
-        world_right.createFixture(fdef).setUserData(Constants.B2D_IDENTITY);
+        world_right.createFixture(fdef).setUserData(Constants.B2D_WORLD);
     }
 }

@@ -9,20 +9,24 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
+import com.badlogic.gdx.math.Polyline;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sandra.game.Cat_game;
@@ -69,8 +73,10 @@ public class Level_1_1 implements Screen {
 
     private Stage stage;
 
-    private int[] backgroundLayers = { 0, 1 }; // don't allocate every frame!
-    private int[] foregroundLayers = { 2 }; // don't allocate every frame!
+    private int[] backgroundLayers = { 0, 1 };
+    private int[] foregroundLayers = { 2 };
+
+	private Array<PolygonMapObject> land_polygon;
 
     public Level_1_1(Cat_game game) {
         this.game = game;
@@ -108,8 +114,8 @@ public class Level_1_1 implements Screen {
         map = new TmxMapLoader().load("levels/level1-1.tmx");
         mapRenderer = new OrthoCachedTiledMapRenderer(map, 1 / Constants.PPM, 8191); // 8191 is max
         mapRenderer.setView(camera);
-        
-        box2d.set_world_impassables(map);
+
+        // box2d.set_world_impassables(map);
 
         // Entities
         cat1s = new DelayedRemovalArray<Entity>();
@@ -123,6 +129,8 @@ public class Level_1_1 implements Screen {
 
         holes = new DelayedRemovalArray<Entity>();
         populate_entity_from_map("holes", holes);
+
+        popuate_zones_from_map();
 
         // controls
         entities = new DelayedRemovalArray<Entity>();
@@ -142,19 +150,44 @@ public class Level_1_1 implements Screen {
                 entity_list.add(new Yarn_Ball(position, b2d_world));
             else if (entity == "holes")
                 entity_list.add(new Hole(position, b2d_world));
-            else if (entity == "impassable") {
-                System.out.println("dsada");
-            }
         }
     }
 
-    private void update(float delta) {
-        camera.update();
-        b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
-        controls.update(delta);
-        game.batch.setProjectionMatrix(camera.combined);
+    private void popuate_zones_from_map() {
+        land_polygon = map.getLayers().get("zone 1").getObjects()
+                .getByType(PolygonMapObject.class);
 
-        // entities
+        for (int j = 0; j < land_polygon.size; j++) {
+            float[] raw_verticies = land_polygon.get(j).getPolygon().getTransformedVertices();
+            Vector2[] verticies = new Vector2[raw_verticies.length / 2];
+
+            for (int i = 0; i < verticies.length; i++) {
+                verticies[i] = new Vector2(
+                    raw_verticies[i * 2] / Constants.PPM,
+                    raw_verticies[(i * 2) + 1] / Constants.PPM
+                );
+            }
+
+            BodyDef bdef = new BodyDef();
+            bdef.type = BodyType.StaticBody;
+            bdef.position.set(0, 0);
+
+            PolygonShape shape = new PolygonShape();
+            System.out.println(verticies);
+            shape.set(verticies);
+
+            FixtureDef fdef = new FixtureDef();
+            fdef.shape = shape;
+            fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
+            fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
+            fdef.isSensor = true;
+
+            Body land_zone = b2d_world.createBody(bdef);
+            land_zone.createFixture(fdef).setUserData(Constants.B2D_LAND_ZONE);
+        }
+    }
+
+    private void update_entities(float delta) {
         for (Entity hole : holes) {
             hole.update(delta);
         }
@@ -165,6 +198,8 @@ public class Level_1_1 implements Screen {
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }
+            // if (cat1.get_body().getUserData() == "")
+            System.out.println(cat1.get_body().getUserData());
             cat1.update(delta);
         }
 
@@ -183,6 +218,14 @@ public class Level_1_1 implements Screen {
             }
             yarn_ball.update(delta);
         }
+    }
+
+    private void update(float delta) {
+        camera.update();
+        b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
+        controls.update(delta);
+        game.batch.setProjectionMatrix(camera.combined);
+        update_entities(delta);
     }
 
     @Override

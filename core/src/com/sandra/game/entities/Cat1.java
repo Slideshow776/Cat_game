@@ -58,10 +58,10 @@ public class Cat1 extends Entity {
     }
 
     public void update(float delta) {
-        if (body.getUserData() == "collision") {
+        /* if (body.getUserData() == "collision") {
             body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
             velocity.x = velocity.y = 0;
-        }
+        } */
 
         render_position.set(
             body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,

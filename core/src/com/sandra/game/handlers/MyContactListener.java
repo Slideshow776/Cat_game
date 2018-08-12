@@ -19,10 +19,10 @@ public class MyContactListener implements ContactListener{
 		// System.out.println(TAG + ": fa, " + fa.getUserData());
 		// System.out.println(TAG + ": fb, " + fb.getUserData());
 		
-		if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_IDENTITY) &&		// world vs cat1
+		/* if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_WORLD) &&		// world vs cat1
 				fb.getUserData() != null && fb.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1)) {
 			fb.getBody().setUserData("collision");
-		}
+		} */
 
 		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs hole
 				fb.getUserData() != null && fb.getUserData().equals(Constants.HOLE_SPRITE)) {
@@ -34,7 +34,7 @@ public class MyContactListener implements ContactListener{
 			fb.getBody().setUserData("remove_me");
 		}
 		
-		if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_IDENTITY) &&		// world vs yarn ball
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_WORLD) &&		// world vs yarn ball
 				fb.getUserData() != null && fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 			fb.getBody().setUserData("collision");
 		}
@@ -43,10 +43,23 @@ public class MyContactListener implements ContactListener{
 				fb.getUserData() != null && fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 			fb.getBody().setUserData("collision");
 		}
+
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
+				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
+			fa.getBody().setUserData("inside");
+		}
 	}
 
 	@Override
-	public void endContact(Contact contact) {}
+	public void endContact(Contact contact) {
+		Fixture fa = contact.getFixtureA();
+		Fixture fb = contact.getFixtureB();
+
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
+				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
+			fa.getBody().setUserData("outside");
+		}
+	}
 	
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {}

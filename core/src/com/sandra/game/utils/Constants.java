@@ -10,12 +10,13 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = false;
+    public static final boolean B2D_DEBUGGING = true;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 3;
     public static final float B2D_WORLD_BOUNDS_OFFSET = 20f;
-    public static final String B2D_IDENTITY = "world";
+    public static final String B2D_WORLD = "world";
+    public static final String B2D_LAND_ZONE = "land_zone";
 
     public static final short B2D_BIT_WORLD = 2;
     public static final short B2D_BIT_CAT1S = 4;
