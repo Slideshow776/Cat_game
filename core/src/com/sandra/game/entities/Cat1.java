@@ -68,8 +68,6 @@ public class Cat1 extends Entity {
             velocity.x = velocity.y = 0;
         } */
 
-        
-        
         render_position.set(
             body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
             body.getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
@@ -79,19 +77,17 @@ public class Cat1 extends Entity {
             else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
             
         try {
-            // System.out.println(body.getUserData());
-            System.out.println(action);
             if ((Integer)body.getUserData() == 0) {
                 action = Enums.Action.SWIMMING;
             }
             else if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {
-                System.out.println("triggered");
                 action = Enums.Action.IDLE;
             }
             else {
                 action = Enums.Action.SLIDING;
             }
         } catch(Exception e) {}
+        set_action(action);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}

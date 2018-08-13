@@ -115,7 +115,7 @@ public class Level_1_1 implements Screen {
         mapRenderer = new OrthoCachedTiledMapRenderer(map, 1 / Constants.PPM, 8191); // 8191 is max
         mapRenderer.setView(camera);
 
-        // box2d.set_world_impassables(map);
+        box2d.set_world_impassables(map);
 
         // Entities
         cat1s = new DelayedRemovalArray<Entity>();

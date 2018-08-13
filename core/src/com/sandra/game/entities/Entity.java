@@ -25,4 +25,6 @@ public abstract class Entity {
     public Vector2 get_render_position() {return render_position;}
     public Direction get_direction() {return direction;}
     public Action get_action() {return action;}
+
+    public void set_action(Action action) {this.action = action;}
 }
