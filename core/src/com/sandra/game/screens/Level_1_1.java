@@ -173,7 +173,6 @@ public class Level_1_1 implements Screen {
             bdef.position.set(0, 0);
 
             PolygonShape shape = new PolygonShape();
-            System.out.println(verticies);
             shape.set(verticies);
 
             FixtureDef fdef = new FixtureDef();
@@ -198,8 +197,6 @@ public class Level_1_1 implements Screen {
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }
-            // if (cat1.get_body().getUserData() == "")
-            System.out.println(cat1.get_body().getUserData());
             cat1.update(delta);
         }
 

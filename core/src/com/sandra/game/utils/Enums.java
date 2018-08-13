@@ -9,6 +9,7 @@ public class Enums {
     public enum Action {
         IDLE,
         SLIDING,
-        MOVING
+        MOVING,
+        SWIMMING
     }
 }

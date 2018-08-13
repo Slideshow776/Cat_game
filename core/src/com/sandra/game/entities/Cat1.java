@@ -34,7 +34,7 @@ public class Cat1 extends Entity {
         animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;
-        init_body();        
+        init_body();
         action = Enums.Action.IDLE;
         direction = Enums.Direction.LEFT;
     }
@@ -42,13 +42,18 @@ public class Cat1 extends Entity {
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
 
+        // Actions
         if(action == Enums.Action.IDLE) {
             region = Assets.instance.cat1Assets.cat1_idle_animation.getKeyFrame(animation_time_seconds);
         }
         else if (action == Enums.Action.SLIDING) {
-            region = Assets.instance.cat1Assets.cat1_sliding_animation.getKeyFrame(animation_time_seconds);            
+            region = Assets.instance.cat1Assets.cat1_sliding_animation.getKeyFrame(animation_time_seconds);
+        }
+        else if (action == Enums.Action.SWIMMING) {
+            region = Assets.instance.cat1Assets.cat1_swimming_animation.getKeyFrame(animation_time_seconds);
         }
 
+        // Directions
         if (direction == Enums.Direction.LEFT) {
             Utils.drawTextureRegion(batch, region, render_position);
         }
@@ -63,16 +68,30 @@ public class Cat1 extends Entity {
             velocity.x = velocity.y = 0;
         } */
 
+        
+        
         render_position.set(
             body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
             body.getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
-        );
-
-        if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
-        else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
-
-        if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {action = Enums.Action.IDLE;}
-        else {action = Enums.Action.SLIDING;}
+            );
+            
+            if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
+            else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
+            
+        try {
+            // System.out.println(body.getUserData());
+            System.out.println(action);
+            if ((Integer)body.getUserData() == 0) {
+                action = Enums.Action.SWIMMING;
+            }
+            else if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {
+                System.out.println("triggered");
+                action = Enums.Action.IDLE;
+            }
+            else {
+                action = Enums.Action.SLIDING;
+            }
+        } catch(Exception e) {}
     }
 
     public void dispose() {b2d_world.destroyBody(body);}

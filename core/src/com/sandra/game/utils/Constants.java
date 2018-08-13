@@ -10,7 +10,7 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = true;
+    public static final boolean B2D_DEBUGGING = false;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 3;
@@ -53,6 +53,15 @@ public class Constants {
     public static final String CAT1_SLIDE_SPRITE_5 = "cat1Slide5";
     public static final String CAT1_SLIDE_SPRITE_6 = "cat1Slide6";
     public static final String CAT1_SLIDE_SPRITE_7 = "cat1Slide7";
+
+    public static final String CAT1_SWIMMING_SPRITE_1 = "cat1Swim1";
+    public static final String CAT1_SWIMMING_SPRITE_2 = "cat1Swim2";
+    public static final String CAT1_SWIMMING_SPRITE_3 = "cat1Swim3";
+    public static final String CAT1_SWIMMING_SPRITE_4 = "cat1Swim4";
+    public static final String CAT1_SWIMMING_SPRITE_5 = "cat1Swim5";
+    public static final String CAT1_SWIMMING_SPRITE_6 = "cat1Swim6";
+    public static final String CAT1_SWIMMING_SPRITE_7 = "cat1Swim7";
+    
     public static final float CAT1_LOOP_DURATION = .15f;
     public static final Vector2 CAT1_CENTER = new Vector2(0, 0);
     public static final float CAT1_MOVE_SPEED = 50f;

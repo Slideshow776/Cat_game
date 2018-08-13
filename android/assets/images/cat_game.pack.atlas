@@ -88,6 +88,55 @@ cat1Slide7
   orig: 21, 25
   offset: 0, 0
   index: -1
+cat1Swim1
+  rotate: false
+  xy: 792, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim2
+  rotate: false
+  xy: 815, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim3
+  rotate: false
+  xy: 838, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim4
+  rotate: false
+  xy: 861, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim5
+  rotate: false
+  xy: 884, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim6
+  rotate: false
+  xy: 907, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
+cat1Swim7
+  rotate: false
+  xy: 930, 110
+  size: 21, 16
+  orig: 21, 16
+  offset: 0, 0
+  index: -1
 coin1
   rotate: false
   xy: 544, 60
