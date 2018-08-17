@@ -6,8 +6,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.utils.Constants;
-import com.sandra.game.utils.Enums.Action;
-import com.sandra.game.utils.Enums.Direction;
 import com.sandra.game.utils.Enums;
 
 /*

@@ -90,11 +90,11 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_2));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_3));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_4));
-            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_4));
-            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_4));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_5));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_6));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_7));
+            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_8));
+            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_9));
             cat1_swimming_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_swimming_frames, PlayMode.LOOP_PINGPONG);
         }
     }

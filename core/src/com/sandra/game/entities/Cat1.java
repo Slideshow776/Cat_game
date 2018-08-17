@@ -2,10 +2,12 @@ package com.sandra.game.entities;
 
 import java.util.UUID;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -25,7 +27,7 @@ public class Cat1 extends Entity {
     private float animation_start_time;
 
 	private Action action;
-	private Direction direction;
+    private Direction direction;
 
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;
@@ -55,23 +57,25 @@ public class Cat1 extends Entity {
 
         // Directions
         if (direction == Enums.Direction.LEFT) {
-            Utils.drawTextureRegion(batch, region, render_position);
+            Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, Constants.CAT1_SCALE);
         }
         else if (direction == Enums.Direction.RIGHT) {
-            Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, true);
+            Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, true, Constants.CAT1_SCALE);
         }
     }
 
     public void update(float delta) {
-        /* if (body.getUserData() == "collision") {
-            body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
-            velocity.x = velocity.y = 0;
-        } */
-
-        render_position.set(
-            body.getPosition().x - Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM,
-            body.getPosition().y - Constants.CAT1_PIXEL_HEIGHT / 2 / Constants.PPM
-            );
+        if (action == Enums.Action.IDLE) {
+            render_position.set( // the "- .1f" is a magical offset render position when idle ...
+                (body.getPosition().x - (Constants.CAT1_PIXEL_WIDTH * Constants.CAT1_SCALE) / 2 / Constants.PPM) - .1f,
+                body.getPosition().y - (Constants.CAT1_PIXEL_HEIGHT * Constants.CAT1_SCALE) / 2 / Constants.PPM
+                );
+        } else {
+            render_position.set(
+                body.getPosition().x - (Constants.CAT1_PIXEL_WIDTH * Constants.CAT1_SCALE) / 2 / Constants.PPM,
+                body.getPosition().y - (Constants.CAT1_PIXEL_HEIGHT * Constants.CAT1_SCALE) / 2 / Constants.PPM
+                );
+        }
             
             if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
             else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
@@ -103,6 +107,7 @@ public class Cat1 extends Entity {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Constants.CAT1_HALF_WIDTH, Constants.CAT1_HALF_HEIGHT);
+        
         FixtureDef fdef = new FixtureDef();
         fdef.shape = shape;
         fdef.density = Constants.CAT1_DENSITY;

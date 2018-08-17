@@ -53,7 +53,6 @@ public class Constants {
     public static final String CAT1_SLIDE_SPRITE_5 = "cat1Slide5";
     public static final String CAT1_SLIDE_SPRITE_6 = "cat1Slide6";
     public static final String CAT1_SLIDE_SPRITE_7 = "cat1Slide7";
-
     public static final String CAT1_SWIMMING_SPRITE_1 = "cat1Swim1";
     public static final String CAT1_SWIMMING_SPRITE_2 = "cat1Swim2";
     public static final String CAT1_SWIMMING_SPRITE_3 = "cat1Swim3";
@@ -61,16 +60,19 @@ public class Constants {
     public static final String CAT1_SWIMMING_SPRITE_5 = "cat1Swim5";
     public static final String CAT1_SWIMMING_SPRITE_6 = "cat1Swim6";
     public static final String CAT1_SWIMMING_SPRITE_7 = "cat1Swim7";
+    public static final String CAT1_SWIMMING_SPRITE_8 = "cat1Swim8";
+    public static final String CAT1_SWIMMING_SPRITE_9 = "cat1Swim9";
     
+    public static final float CAT1_SCALE = 1.3f;
     public static final float CAT1_LOOP_DURATION = .15f;
     public static final Vector2 CAT1_CENTER = new Vector2(0, 0);
     public static final float CAT1_MOVE_SPEED = 50f;
-    public static final float CAT1_PIXEL_WIDTH = 31f;
-    public static final float CAT1_PIXEL_HEIGHT = 21f;
+    public static final float CAT1_PIXEL_WIDTH = 21f;
+    public static final float CAT1_PIXEL_HEIGHT = 25f;
     public static final float CAT1_DENSITY = 1.0f;
-    public static final float CAT1_RESTITUTION = .1f;
-    public static final float CAT1_HALF_WIDTH = 13f / PPM; // cat length = .46m, from bird's perspective
-    public static final float CAT1_HALF_HEIGHT = 11f / PPM; // cat width = .25m, from bird's perspective
+    public static final float CAT1_RESTITUTION = .15f;
+    public static final float CAT1_HALF_WIDTH = 12f / PPM; // cat length = .46m, from bird's perspective
+    public static final float CAT1_HALF_HEIGHT = 16f / PPM; // cat width = .25m, from bird's perspective
 
     // Yarn ball
     public static final String YARN_BALL_SPRITE_1 = "yarn_ball1";
