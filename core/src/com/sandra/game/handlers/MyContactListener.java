@@ -10,11 +10,6 @@ import com.sandra.game.utils.Constants;
 public class MyContactListener implements ContactListener{
 
 	public static final String TAG = MyContactListener.class.getName();
-	public static int zone_count; // detects if an entity enters a PolygonShape 'zone'
-	
-	public MyContactListener () {
-		zone_count = 0;
-	}
 	
 	@Override
 	public void beginContact(Contact contact) { // TODO: Account for all cases? (fa, fb || fb, fa)
@@ -51,8 +46,13 @@ public class MyContactListener implements ContactListener{
 
 		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
 				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
-			fa.getBody().setUserData(++zone_count);
+			fa.getBody().setUserData("zone_count_up");
 		}
+
+		/* if(fa.getUserData() != null && fa.getUserData().equals(Constants.YARN_BALL_SPRITE_1) &&		// cat vs land zone
+				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
+			fa.getBody().setUserData(++zone_count);
+		} */
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class MyContactListener implements ContactListener{
 
 		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
 				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
-			fa.getBody().setUserData(--zone_count);
+			fa.getBody().setUserData("zone_count_down");
 		}
 	}
 	

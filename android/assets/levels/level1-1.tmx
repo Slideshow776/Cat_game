@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="235">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="238">
  <tileset firstgid="1" source="beach.tsx"/>
  <layer name="Tile Layer 1" width="50" height="37">
   <data encoding="base64" compression="zlib">
@@ -16,10 +16,11 @@
    eJzt01dOAlEUgOGxXCyArsFeAF2Dla5rsHddg2Kva7B3XYO96xrsfQ/+b84TNwSZQDx/8iUkk5xzZhIM4383rAxjBBGMYgzjyvoZ8bbIviUsYwWrWItyg51nDjiRh3wV+4xEdMC+QxzhGCc4jXKDi2dueFCFahX7jER0z74HPOIJz3gx3eDltw9+BBBECGE0oVnpZ1hRms0w0pGBTCjYbL/Pu7inGz3oRR/6MYBBDCn9DCsqYF8hilCMEpSabpjgzklMYRozmMUc5rGg9DOsqIZ9tahDPRrQaLphnTs3sIktbGMHu9jDvtLPsKIW9rWiDe3oQKfphjPuPMcFLnGFa9zgFndKPyMZeuXON7zjA5/4wrfF/+N4y+K7ZiMHubDDAWeSfW9dZdxbjgpUwgU3PCn2Hl7u9cGPAIIIIZxi7yFJkiRJkiRJkiRJkiRJf9EPyvpSfg==
   </data>
  </layer>
- <objectgroup name="cats" visible="0">
+ <objectgroup name="cats">
   <object id="3" x="114" y="146"/>
+  <object id="237" x="213.333" y="194"/>
  </objectgroup>
- <objectgroup name="yarn_balls" visible="0"/>
+ <objectgroup name="yarn_balls"/>
  <objectgroup name="coins" visible="0">
   <object id="4" x="144" y="465"/>
   <object id="5" x="174" y="495"/>

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -39,6 +38,7 @@ public class Cat1 extends Entity {
         init_body();
         action = Enums.Action.IDLE;
         direction = Enums.Direction.LEFT;
+        zone_count = 0;
     }
 
     public void render(SpriteBatch batch) {
@@ -76,21 +76,28 @@ public class Cat1 extends Entity {
                 body.getPosition().y - (Constants.CAT1_PIXEL_HEIGHT * Constants.CAT1_SCALE) / 2 / Constants.PPM
                 );
         }
-            
-            if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
-            else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
-            
-        try {
-            if ((Integer)body.getUserData() == 0) {
-                action = Enums.Action.SWIMMING;
-            }
-            else if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {
-                action = Enums.Action.IDLE;
-            }
-            else {
-                action = Enums.Action.SLIDING;
-            }
-        } catch(Exception e) {}
+
+        if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
+        else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
+        
+        if (body.getUserData() == "zone_count_up") {
+            body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
+            zone_count += 1;
+        }
+        else if (body.getUserData() == "zone_count_down") {
+            body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
+            zone_count -= 1;
+        }
+
+        if (zone_count == 0) {
+            action = Enums.Action.SWIMMING;
+        }            
+        else if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {
+            action = Enums.Action.IDLE;
+        }
+        else {
+            action = Enums.Action.SLIDING;
+        }
         set_action(action);
     }
 

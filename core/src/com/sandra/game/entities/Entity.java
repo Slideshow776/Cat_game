@@ -14,6 +14,7 @@ public abstract class Entity {
     protected Vector2 render_position;
     protected Body body;
     protected String id;
+	protected int zone_count;
 
     public void dispose() {}
     public void render(SpriteBatch batch) {}
@@ -25,6 +26,7 @@ public abstract class Entity {
     public Vector2 get_render_position() {return render_position;}
     public Direction get_direction() {return direction;}
     public Action get_action() {return action;}
+    public int getZoneCount() {return zone_count;}
 
     public void set_action(Action action) {this.action = action;}
 }

@@ -44,7 +44,7 @@ public class Yarn_Ball extends Entity {
         }
 
         render_position.set(
-            body.getPosition().x - Constants.YARN_BALL_PIXEL_WIDTH / 2 / 2 / Constants.PPM, // ekstra half divide because sprite width=2xheight
+            body.getPosition().x - Constants.YARN_BALL_PIXEL_WIDTH / 2 / 2 / Constants.PPM, // extra half divide because sprite width=2xheight
             body.getPosition().y - Constants.YARN_BALL_PIXEL_HEIGHT / 2 / Constants.PPM
         );
     }
