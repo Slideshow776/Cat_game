@@ -39,20 +39,20 @@ public class MyContactListener implements ContactListener{
 			fb.getBody().setUserData("collision");
 		}
 
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.YARN_BALL_SPRITE_1) &&		// world vs yarn ball
+				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_WORLD)) {
+			fa.getBody().setUserData("collision");
+		}
+
 		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs yarn ball
 				fb.getUserData() != null && fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 			fb.getBody().setUserData("collision");
 		}
 
-		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
 				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
 			fa.getBody().setUserData("zone_count_up");
 		}
-
-		/* if(fa.getUserData() != null && fa.getUserData().equals(Constants.YARN_BALL_SPRITE_1) &&		// cat vs land zone
-				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
-			fa.getBody().setUserData(++zone_count);
-		} */
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class MyContactListener implements ContactListener{
 		Fixture fa = contact.getFixtureA();
 		Fixture fb = contact.getFixtureB();
 
-		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs land zone
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
 				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
 			fa.getBody().setUserData("zone_count_down");
 		}

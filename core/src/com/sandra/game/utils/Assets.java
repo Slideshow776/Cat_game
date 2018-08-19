@@ -71,6 +71,7 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_3));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_4));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_5));
+            
             cat1_idle_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_idle_frames, PlayMode.LOOP_PINGPONG);
             
             Array<TextureRegion> cat1_sliding_frames = new Array<TextureRegion>();
@@ -83,6 +84,7 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_5));
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_6));
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_7));
+
             cat1_sliding_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_sliding_frames, PlayMode.LOOP_PINGPONG);
 
             Array<TextureRegion> cat1_swimming_frames = new Array<TextureRegion>();
@@ -95,6 +97,7 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_7));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_8));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_9));
+
             cat1_swimming_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_swimming_frames, PlayMode.LOOP_PINGPONG);
         }
     }
@@ -108,6 +111,8 @@ public class Assets implements Disposable, AssetErrorListener {
             yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_2));
             yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_3));
             yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_4));
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_5));
+            yarn_ball_frames.add(atlas.findRegion(Constants.YARN_BALL_SPRITE_6));
 
             yarn_ball_animation = new Animation<TextureRegion>(Constants.YARN_BALL_LOOP_DURATION, yarn_ball_frames, PlayMode.LOOP);
         }

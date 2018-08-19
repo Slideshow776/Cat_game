@@ -75,19 +75,21 @@ public class Constants {
     public static final float CAT1_HALF_HEIGHT = 16f / PPM; // cat width = .25m, from bird's perspective
 
     // Yarn ball
-    public static final String YARN_BALL_SPRITE_1 = "yarn_ball1";
-    public static final String YARN_BALL_SPRITE_2 = "yarn_ball2";
-    public static final String YARN_BALL_SPRITE_3 = "yarn_ball3";
-    public static final String YARN_BALL_SPRITE_4 = "yarn_ball4";
+    public static final String YARN_BALL_SPRITE_1 = "beach_ball1";
+    public static final String YARN_BALL_SPRITE_2 = "beach_ball2";
+    public static final String YARN_BALL_SPRITE_3 = "beach_ball3";
+    public static final String YARN_BALL_SPRITE_4 = "beach_ball4";
+    public static final String YARN_BALL_SPRITE_5 = "beach_ball5";
+    public static final String YARN_BALL_SPRITE_6 = "beach_ball6";
     public static final Vector2 YARN_BALL_CENTER = new Vector2(0, 0);
     public static final float YARN_BALL_MOVE_SPEED = 50f;
-    public static final float YARN_BALL_PIXEL_WIDTH = 64f;
+    public static final float YARN_BALL_PIXEL_WIDTH = 32f;
     public static final float YARN_BALL_PIXEL_HEIGHT = 32f;
     public static final float YARN_BALL_DENSITY = .65f;
     public static final float YARN_BALL_RESTITUTION = 1f;
     public static final float YARN_BALL_RADIUS = 14f / PPM;
     public static final float YARN_BALL_LOOP_DURATION = .15f;
-    public static final float YARN_BALL_VELOCITY = .05f;
+    public static final float YARN_BALL_VELOCITY = .041f;
 
     // Hole
     public static final String HOLE_SPRITE = "hole";

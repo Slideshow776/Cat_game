@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="238">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="246">
  <tileset firstgid="1" source="beach.tsx"/>
  <layer name="Tile Layer 1" width="50" height="37">
   <data encoding="base64" compression="zlib">
@@ -35,21 +35,21 @@
   <object id="199" x="417.5" y="200.5" width="29" height="7"/>
   <object id="200" x="525" y="133" width="20.5" height="4"/>
  </objectgroup>
- <objectgroup name="zone 1" visible="0">
-  <object id="230" x="17.3333" y="403.333">
-   <polygon points="0,0 14.6667,62 109.333,164.667 292.667,166.667 328.667,136.667 467.333,136 493.333,165.333 496,-82.6667"/>
-  </object>
+ <objectgroup name="zone 1">
   <object id="231" x="516.667" y="568">
-   <polygon points="0,0 188,-3.33333 222,-38 222.667,-80.6667 196.667,-101.333 228.667,-138 271.333,-153.333 0.666667,-166"/>
+   <polygon points="0,0 188,-3.33333 222,-38 222.667,-80.6667 196.667,-101.333 228.667,-138 269.333,-162.666 0.666667,-166"/>
   </object>
   <object id="232" x="516" y="397.333">
-   <polygon points="0,0 265.333,0.666667 268.667,-42.6667 220.667,-46 220,-110.667 -2,-76.6667"/>
+   <polygon points="0,0 265.333,0.666667 268.667,-42.6667 220.667,-46 220,-110.667 1.33333,-74.6667"/>
   </object>
   <object id="233" x="16" y="395.333">
    <polygon points="0,0 0,-138.667 25.3333,-170 -6,-206.667 -8.66667,-284 62,-356 162,-354 214,-292"/>
   </object>
   <object id="234" x="20.6667" y="395.333">
    <polygon points="0,0 214,-289.333 554,-286.667 656.667,-240 714,-112.667"/>
+  </object>
+  <object id="245" x="22.6667" y="402.667">
+   <polygon points="0,0 490,-78.6667 488,157.333 468,130 305.333,128.667 280,156.667 108,159.333 8.66667,44.6667"/>
   </object>
  </objectgroup>
 </map>
