@@ -18,9 +18,10 @@ public class Assets implements Disposable, AssetErrorListener {
     public static final Assets instance = new Assets();
 
     public Cat1Assets cat1Assets;
-    public HoleAssets holeAssets;
+    public PortalAssets portalAssets;
     public CoinAssets coinAssets;
     public YarnBallAssets yarnBallAssets;
+    public DustAssets dustAssets;
     public ButtonsAssets buttonsAssets;
 
     private AssetManager assetManager;
@@ -33,8 +34,9 @@ public class Assets implements Disposable, AssetErrorListener {
 
         TextureAtlas atlas = assetManager.get(Constants.TEXTURE_ATLAS);
         cat1Assets = new Cat1Assets(atlas);
-        holeAssets = new HoleAssets(atlas);
+        portalAssets = new PortalAssets(atlas);
         coinAssets = new CoinAssets(atlas);
+        dustAssets = new DustAssets(atlas);
         yarnBallAssets = new YarnBallAssets(atlas);
         buttonsAssets = new ButtonsAssets(atlas);
     }
@@ -47,6 +49,20 @@ public class Assets implements Disposable, AssetErrorListener {
 	@Override
 	public void dispose() {
         assetManager.dispose();
+    }
+
+    public class DustAssets {
+        public final Animation<TextureRegion> dust_animation;
+
+        public DustAssets(TextureAtlas atlas) {
+            Array<TextureRegion> dust_frames = new Array<TextureRegion>();
+            dust_frames.add(atlas.findRegion(Constants.DUST_SPRITE_1));
+            dust_frames.add(atlas.findRegion(Constants.DUST_SPRITE_2));
+            dust_frames.add(atlas.findRegion(Constants.DUST_SPRITE_3));
+            dust_frames.add(atlas.findRegion(Constants.DUST_SPRITE_4));
+
+            dust_animation = new Animation<TextureRegion>(Constants.DUST_LOOP_DURATION, dust_frames, PlayMode.NORMAL);
+        }
     }
 
     public class ButtonsAssets {
@@ -132,11 +148,17 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class HoleAssets {
-        public final AtlasRegion hole;
+    public class PortalAssets {
+        public final Animation<TextureRegion> portal_animation;
 
-        public HoleAssets(TextureAtlas atlas) {
-            hole = atlas.findRegion(Constants.HOLE_SPRITE);
+        public PortalAssets(TextureAtlas atlas) {
+            Array<TextureRegion> portal_frames = new Array<TextureRegion>();
+            portal_frames.add(atlas.findRegion(Constants.PORTAL_SPRITE_1));
+            portal_frames.add(atlas.findRegion(Constants.PORTAL_SPRITE_2));
+            portal_frames.add(atlas.findRegion(Constants.PORTAL_SPRITE_3));
+            portal_frames.add(atlas.findRegion(Constants.PORTAL_SPRITE_4));
+            
+            portal_animation = new Animation<TextureRegion>(Constants.PORTAL_LOOP_DURATION, portal_frames, PlayMode.LOOP);
         }
     }
 }

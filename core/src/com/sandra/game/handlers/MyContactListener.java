@@ -25,7 +25,7 @@ public class MyContactListener implements ContactListener{
 		} */
 
 		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs hole
-				fb.getUserData() != null && fb.getUserData().equals(Constants.HOLE_SPRITE)) {
+				fb.getUserData() != null && fb.getUserData().equals(Constants.PORTAL_SPRITE_1)) {
 			fa.getBody().setUserData("win_condition");
 		}
 

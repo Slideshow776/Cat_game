@@ -10,7 +10,7 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = true;
+    public static final boolean B2D_DEBUGGING = false;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 3;
@@ -91,13 +91,28 @@ public class Constants {
     public static final float YARN_BALL_LOOP_DURATION = .15f;
     public static final float YARN_BALL_VELOCITY = .041f;
 
-    // Hole
-    public static final String HOLE_SPRITE = "hole";
-    public static final Vector2 HOLE_CENTER = new Vector2(0, 0);
-    public static final float HOLE_PIXEL_WIDTH = 30;
-    public static final float HOLE_PIXEL_HEIGHT = 20;
-    public static final float HOLE_HALF_WIDTH = 4.5f / PPM;
-    public static final float HOLE_HALF_HEIGHT = 3f / PPM;
+    // Portal
+    public static final float PORTAL_SCALE = .25f;
+    public static final float PORTAL_PIXEL_WIDTH = 238 * PORTAL_SCALE;
+    public static final float PORTAL_PIXEL_HEIGHT = 113 * PORTAL_SCALE;
+    public static final float PORTAL_HALF_WIDTH = 6f / PPM;
+    public static final float PORTAL_HALF_HEIGHT = 3f / PPM;
+    public static final float PORTAL_LOOP_DURATION = .15f;
+    public static final String PORTAL_SPRITE_1 = "portal1";
+    public static final String PORTAL_SPRITE_2 = "portal2";
+    public static final String PORTAL_SPRITE_3 = "portal3";
+    public static final String PORTAL_SPRITE_4 = "portal4";
+    public static final Vector2 PORTAL_CENTER = new Vector2(0, 0);
+
+    // Dust
+    public static final int DUST_NUMBER_OF_FRAMES = 4;
+    public static final String DUST_SPRITE_1 = "dust1";
+    public static final String DUST_SPRITE_2 = "dust2";
+    public static final String DUST_SPRITE_3 = "dust3";
+    public static final String DUST_SPRITE_4 = "dust4";
+    public static final float DUST_GENERATION_RATIO = .13f;
+    public static final float DUST_LOOP_DURATION = .12f;
+    public static final float DUST_DURATION = DUST_LOOP_DURATION * DUST_NUMBER_OF_FRAMES;
 
     // Buttons
     public static String BUTTON = "level1_1_btn";

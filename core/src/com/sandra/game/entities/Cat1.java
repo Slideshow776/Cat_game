@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
@@ -26,6 +27,9 @@ public class Cat1 extends Entity {
 
 	private Action action;
     private Direction direction;
+    private DelayedRemovalArray<Entity> dusts;
+
+    private float dust_timer;
 
     public Cat1(Vector2 position, World b2d_world) {
         render_position = position;
@@ -38,10 +42,16 @@ public class Cat1 extends Entity {
         action = Enums.Action.IDLE;
         direction = Enums.Direction.LEFT;
         zone_count = 0;
+
+        dusts = new DelayedRemovalArray<Entity>();
+        dust_timer = 0;
     }
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
+
+        for (Entity dust : dusts)
+            dust.render(batch);
 
         // Actions
         if(action == Enums.Action.IDLE) {
@@ -60,7 +70,7 @@ public class Cat1 extends Entity {
         }
         else if (direction == Enums.Direction.RIGHT) {
             Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, true, Constants.CAT1_SCALE);
-        }
+        }        
     }
 
     public void update(float delta) {
@@ -74,7 +84,7 @@ public class Cat1 extends Entity {
                 body.getPosition().x - (Constants.CAT1_PIXEL_WIDTH * Constants.CAT1_SCALE) / 2 / Constants.PPM,
                 body.getPosition().y - (Constants.CAT1_PIXEL_HEIGHT * Constants.CAT1_SCALE) / 2 / Constants.PPM
                 );
-        }
+        }       
 
         if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
         else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
@@ -98,9 +108,30 @@ public class Cat1 extends Entity {
             action = Enums.Action.SLIDING;
         }
         set_action(action);
+        update_dust(delta);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
+
+    private void update_dust(float delta) {
+        dust_timer += delta;
+        if(dust_timer >= Constants.DUST_GENERATION_RATIO) {
+            if (action == Enums.Action.SLIDING && 
+                (Math.abs(body.getLinearVelocity().x) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100 || // magic numbers
+                Math.abs(body.getLinearVelocity().y) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100) ) {
+                dusts.add(new Dust(new Vector2(
+                            render_position.x - Constants.CAT1_HALF_WIDTH,
+                            render_position.y - Constants.CAT1_HALF_HEIGHT)
+                ));
+            }
+            dust_timer = 0f;
+        }
+        
+        for (Entity dust : dusts)
+            if (dust.getDelete()) { dusts.removeValue(dust, false); }
+
+        for (Entity dust : dusts) { dust.update(delta); }
+    }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();

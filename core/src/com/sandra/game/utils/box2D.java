@@ -1,6 +1,7 @@
 package com.sandra.game.utils;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.Array;
 
 /* 
     Utility class for Box2D world implementations for levels.
@@ -19,9 +21,43 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 public class box2D {
 
     World b2d_world;
+	private Array<PolygonMapObject> land_polygon;
 
     public box2D(World b2d_world) {
         this.b2d_world = b2d_world;
+    }
+
+    public void popuate_zones_from_map(TiledMap map) {
+        land_polygon = map.getLayers().get("zone 1").getObjects()
+                .getByType(PolygonMapObject.class);
+
+        for (int j = 0; j < land_polygon.size; j++) {
+            float[] raw_verticies = land_polygon.get(j).getPolygon().getTransformedVertices();
+            Vector2[] verticies = new Vector2[raw_verticies.length / 2];
+
+            for (int i = 0; i < verticies.length; i++) {
+                verticies[i] = new Vector2(
+                    raw_verticies[i * 2] / Constants.PPM,
+                    raw_verticies[(i * 2) + 1] / Constants.PPM
+                );
+            }
+
+            BodyDef bdef = new BodyDef();
+            bdef.type = BodyType.StaticBody;
+            bdef.position.set(0, 0);
+
+            PolygonShape shape = new PolygonShape();
+            shape.set(verticies);
+
+            FixtureDef fdef = new FixtureDef();
+            fdef.shape = shape;
+            fdef.filter.categoryBits = Constants.B2D_BIT_WORLD;
+            fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
+            fdef.isSensor = true;
+
+            Body land_zone = b2d_world.createBody(bdef);
+            land_zone.createFixture(fdef).setUserData(Constants.B2D_LAND_ZONE);
+        }
     }
 
     public void set_world_impassables(TiledMap map) {
