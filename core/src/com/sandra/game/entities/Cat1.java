@@ -109,6 +109,7 @@ public class Cat1 extends Entity {
         }
         set_action(action);
         update_dust(delta);
+        System.out.println(zone_count);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
@@ -141,6 +142,7 @@ public class Cat1 extends Entity {
             (render_position.x + (Constants.CAT1_PIXEL_WIDTH / Constants.PPM) / 2),
             (render_position.y + (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2)
         );
+        bdef.allowSleep = false; // if true might not register collisions, which is results in a zone count problem.
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(Constants.CAT1_HALF_WIDTH, Constants.CAT1_HALF_HEIGHT);
