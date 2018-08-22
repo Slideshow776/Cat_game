@@ -12,8 +12,8 @@ public class Constants {
     public static final float PPM = 100;
     public static final boolean B2D_DEBUGGING = true;
     public static final float B2D_TIMESTEP = 1 / 30f;
-    public static final int B2D_VELOCITY_ITERATIONS = 8;
-    public static final int B2D_POSITION_ITERATIONS = 3;
+    public static final int B2D_VELOCITY_ITERATIONS = 9;
+    public static final int B2D_POSITION_ITERATIONS = 9;
     public static final float B2D_WORLD_BOUNDS_OFFSET = 20f;
     public static final String B2D_WORLD = "world";
     public static final String B2D_LAND_ZONE = "land_zone";
@@ -117,4 +117,25 @@ public class Constants {
     // Buttons
     public static String BUTTON = "level1_1_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
+
+    // Thwomper
+    public static String THWOMPER_IDLE_SPRITE1 = "thwomper_idle";
+    public static String THWOMPER_MOVING_SPRITE1 = "thwomper_moving1";
+    public static String THWOMPER_MOVING_SPRITE2 = "thwomper_moving2";
+    public static String THWOMPER_MOVING_SPRITE3 = "thwomper_moving3";
+    public static String THWOMPER_MOVING_SPRITE4 = "thwomper_moving4";
+    public static String THWOMPER_MOVING_SPRITE5 = "thwomper_moving5";
+    public static String THWOMPER_MOVING_SPRITE6 = "thwomper_moving6";
+    public static String THWOMPER_MOVING_SPRITE7 = "thwomper_moving7";
+    public static String THWOMPER_MOVING_SPRITE8 = "thwomper_moving8";
+    public static String THWOMPER_MOVING_SPRITE9 = "thwomper_moving9";
+    public static String THWOMPER_MOVING_SPRITE10 = "thwomper_moving10";
+    public static String THWOMPER_MOVING_SPRITE11 = "thwomper_moving11";
+    public static String THWOMPER_MOVING_SPRITE12 = "thwomper_moving12";
+    public static String THWOMPER_FLOATING_SPRITE1 = "thwomper_floating1";
+    public static String THWOMPER_FLOATING_SPRITE2 = "thwomper_floating2";
+    public static String THWOMPER_FLOATING_SPRITE3 = "thwomper_floating3";
+    public static final float THWOMPER_IDLE_LOOP_DURATION = .12f;
+    public static final float THWOMPER_MOVING_LOOP_DURATION = .12f;
+    public static final float THWOMPER_FLOATING_LOOP_DURATION = .12f;
 }

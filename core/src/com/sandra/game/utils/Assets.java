@@ -23,6 +23,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public YarnBallAssets yarnBallAssets;
     public DustAssets dustAssets;
     public ButtonsAssets buttonsAssets;
+    public Thwomper thwomperAssets;
 
     private AssetManager assetManager;
 
@@ -39,6 +40,7 @@ public class Assets implements Disposable, AssetErrorListener {
         dustAssets = new DustAssets(atlas);
         yarnBallAssets = new YarnBallAssets(atlas);
         buttonsAssets = new ButtonsAssets(atlas);
+        thwomperAssets = new ThwomperAssets(atlas);
     }
 
 	@Override
@@ -72,6 +74,39 @@ public class Assets implements Disposable, AssetErrorListener {
         public ButtonsAssets(TextureAtlas atlas) {
             button = atlas.findRegion(Constants.BUTTON);
             //button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
+        }
+    }
+
+    public class ThwomperAssets {
+        public final Animation<TextureRegion> thwomper_idle_animation;
+        public final Animation<TextureRegion> thwomper_moving_animation;
+        public final Animation<TextureRegion> thwomper_floating_animation;
+
+        public ThwomperAssets(TextureAtlas atlas) {
+            Array<TextureRegion> thwomper_idle_frames = new Array<TextureRegion>();
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_IDLE_SPRITE1));
+            thwomper_floating_animation = new Animation<TextureRegion>(Constants.THWOMPER_IDLE_LOOP_DURATION, thwomper_idle_frames, PlayMode.LOOP);
+            
+            Array<TextureRegion> thwomper_moving_frames = new Array<TextureRegion>();
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE1));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE2));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE3));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE4));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE5));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE6));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE7));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE8));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE9));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE10));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE11));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE12));
+            thwomper_floating_animation = new Animation<TextureRegion>(Constants.THWOMPER_MOVING_LOOP_DURATION, thwomper_moving_frames, PlayMode.LOOP);
+            
+            Array<TextureRegion> thwomper_floating_frames = new Array<TextureRegion>();
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_FLOATING_SPRITE1));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_FLOATING_SPRITE2));
+            thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_FLOATING_SPRITE3));
+            thwomper_floating_animation = new Animation<TextureRegion>(Constants.THWOMPER_FLOATING_LOOP_DURATION, thwomper_floating_frames, PlayMode.LOOP_RANDOM);
         }
     }
 

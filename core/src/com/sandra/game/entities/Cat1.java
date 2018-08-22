@@ -109,7 +109,7 @@ public class Cat1 extends Entity {
         }
         set_action(action);
         update_dust(delta);
-        System.out.println(zone_count);
+        System.out.println(id + ", " + zone_count);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
