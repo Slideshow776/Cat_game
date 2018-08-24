@@ -56,11 +56,13 @@ public class Level_1_1 implements Screen {
     private Sound coin1;
     private Sound bump1;
     private Music generic_music;
+
     private DelayedRemovalArray<Entity> cat1s;
     private DelayedRemovalArray<Entity> coins;
     private DelayedRemovalArray<Entity> yarn_balls;
     private DelayedRemovalArray<Entity> entities;
     private DelayedRemovalArray<Entity> portals;
+	private DelayedRemovalArray<Entity> thwompers;
 
     private Controls controls;
 
@@ -71,6 +73,7 @@ public class Level_1_1 implements Screen {
     private int[] foregroundLayers = { 2 };
 
     private MapUtils mapUtils;
+
 
     public Level_1_1(Cat_game game) {
         this.game = game;
@@ -123,6 +126,10 @@ public class Level_1_1 implements Screen {
         portals = new DelayedRemovalArray<Entity>();
         mapUtils.populate_entity_from_map("portals", portals, map, b2d_world);
         
+        // thwompers
+        thwompers = new DelayedRemovalArray<Entity>();
+        mapUtils.populate_entity_from_map("thwompers", thwompers, map, b2d_world);
+
         box2d.set_world_impassables(map);
         box2d.popuate_zones_from_map(map);
 
@@ -161,6 +168,10 @@ public class Level_1_1 implements Screen {
             }
             yarn_ball.update(delta);
         }
+
+        for (Entity thwomper: thwompers) {
+            thwomper.update(delta);
+        }
     }
 
     private void update(float delta) {
@@ -193,6 +204,8 @@ public class Level_1_1 implements Screen {
             cat1.render(game.batch);
         for (Entity coin : coins)
             coin.render(game.batch);
+        for (Entity thwomper: thwompers)
+            thwomper.render(game.batch);
         game.batch.end();
 
         Gdx.gl.glEnable(GL20.GL_BLEND);
@@ -246,6 +259,9 @@ public class Level_1_1 implements Screen {
             coin.dispose();
         for (Entity yarn_ball : yarn_balls)
             yarn_ball.dispose();
+        for (Entity thwomper : thwompers) {
+            thwomper.dispose();
+        }
         generic_music.dispose();
         purr1.dispose();
         b2d_world.dispose();

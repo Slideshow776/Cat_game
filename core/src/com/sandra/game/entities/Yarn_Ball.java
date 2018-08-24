@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.sandra.game.utils.Utils;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
-import com.sandra.game.utils.Enums.Action;
 import com.sandra.game.utils.Enums.Direction;
 import com.sandra.game.utils.Enums;
 
@@ -64,7 +63,7 @@ public class Yarn_Ball extends Entity {
         );
     }
 
-    public void dispose() {}
+    public void dispose() {b2d_world.dispose();}
 
     private void bounce_off_of_things() { // imagine a cartesian coordinate system
         if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||              // 1st quadrant
@@ -102,7 +101,8 @@ public class Yarn_Ball extends Entity {
         fdef.friction = 0; // so it doesn't stick to the walls.
         fdef.restitution = Constants.YARN_BALL_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_YARN_BALLS;
-        fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
+        fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS
+        | Constants.B2D_THWOMPER;
 
 		this.body = b2d_world.createBody(bdef);
         this.body.createFixture(fdef).setUserData(Constants.YARN_BALL_SPRITE_1);

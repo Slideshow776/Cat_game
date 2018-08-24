@@ -109,7 +109,6 @@ public class Cat1 extends Entity {
         }
         set_action(action);
         update_dust(delta);
-        System.out.println(id + ", " + zone_count);
     }
 
     public void dispose() {b2d_world.destroyBody(body);}
@@ -154,7 +153,8 @@ public class Cat1 extends Entity {
         fdef.restitution = Constants.CAT1_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
         fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | 
-            Constants.B2D_BIT_HOLE | Constants.B2D_BIT_COINS | Constants.B2D_YARN_BALLS;
+            Constants.B2D_BIT_HOLE | Constants.B2D_BIT_COINS | Constants.B2D_YARN_BALLS
+            | Constants.B2D_THWOMPER;
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);

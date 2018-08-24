@@ -10,6 +10,7 @@ import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.entities.Portal;
+import com.sandra.game.entities.Thwomper;
 import com.sandra.game.entities.Yarn_Ball;
 
 public class MapUtils {
@@ -26,6 +27,8 @@ public class MapUtils {
                 entity_list.add(new Yarn_Ball(position, b2d_world));
             else if (entity == "portals")
                 entity_list.add(new Portal(position, b2d_world));
+            else if (entity == "thwompers")
+                entity_list.add(new Thwomper(position, b2d_world));
         }
         return entity_list;
     }

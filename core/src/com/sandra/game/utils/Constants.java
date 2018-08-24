@@ -12,8 +12,8 @@ public class Constants {
     public static final float PPM = 100;
     public static final boolean B2D_DEBUGGING = true;
     public static final float B2D_TIMESTEP = 1 / 30f;
-    public static final int B2D_VELOCITY_ITERATIONS = 9;
-    public static final int B2D_POSITION_ITERATIONS = 9;
+    public static final int B2D_VELOCITY_ITERATIONS = 8;
+    public static final int B2D_POSITION_ITERATIONS = 4;
     public static final float B2D_WORLD_BOUNDS_OFFSET = 20f;
     public static final String B2D_WORLD = "world";
     public static final String B2D_LAND_ZONE = "land_zone";
@@ -23,6 +23,7 @@ public class Constants {
     public static final short B2D_BIT_HOLE = 8;
     public static final short B2D_BIT_COINS = 16;
     public static final short B2D_YARN_BALLS = 32;
+    public static final short B2D_THWOMPER = 64;
 
     // Entities
     public static final float ENTETIES_ACCELERATION = .002f;
@@ -138,4 +139,10 @@ public class Constants {
     public static final float THWOMPER_IDLE_LOOP_DURATION = .12f;
     public static final float THWOMPER_MOVING_LOOP_DURATION = .12f;
     public static final float THWOMPER_FLOATING_LOOP_DURATION = .12f;
+    public static final float THWOMPER_PIXEL_WIDTH = 45f;
+    public static final float THWOMPER_PIXEL_HEIGHT = 33f;
+    public static final float THWOMPER_HALF_WIDTH = 14f / PPM;
+    public static final float THWOMPER_HALF_HEIGHT = 10f / PPM;
+
+
 }

@@ -23,7 +23,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public YarnBallAssets yarnBallAssets;
     public DustAssets dustAssets;
     public ButtonsAssets buttonsAssets;
-    public Thwomper thwomperAssets;
+    public ThwomperAssets thwomperAssets;
 
     private AssetManager assetManager;
 
@@ -85,7 +85,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public ThwomperAssets(TextureAtlas atlas) {
             Array<TextureRegion> thwomper_idle_frames = new Array<TextureRegion>();
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_IDLE_SPRITE1));
-            thwomper_floating_animation = new Animation<TextureRegion>(Constants.THWOMPER_IDLE_LOOP_DURATION, thwomper_idle_frames, PlayMode.LOOP);
+            thwomper_idle_animation = new Animation<TextureRegion>(Constants.THWOMPER_IDLE_LOOP_DURATION, thwomper_idle_frames, PlayMode.LOOP);
             
             Array<TextureRegion> thwomper_moving_frames = new Array<TextureRegion>();
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE1));
@@ -100,7 +100,7 @@ public class Assets implements Disposable, AssetErrorListener {
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE10));
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE11));
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_MOVING_SPRITE12));
-            thwomper_floating_animation = new Animation<TextureRegion>(Constants.THWOMPER_MOVING_LOOP_DURATION, thwomper_moving_frames, PlayMode.LOOP);
+            thwomper_moving_animation = new Animation<TextureRegion>(Constants.THWOMPER_MOVING_LOOP_DURATION, thwomper_moving_frames, PlayMode.LOOP);
             
             Array<TextureRegion> thwomper_floating_frames = new Array<TextureRegion>();
             thwomper_idle_frames.add(atlas.findRegion(Constants.THWOMPER_FLOATING_SPRITE1));
