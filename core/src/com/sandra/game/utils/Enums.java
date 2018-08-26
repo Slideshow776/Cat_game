@@ -10,6 +10,8 @@ public class Enums {
         IDLE,
         SLIDING,
         MOVING,
-        SWIMMING
+        SWIMMING,
+        POISED,
+        ATTACKING
     }
 }

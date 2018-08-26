@@ -120,29 +120,35 @@ public class Constants {
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper
-    public static String THWOMPER_IDLE_SPRITE1 = "thwomper_idle";
+    public static String THWOMPER_IDLE_SPRITE1 = "thwomper_idle1";
     public static String THWOMPER_MOVING_SPRITE1 = "thwomper_moving1";
-    public static String THWOMPER_MOVING_SPRITE2 = "thwomper_moving2";
-    public static String THWOMPER_MOVING_SPRITE3 = "thwomper_moving3";
-    public static String THWOMPER_MOVING_SPRITE4 = "thwomper_moving4";
-    public static String THWOMPER_MOVING_SPRITE5 = "thwomper_moving5";
-    public static String THWOMPER_MOVING_SPRITE6 = "thwomper_moving6";
-    public static String THWOMPER_MOVING_SPRITE7 = "thwomper_moving7";
-    public static String THWOMPER_MOVING_SPRITE8 = "thwomper_moving8";
-    public static String THWOMPER_MOVING_SPRITE9 = "thwomper_moving9";
-    public static String THWOMPER_MOVING_SPRITE10 = "thwomper_moving10";
-    public static String THWOMPER_MOVING_SPRITE11 = "thwomper_moving11";
-    public static String THWOMPER_MOVING_SPRITE12 = "thwomper_moving12";
     public static String THWOMPER_FLOATING_SPRITE1 = "thwomper_floating1";
     public static String THWOMPER_FLOATING_SPRITE2 = "thwomper_floating2";
     public static String THWOMPER_FLOATING_SPRITE3 = "thwomper_floating3";
     public static final float THWOMPER_IDLE_LOOP_DURATION = .12f;
-    public static final float THWOMPER_MOVING_LOOP_DURATION = .12f;
-    public static final float THWOMPER_FLOATING_LOOP_DURATION = .12f;
+    public static final float THWOMPER_MOVING_LOOP_DURATION = .08f;
+    public static final float THWOMPER_FLOATING_LOOP_DURATION = .5f;
     public static final float THWOMPER_PIXEL_WIDTH = 45f;
     public static final float THWOMPER_PIXEL_HEIGHT = 33f;
     public static final float THWOMPER_HALF_WIDTH = 14f / PPM;
     public static final float THWOMPER_HALF_HEIGHT = 10f / PPM;
-
+    public static final float THWOMPER_MAX_HEIGHT_MOVE = 125;
+    
+    // Thwomper's shadow
+    public static String SHADOW_SPRITE1 = "shadow1";
+    public static String SHADOW_SPRITE2 = "shadow2";
+    public static String SHADOW_SPRITE3 = "shadow3";
+    public static String SHADOW_SPRITE4 = "shadow4";
+    public static String SHADOW_SPRITE5 = "shadow5";
+    public static String SHADOW_SPRITE6 = "shadow6";
+    public static String SHADOW_SPRITE7 = "shadow7";
+    public static String SHADOW_SPRITE8 = "shadow8";
+    public static String SHADOW_SPRITE9 = "shadow9";
+    public static String SHADOW_SPRITE10 = "shadow10";
+    public static String SHADOW_SPRITE11 = "shadow11";
+    public static String SHADOW_SPRITE12 = "shadow12";
+    public static final float SHADOW_PIXEL_WIDTH = 27 / PPM;
+    public static final float SHADOW_PIXEL_HEIGHT = 5 / PPM;
+    public static final float SHADOW_LOOP_DURATION = .12f;
 
 }

@@ -53,6 +53,11 @@ public class MyContactListener implements ContactListener{
 				fb.getUserData() != null && fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
 			fa.getBody().setUserData("zone_count_up");
 		}
+
+		if(fa.getUserData() != null && fa.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs thwomper
+				fb.getUserData() != null && fb.getUserData().equals(Constants.THWOMPER_IDLE_SPRITE1)) {
+			fb.getBody().setUserData("cat_collision");
+		}
 	}
 
 	@Override

@@ -198,12 +198,12 @@ public class Level_1_1 implements Screen {
         game.batch.begin();
         for (Entity portal : portals)
             portal.render(game.batch);
+        for (Entity coin : coins)
+            coin.render(game.batch);
         for (Entity yarn_ball : yarn_balls)
             yarn_ball.render(game.batch);
         for (Entity cat1 : cat1s)
             cat1.render(game.batch);
-        for (Entity coin : coins)
-            coin.render(game.batch);
         for (Entity thwomper: thwompers)
             thwomper.render(game.batch);
         game.batch.end();

@@ -40,14 +40,16 @@ public class Controls {
             if(entity.get_action() == Enums.Action.SWIMMING) {
                 max_velocity = Constants.ENTETIES_MAX_VELOCITY / 16;
                 max_acceleration = Constants.ENTETIES_ACCELERATION / 16;
-            } else {
+            } 
+            else {
                 max_velocity = Constants.ENTETIES_MAX_VELOCITY;
                 max_acceleration = Constants.ENTETIES_ACCELERATION;
             }
 
             if (Gdx.app.getType() == ApplicationType.Android) {
                 android_movement(delta, entity);
-            } else if (Gdx.app.getType() == ApplicationType.Desktop) {
+            } 
+            else if (Gdx.app.getType() == ApplicationType.Desktop) {
                 desktop_movement(delta, entity);
             }
         }
