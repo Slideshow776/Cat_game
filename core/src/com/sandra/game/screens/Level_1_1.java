@@ -115,20 +115,19 @@ public class Level_1_1 implements Screen {
 
         // Entities
         cat1s = new DelayedRemovalArray<Entity>();
-        mapUtils.populate_entity_from_map("cats", cat1s, map, b2d_world);
+        mapUtils.populate_entity_from_map("cats", cat1s, map, b2d_world, null);
 
         coins = new DelayedRemovalArray<Entity>();
-        mapUtils.populate_entity_from_map("coins", coins, map, b2d_world);
+        mapUtils.populate_entity_from_map("coins", coins, map, b2d_world, null);
 
         yarn_balls = new DelayedRemovalArray<Entity>();
-        mapUtils.populate_entity_from_map("yarn_balls", yarn_balls, map, b2d_world);
+        mapUtils.populate_entity_from_map("yarn_balls", yarn_balls, map, b2d_world, null);
 
         portals = new DelayedRemovalArray<Entity>();
-        mapUtils.populate_entity_from_map("portals", portals, map, b2d_world);
+        mapUtils.populate_entity_from_map("portals", portals, map, b2d_world, null);
         
-        // thwompers
         thwompers = new DelayedRemovalArray<Entity>();
-        mapUtils.populate_entity_from_map("thwompers", thwompers, map, b2d_world);
+        mapUtils.populate_entity_from_map("thwompers", thwompers, map, b2d_world, cat1s);
 
         box2d.set_world_impassables(map);
         box2d.popuate_zones_from_map(map);
@@ -147,6 +146,11 @@ public class Level_1_1 implements Screen {
         for (Entity cat1 : cat1s) {
             if (cat1.get_body().getUserData() == "win_condition") {
                 score1.play();
+                cat1.dispose();
+                cat1s.removeValue(cat1, false);
+            }
+            if (cat1.get_dead()) {
+                purr1.play();
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }

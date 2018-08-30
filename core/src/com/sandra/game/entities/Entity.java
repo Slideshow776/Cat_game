@@ -13,22 +13,25 @@ public abstract class Entity {
     protected Vector2 velocity;
     protected Vector2 render_position;
     protected Body body;
-    protected String id;
+    protected int id;
     protected int zone_count;
     protected boolean delete;
+    protected boolean dead;
 
     public void dispose() {}
     public void render(SpriteBatch batch) {}
     public void update(float delta) {}
     
-    public String getId() {return id;}
+    public int getId() {return id;}
     public Body get_body() {return body;}
     public Vector2 get_velocity() {return velocity;}
     public Vector2 get_render_position() {return render_position;}
     public Direction get_direction() {return direction;}
     public Action get_action() {return action;}
-    public int getZoneCount() {return zone_count;}
-    public boolean getDelete() {return delete;}
+    public int get_zoneCount() {return zone_count;}
+    public boolean get_delete() {return delete;}
+    public boolean get_dead() {return dead;}
 
     public void set_action(Action action) {this.action = action;}
+    public void set_dead(boolean dead) {this.dead = dead;}
 }

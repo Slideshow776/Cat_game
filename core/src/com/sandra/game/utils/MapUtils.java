@@ -14,13 +14,18 @@ import com.sandra.game.entities.Thwomper;
 import com.sandra.game.entities.Yarn_Ball;
 
 public class MapUtils {
+    
+    private int catId = 0;
 
-    public DelayedRemovalArray<Entity> populate_entity_from_map(String entity, DelayedRemovalArray<Entity> entity_list, TiledMap map, World b2d_world) {
+    public DelayedRemovalArray<Entity> populate_entity_from_map(String entity, DelayedRemovalArray<Entity> entity_list,
+     TiledMap map, World b2d_world, DelayedRemovalArray<Entity> second_entity_list) {
         for (MapObject object : map.getLayers().get(entity).getObjects().getByType(RectangleMapObject.class)) {
             Vector2 position = new Vector2(((RectangleMapObject) object).getRectangle().getX() / Constants.PPM,
                     ((RectangleMapObject) object).getRectangle().getY() / Constants.PPM);
-            if (entity == "cats")
-                entity_list.add(new Cat1(position, b2d_world));
+            if (entity == "cats") {                
+                catId++;
+                entity_list.add(new Cat1(position, b2d_world, catId));
+            }
             else if (entity == "coins")
                 entity_list.add(new Coin(position, b2d_world));
             else if (entity == "yarn_balls")
@@ -28,7 +33,7 @@ public class MapUtils {
             else if (entity == "portals")
                 entity_list.add(new Portal(position, b2d_world));
             else if (entity == "thwompers")
-                entity_list.add(new Thwomper(position, b2d_world));
+                entity_list.add(new Thwomper(position, b2d_world, second_entity_list));
         }
         return entity_list;
     }

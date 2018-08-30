@@ -109,9 +109,9 @@ public class Controls {
         apply_linear_impulse(entity);
     }
 
-    public void removeEntity(String id) {
+    public void removeEntity(int id) {
         for (int i = 0; i < entities.size; i++) {
-            if (entities.get(i).getId() == id) {
+            if (entities.get(i).getId() == id) { // TODO: BUG!
                 entities.removeIndex(i);
                 return;
             }

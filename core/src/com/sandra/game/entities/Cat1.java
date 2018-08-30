@@ -31,10 +31,10 @@ public class Cat1 extends Entity {
 
     private float dust_timer;
 
-    public Cat1(Vector2 position, World b2d_world) {
+    public Cat1(Vector2 position, World b2d_world, int id) {
         render_position = position;
         velocity = new Vector2(0, 0);
-        id = UUID.randomUUID().toString();
+        this.id = id;
         animation_start_time = TimeUtils.nanoTime();
         
         this.b2d_world = b2d_world;
@@ -128,10 +128,11 @@ public class Cat1 extends Entity {
         }
         
         for (Entity dust : dusts)
-            if (dust.getDelete()) { dusts.removeValue(dust, false); }
+            if (dust.get_delete()) { dusts.removeValue(dust, false); }
 
         for (Entity dust : dusts) { dust.update(delta); }
     }
+
 
     private void init_body() {
         BodyDef bdef = new BodyDef();
@@ -158,7 +159,8 @@ public class Cat1 extends Entity {
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
-        this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1);
+        // this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1);
+        this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1 + "-" + id);
     }    
 }
     
