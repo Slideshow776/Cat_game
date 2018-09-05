@@ -149,6 +149,6 @@ public class Constants {
     public static String SHADOW_SPRITE12 = "shadow12";
     public static final float SHADOW_PIXEL_WIDTH = 27 / PPM;
     public static final float SHADOW_PIXEL_HEIGHT = 5 / PPM;
-    public static final float SHADOW_LOOP_DURATION = .12f;
+    public static final float SHADOW_LOOP_DURATION = .19f;
 
 }

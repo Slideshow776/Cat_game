@@ -30,5 +30,5 @@ public class Dust extends Entity {
         if (elapsed_time_seconds > Constants.DUST_DURATION) { delete = true; }
     }
 
-    public void dispose() {}
+    public void dispose() { delete = true; }
 }

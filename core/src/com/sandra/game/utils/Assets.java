@@ -82,23 +82,28 @@ public class Assets implements Disposable, AssetErrorListener {
     public class ShadowAssets {
         public final Animation<TextureRegion> shadow_growing_animation;
         public final Animation<TextureRegion> shadow_shrinking_animation;
+        public final TextureRegion smallest;
+        public final TextureRegion largest;
 
         public ShadowAssets(TextureAtlas atlas) {
-            Array<TextureRegion> shadow_growing_frames = new Array<TextureRegion>();
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE1));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE2));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE3));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE4));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE5));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE6));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE7));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE8));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE9));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE10));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE11));
-            shadow_growing_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE12));
-            shadow_growing_animation = new Animation<TextureRegion>(Constants.SHADOW_LOOP_DURATION, shadow_growing_frames, PlayMode.NORMAL);
-            shadow_shrinking_animation = new Animation<TextureRegion>(Constants.SHADOW_LOOP_DURATION, shadow_growing_frames, PlayMode.REVERSED);
+            Array<TextureRegion> shadow_frames = new Array<TextureRegion>();
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE1));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE2));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE3));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE4));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE5));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE6));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE7));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE8));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE9));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE10));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE11));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE12));
+
+            smallest = new TextureRegion(atlas.findRegion(Constants.SHADOW_SPRITE1));
+            largest = new TextureRegion(atlas.findRegion(Constants.SHADOW_SPRITE12));
+            shadow_growing_animation = new Animation<TextureRegion>(Constants.SHADOW_LOOP_DURATION, shadow_frames, PlayMode.LOOP);
+            shadow_shrinking_animation = new Animation<TextureRegion>(Constants.SHADOW_LOOP_DURATION, shadow_frames, PlayMode.LOOP_REVERSED);
         }
     }
 

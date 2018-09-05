@@ -30,6 +30,7 @@ public class Thwomper extends Entity {
     private Array<Integer> id_of_cats_beneath;
     
     private DelayedRemovalArray<Entity> entity_list;
+    private Shadow shadow;
     
     public Thwomper(Vector2 position, World b2d_world, DelayedRemovalArray<Entity> entity_list) {
         this.b2d_world = b2d_world;
@@ -43,6 +44,8 @@ public class Thwomper extends Entity {
         move_increment = 0;
         ground = render_position.y;
         id_of_cats_beneath = new Array<Integer>(0);
+
+        shadow = new Shadow(render_position);
     }
 
     public void render(SpriteBatch batch) {
@@ -58,6 +61,9 @@ public class Thwomper extends Entity {
             region = Assets.instance.thwomperAssets.thwomper_attacking_animation.getKeyFrame(animation_time_seconds);
         }
 
+        shadow.set_action(action);
+        shadow.render(batch);
+        
         Utils.drawTextureRegion(batch, region, render_position.x, render_position.y);
     }
 
@@ -110,6 +116,7 @@ public class Thwomper extends Entity {
             (body.getPosition().x - Constants.THWOMPER_PIXEL_WIDTH / 2 / Constants.PPM) + .075f,
             body.getPosition().y + move_increment - Constants.THWOMPER_PIXEL_HEIGHT / 2 / Constants.PPM
         );
+        shadow.update(delta);
     }
 
     public void dispose() {b2d_world.dispose();}
