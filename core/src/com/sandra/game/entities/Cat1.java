@@ -101,7 +101,7 @@ public class Cat1 extends Entity {
         if (zone_count == 0) {
             action = Enums.Action.SWIMMING;
         }            
-        else if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0) {
+        else if (Math.abs(body.getLinearVelocity().x) <= .15f && Math.abs(body.getLinearVelocity().y) <= .15f) {
             action = Enums.Action.IDLE;
         }
         else {
