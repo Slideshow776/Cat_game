@@ -7,30 +7,20 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.entities.Portal;
 import com.sandra.game.entities.Yarn_Ball;
+import com.sandra.game.entities.Shadow;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
@@ -63,6 +53,7 @@ public class Level_1_1 implements Screen {
     private DelayedRemovalArray<Entity> entities;
     private DelayedRemovalArray<Entity> portals;
 	private DelayedRemovalArray<Entity> thwompers;
+	private DelayedRemovalArray<Entity> shadows;
 
     private Controls controls;
 
@@ -73,7 +64,6 @@ public class Level_1_1 implements Screen {
     private int[] foregroundLayers = { 2 };
 
     private MapUtils mapUtils;
-
 
     public Level_1_1(Cat_game game) {
         this.game = game;
@@ -111,7 +101,7 @@ public class Level_1_1 implements Screen {
         map = new TmxMapLoader().load("levels/level1-1.tmx");
         mapRenderer = new OrthoCachedTiledMapRenderer(map, 1 / Constants.PPM, 8191); // 8191 is max
         mapRenderer.setView(camera);
-        MapUtils mapUtils = new MapUtils();
+        mapUtils = new MapUtils();
 
         // Entities
         cat1s = new DelayedRemovalArray<Entity>();
@@ -128,6 +118,9 @@ public class Level_1_1 implements Screen {
         
         thwompers = new DelayedRemovalArray<Entity>();
         mapUtils.populate_entity_from_map("thwompers", thwompers, map, b2d_world, cat1s);
+
+        shadows = new DelayedRemovalArray<Entity>();
+        for (Entity thwomper: thwompers) { shadows.add(new Shadow(thwomper.get_render_position())); }
 
         box2d.set_world_impassables(map);
         box2d.popuate_zones_from_map(map);
@@ -175,7 +168,12 @@ public class Level_1_1 implements Screen {
 
         for (Entity thwomper: thwompers) {
             thwomper.update(delta);
+            for (Entity shadow: shadows) {
+                shadow.set_action(thwomper.get_action());
+                shadow.update(delta);
+            }
         }
+
     }
 
     private void update(float delta) {
@@ -206,6 +204,8 @@ public class Level_1_1 implements Screen {
             coin.render(game.batch);
         for (Entity yarn_ball : yarn_balls)
             yarn_ball.render(game.batch);
+        for (Entity shadow: shadows)
+            shadow.render(game.batch);
         for (Entity cat1 : cat1s)
             cat1.render(game.batch);
         for (Entity thwomper: thwompers)

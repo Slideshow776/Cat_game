@@ -13,7 +13,7 @@ public class Shadow extends Entity {
     private TextureRegion region;
 
     public Shadow(Vector2 position) {
-        render_position = new Vector2(position.x, position.y - .1f);
+        render_position = new Vector2(position.x - .095f, position.y);
         animation_start_time = TimeUtils.nanoTime();
         action = Enums.Action.IDLE;
         region = Assets.instance.shadowAssets.smallest;
@@ -27,7 +27,6 @@ public class Shadow extends Entity {
             region = Assets.instance.shadowAssets.smallest;
         }
         else if (action == Enums.Action.MOVING) {
-            System.out.println("MOVING");
             region = Assets.instance.shadowAssets.shadow_growing_animation.getKeyFrame(animation_time_seconds);
         }
         else if (action == Enums.Action.POISED) {
@@ -35,11 +34,10 @@ public class Shadow extends Entity {
             region = Assets.instance.shadowAssets.largest;
         }
         else if (action == Enums.Action.ATTACKING) {
-            System.out.println("ATTACKING");
             region = Assets.instance.shadowAssets.shadow_shrinking_animation.getKeyFrame(animation_time_seconds);            
         }
 
-        Utils.drawTextureRegion(batch, region, render_position);
+        Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, 1.5f);
     }
 
     public void update(float delta) {}

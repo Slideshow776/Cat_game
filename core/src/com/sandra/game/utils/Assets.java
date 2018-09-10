@@ -87,8 +87,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public ShadowAssets(TextureAtlas atlas) {
             Array<TextureRegion> shadow_frames = new Array<TextureRegion>();
-            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE1));
-            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE2));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE3));
+            shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE3));
             shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE3));
             shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE4));
             shadow_frames.add(atlas.findRegion(Constants.SHADOW_SPRITE5));
