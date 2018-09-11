@@ -143,9 +143,9 @@ public class Level_1_1 implements Screen {
                 cat1s.removeValue(cat1, false);
             }
             if (cat1.get_dead()) {
-                purr1.play();
-                cat1.dispose();
-                cat1s.removeValue(cat1, false);
+                // purr1.play();
+                // cat1.dispose();
+                // cat1s.removeValue(cat1, false);
             }
             cat1.update(delta);
         }

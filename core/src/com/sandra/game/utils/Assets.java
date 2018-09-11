@@ -25,6 +25,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ButtonsAssets buttonsAssets;
     public ThwomperAssets thwomperAssets;
     public ShadowAssets shadowAssets;
+    public BloodAssets bloodAssets;
 
     private AssetManager assetManager;
 
@@ -43,6 +44,7 @@ public class Assets implements Disposable, AssetErrorListener {
         buttonsAssets = new ButtonsAssets(atlas);
         thwomperAssets = new ThwomperAssets(atlas);
         shadowAssets = new ShadowAssets(atlas);
+        bloodAssets = new BloodAssets(atlas);
     }
 
 	@Override
@@ -76,6 +78,16 @@ public class Assets implements Disposable, AssetErrorListener {
         public ButtonsAssets(TextureAtlas atlas) {
             button = atlas.findRegion(Constants.BUTTON);
             //button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
+        }
+    }
+
+    public class BloodAssets {
+        public final TextureRegion bloodSplatter1;
+        public final TextureRegion bloodDrag1;
+
+        public BloodAssets(TextureAtlas atlas) {
+            bloodSplatter1 = new TextureRegion(atlas.findRegion(Constants.BLOOD_SPLATTER1));
+            bloodDrag1 = new TextureRegion(atlas.findRegion(Constants.BLOOD_DRAG1));
         }
     }
 
@@ -135,8 +147,11 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation<TextureRegion> cat1_idle_animation;
         public final Animation<TextureRegion> cat1_sliding_animation;
         public final Animation<TextureRegion> cat1_swimming_animation;
+        public final TextureRegion dead1;
 
         public Cat1Assets(TextureAtlas atlas) {
+            dead1 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_1));
+
             Array<TextureRegion> cat1_idle_frames = new Array<TextureRegion>();
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_1));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_2));

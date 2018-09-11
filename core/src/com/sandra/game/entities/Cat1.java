@@ -1,7 +1,5 @@
 package com.sandra.game.entities;
 
-import java.util.UUID;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -54,7 +52,10 @@ public class Cat1 extends Entity {
             dust.render(batch);
 
         // Actions
-        if(action == Enums.Action.IDLE) {
+        if (get_dead()) {
+            region = Assets.instance.cat1Assets.dead1;
+        }
+        else if(action == Enums.Action.IDLE) {
             region = Assets.instance.cat1Assets.cat1_idle_animation.getKeyFrame(animation_time_seconds);
         }
         else if (action == Enums.Action.SLIDING) {
@@ -111,7 +112,7 @@ public class Cat1 extends Entity {
         update_dust(delta);
     }
 
-    public void dispose() {b2d_world.destroyBody(body);}
+    public void dispose() { b2d_world.destroyBody(body); }
 
     private void update_dust(float delta) {
         dust_timer += delta;
@@ -132,7 +133,6 @@ public class Cat1 extends Entity {
 
         for (Entity dust : dusts) { dust.update(delta); }
     }
-
 
     private void init_body() {
         BodyDef bdef = new BodyDef();

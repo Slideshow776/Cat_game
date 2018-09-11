@@ -6,44 +6,58 @@ filter: Nearest,Nearest
 repeat: none
 beach_ball1
   rotate: false
-  xy: 873, 188
+  xy: 908, 188
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beach_ball2
   rotate: false
-  xy: 907, 188
+  xy: 942, 188
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beach_ball3
   rotate: false
-  xy: 941, 188
+  xy: 976, 188
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beach_ball4
   rotate: false
-  xy: 975, 188
+  xy: 842, 141
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beach_ball5
   rotate: false
-  xy: 842, 141
+  xy: 720, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beach_ball6
   rotate: false
-  xy: 720, 19
+  xy: 754, 19
   size: 32, 32
   orig: 32, 32
+  offset: 0, 0
+  index: -1
+bloodDrag1
+  rotate: false
+  xy: 873, 187
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+bloodSplatter1
+  rotate: false
+  xy: 801, 91
+  size: 32, 30
+  orig: 32, 30
   offset: 0, 0
   index: -1
 cat11
@@ -81,6 +95,13 @@ cat15
   orig: 35, 22
   offset: 0, 0
   index: -1
+cat1Dead1
+  rotate: false
+  xy: 772, 100
+  size: 27, 21
+  orig: 27, 21
+  offset: 0, 0
+  index: -1
 cat1Slide1
   rotate: false
   xy: 978, 161
@@ -97,112 +118,112 @@ cat1Slide2
   index: -1
 cat1Slide3
   rotate: false
-  xy: 804, 96
+  xy: 842, 114
   size: 21, 25
   orig: 21, 25
   offset: 0, 0
   index: -1
 cat1Slide4
   rotate: false
-  xy: 827, 96
+  xy: 835, 87
   size: 21, 25
   orig: 21, 25
   offset: 0, 0
   index: -1
 cat1Slide5
   rotate: false
-  xy: 850, 96
+  xy: 824, 60
   size: 21, 25
   orig: 21, 25
   offset: 0, 0
   index: -1
 cat1Slide6
   rotate: false
-  xy: 876, 127
+  xy: 865, 114
   size: 21, 25
   orig: 21, 25
   offset: 0, 0
   index: -1
 cat1Slide7
   rotate: false
-  xy: 899, 127
+  xy: 858, 87
   size: 21, 25
   orig: 21, 25
   offset: 0, 0
   index: -1
 cat1Swim1
   rotate: false
-  xy: 842, 123
+  xy: 219, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim2
   rotate: false
-  xy: 187, 8
+  xy: 242, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim3
   rotate: false
-  xy: 210, 8
+  xy: 265, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim4
   rotate: false
-  xy: 233, 8
+  xy: 288, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim5
   rotate: false
-  xy: 256, 8
+  xy: 311, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim6
   rotate: false
-  xy: 279, 8
+  xy: 334, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim7
   rotate: false
-  xy: 302, 8
+  xy: 357, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim8
   rotate: false
-  xy: 325, 8
+  xy: 380, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 cat1Swim9
   rotate: false
-  xy: 348, 8
+  xy: 403, 8
   size: 21, 16
   orig: 21, 16
   offset: 0, 0
   index: -1
 coin1
   rotate: false
-  xy: 754, 19
+  xy: 790, 57
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 coin2
   rotate: false
-  xy: 876, 154
+  xy: 876, 153
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -251,7 +272,7 @@ dust4
   index: -1
 hole
   rotate: false
-  xy: 772, 101
+  xy: 187, 4
   size: 30, 20
   orig: 30, 20
   offset: 0, 0
@@ -307,77 +328,77 @@ shadow1
   index: -1
 shadow10
   rotate: false
-  xy: 429, 12
+  xy: 455, 12
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow11
   rotate: false
-  xy: 922, 133
+  xy: 484, 21
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow12
   rotate: false
-  xy: 951, 140
+  xy: 484, 14
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow2
   rotate: false
-  xy: 371, 19
+  xy: 426, 19
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow3
   rotate: false
-  xy: 371, 12
+  xy: 426, 12
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow4
   rotate: false
-  xy: 922, 147
+  xy: 847, 80
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow5
   rotate: false
-  xy: 400, 19
+  xy: 876, 146
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow6
   rotate: false
-  xy: 400, 12
+  xy: 847, 73
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow7
   rotate: false
-  xy: 922, 140
+  xy: 847, 66
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow8
   rotate: false
-  xy: 951, 147
+  xy: 847, 59
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow9
   rotate: false
-  xy: 429, 19
+  xy: 455, 19
   size: 27, 5
   orig: 27, 5
   offset: 0, 0

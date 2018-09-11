@@ -63,6 +63,7 @@ public class Constants {
     public static final String CAT1_SWIMMING_SPRITE_7 = "cat1Swim7";
     public static final String CAT1_SWIMMING_SPRITE_8 = "cat1Swim8";
     public static final String CAT1_SWIMMING_SPRITE_9 = "cat1Swim9";
+    public static final String CAT1_DEAD_1 = "cat1Dead1";
     
     public static final float CAT1_SCALE = 1.3f;
     public static final float CAT1_LOOP_DURATION = .15f;
@@ -151,4 +152,7 @@ public class Constants {
     public static final float SHADOW_PIXEL_HEIGHT = 5 / PPM;
     public static final float SHADOW_LOOP_DURATION = .19f;
 
+    // Blood
+    public static String BLOOD_SPLATTER1 = "bloodSplatter1";
+    public static String BLOOD_DRAG1 = "bloodDrag1";
 }

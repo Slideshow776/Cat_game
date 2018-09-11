@@ -37,7 +37,7 @@ public class Controls {
 
     public void update(float delta) {
         for (Entity entity : entities) {
-            if(entity.get_action() == Enums.Action.SWIMMING) {
+            if(entity.get_action() == Enums.Action.SWIMMING || entity.get_dead()) {
                 max_velocity = Constants.ENTETIES_MAX_VELOCITY / 16;
                 max_acceleration = Constants.ENTETIES_ACCELERATION / 16;
             } 
