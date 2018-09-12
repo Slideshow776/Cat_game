@@ -30,7 +30,7 @@ public abstract class Entity {
     public Action get_action() {return action;}
     public int get_zoneCount() {return zone_count;}
     public boolean get_delete() {return delete;}
-    public boolean get_dead() {return dead;}
+    public boolean is_dead() {return dead;}
 
     public void set_action(Action action) {this.action = action;}
     public void set_dead(boolean dead) {this.dead = dead;}

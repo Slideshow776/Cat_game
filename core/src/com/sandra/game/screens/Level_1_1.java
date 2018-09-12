@@ -13,8 +13,10 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.Cat_game;
+import com.sandra.game.entities.Blood;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
@@ -64,6 +66,10 @@ public class Level_1_1 implements Screen {
     private int[] foregroundLayers = { 2 };
 
     private MapUtils mapUtils;
+
+    private Array<Blood> blood_list;
+
+    private float blood_timer;
 
     public Level_1_1(Cat_game game) {
         this.game = game;
@@ -121,6 +127,9 @@ public class Level_1_1 implements Screen {
 
         shadows = new DelayedRemovalArray<Entity>();
         for (Entity thwomper: thwompers) { shadows.add(new Shadow(thwomper.get_render_position())); }
+        
+        blood_list = new Array<Blood>();
+        blood_timer = 0;
 
         box2d.set_world_impassables(map);
         box2d.popuate_zones_from_map(map);
@@ -142,7 +151,7 @@ public class Level_1_1 implements Screen {
                 cat1.dispose();
                 cat1s.removeValue(cat1, false);
             }
-            if (cat1.get_dead()) {
+            if (cat1.is_dead()) {
                 // purr1.play();
                 // cat1.dispose();
                 // cat1s.removeValue(cat1, false);
@@ -174,6 +183,15 @@ public class Level_1_1 implements Screen {
             }
         }
 
+        for (Entity cat1 : cat1s) {
+            if (cat1.is_dead()) {
+                blood_timer += delta;
+                if(blood_timer >= Constants.BLOOD_GENERATION_RATIO) {
+                    blood_list.add(new Blood(new Vector2(cat1.get_render_position()), true));
+                    blood_timer = 0f;
+                }
+            }
+        }
     }
 
     private void update(float delta) {
@@ -206,7 +224,9 @@ public class Level_1_1 implements Screen {
             yarn_ball.render(game.batch);
         for (Entity shadow: shadows)
             shadow.render(game.batch);
-        for (Entity cat1 : cat1s)
+        for (Blood blood: blood_list) 
+            blood.render(game.batch);
+        for (Entity cat1 : cat1s) 
             cat1.render(game.batch);
         for (Entity thwomper: thwompers)
             thwomper.render(game.batch);

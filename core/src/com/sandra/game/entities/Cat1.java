@@ -25,8 +25,8 @@ public class Cat1 extends Entity {
 
 	private Action action;
     private Direction direction;
-    private DelayedRemovalArray<Entity> dusts;
 
+    private DelayedRemovalArray<Entity> dusts;
     private float dust_timer;
 
     public Cat1(Vector2 position, World b2d_world, int id) {
@@ -48,30 +48,25 @@ public class Cat1 extends Entity {
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
 
-        for (Entity dust : dusts)
-            dust.render(batch);
+        for (Entity dust : dusts) dust.render(batch);        
 
         // Actions
-        if (get_dead()) {
+        if (is_dead()) {
             region = Assets.instance.cat1Assets.dead1;
-        }
-        else if(action == Enums.Action.IDLE) {
+        } else if(action == Enums.Action.IDLE) {
             region = Assets.instance.cat1Assets.cat1_idle_animation.getKeyFrame(animation_time_seconds);
-        }
-        else if (action == Enums.Action.SLIDING) {
+        } else if (action == Enums.Action.SLIDING) {
             region = Assets.instance.cat1Assets.cat1_sliding_animation.getKeyFrame(animation_time_seconds);
-        }
-        else if (action == Enums.Action.SWIMMING) {
+        } else if (action == Enums.Action.SWIMMING) {
             region = Assets.instance.cat1Assets.cat1_swimming_animation.getKeyFrame(animation_time_seconds);
         }
 
         // Directions
         if (direction == Enums.Direction.LEFT) {
             Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, Constants.CAT1_SCALE);
-        }
-        else if (direction == Enums.Direction.RIGHT) {
+        } else if (direction == Enums.Direction.RIGHT) {
             Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, true, Constants.CAT1_SCALE);
-        }        
+        }
     }
 
     public void update(float delta) {

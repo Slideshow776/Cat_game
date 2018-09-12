@@ -49,20 +49,20 @@
   </object>
  </objectgroup>
  <objectgroup name="cats">
-  <object id="3" x="114" y="146"/>
-  <object id="237" x="213.333" y="194"/>
-  <object id="249" x="130.667" y="281.333"/>
-  <object id="250" x="153.333" y="334.667"/>
-  <object id="251" x="202" y="350"/>
-  <object id="252" x="240.666" y="307.334"/>
-  <object id="253" x="221.333" y="279.333"/>
-  <object id="254" x="192.667" y="287.333"/>
-  <object id="255" x="168.667" y="428.667"/>
-  <object id="256" x="118" y="464.667"/>
-  <object id="257" x="86.6666" y="368"/>
-  <object id="258" x="68.6667" y="292.667"/>
-  <object id="259" x="92" y="222"/>
-  <object id="260" x="136" y="195.333"/>
+  <object id="3" x="96" y="124.667"/>
+  <object id="237" x="227.333" y="195.333"/>
+  <object id="249" x="186.667" y="287.333"/>
+  <object id="250" x="145.333" y="329.334"/>
+  <object id="251" x="210" y="334.666"/>
+  <object id="252" x="277.333" y="306"/>
+  <object id="253" x="295.333" y="259.333"/>
+  <object id="254" x="230.667" y="257.333"/>
+  <object id="255" x="164.667" y="427.334"/>
+  <object id="256" x="93.3333" y="446"/>
+  <object id="257" x="228.667" y="421.333"/>
+  <object id="258" x="47.3334" y="288.667"/>
+  <object id="259" x="82.6667" y="202.667"/>
+  <object id="260" x="101.333" y="161.333"/>
  </objectgroup>
  <objectgroup name="thwompers" visible="0">
   <object id="248" x="347.333" y="318.667"/>

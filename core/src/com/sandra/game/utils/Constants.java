@@ -155,4 +155,5 @@ public class Constants {
     // Blood
     public static String BLOOD_SPLATTER1 = "bloodSplatter1";
     public static String BLOOD_DRAG1 = "bloodDrag1";
+    public static float BLOOD_GENERATION_RATIO = .26f;
 }
