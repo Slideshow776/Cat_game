@@ -43,6 +43,7 @@ public class Cat1 extends Entity {
 
         dusts = new DelayedRemovalArray<Entity>();
         dust_timer = 0;
+        blood_timer = 0;
     }
 
     public void render(SpriteBatch batch) {

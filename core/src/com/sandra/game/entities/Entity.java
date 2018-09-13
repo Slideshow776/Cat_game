@@ -17,6 +17,7 @@ public abstract class Entity {
     protected int zone_count;
     protected boolean delete;
     protected boolean dead;
+    protected float blood_timer;
 
     public void dispose() {}
     public void render(SpriteBatch batch) {}
@@ -34,4 +35,8 @@ public abstract class Entity {
 
     public void set_action(Action action) {this.action = action;}
     public void set_dead(boolean dead) {this.dead = dead;}
+
+    public void increment_blood_timer(float delta) { blood_timer += delta; }
+    public float get_blood_timer() { return blood_timer; }
+    public void set_blood_timer(float timer) { blood_timer = timer; }
 }

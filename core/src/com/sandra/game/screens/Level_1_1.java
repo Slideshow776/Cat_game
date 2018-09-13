@@ -185,10 +185,11 @@ public class Level_1_1 implements Screen {
 
         for (Entity cat1 : cat1s) {
             if (cat1.is_dead()) {
+                cat1.increment_blood_timer(delta);
                 blood_timer += delta;
-                if(blood_timer >= Constants.BLOOD_GENERATION_RATIO) {
+                if(cat1.get_blood_timer() >= Constants.BLOOD_GENERATION_RATIO) {
                     blood_list.add(new Blood(new Vector2(cat1.get_render_position()), true));
-                    blood_timer = 0f;
+                    cat1.set_blood_timer(0);
                 }
             }
         }
@@ -283,9 +284,10 @@ public class Level_1_1 implements Screen {
             coin.dispose();
         for (Entity yarn_ball : yarn_balls)
             yarn_ball.dispose();
-        for (Entity thwomper : thwompers) {
+        for (Entity thwomper : thwompers)
             thwomper.dispose();
-        }
+        for (Blood blood : blood_list)
+            blood.dispose();
         generic_music.dispose();
         purr1.dispose();
         b2d_world.dispose();
