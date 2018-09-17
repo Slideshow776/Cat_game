@@ -11,18 +11,18 @@ public class MenuInputListener extends InputListener {
 	private boolean touched;
 
 	public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-		//System.out.println("touchDown");
+		// System.out.println("touchDown");
 		touched = true;
 		return true;
 	}
 	
 	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-		//System.out.println("enter");
+		// System.out.println("enter");
 		enter = true;
 	}
 	
 	public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-		//System.out.println("exit");
+		// System.out.println("exit");
 		enter = false;
 	}
 

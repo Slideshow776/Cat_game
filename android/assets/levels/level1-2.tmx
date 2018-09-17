@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="27">
+ <tileset firstgid="1" source="beach.tsx"/>
+ <layer name="Tile Layer 1" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzVWLluFEEQ3ZnxiTkWMkRmcxkDO/AJNomFtBKkZGskZCMH8AMOCIn4DgKLX8DmJjF/gG3MKVk4IB1qtFveN2+rj1mTEDzN1dNTr+pVVfesNhqN1f8IBZyvJ9V75XWJtWTwvfWkeq7XeG69F2NPUfMdHye21UKbxlrjXfd943w8fM9832nT+U7axa7gi2BP8FXwLR0czza2h4wRzlM3VpY9d8XWU5kbp+U7ZwJ2rg2hOfVDTFxD8VlJura2BKOCsZ7tzd698vyGjLkZ+FbR85HGRv1l+W1YjTKPNszfSfr2XhBcpFg04Tjr8YnWDQXGP4ZLjG6s+CtepF0eLfB/E2KDPBYj/MTf369hN0JjXBj3meteo28vcmhCbJDHcsA3GiOf7WhPuxGupYVhN6PUlNqrPKYEx4mXi4f6fz2xbQjpxWUXzhPDAzU1KTgmmBNcpXy38iOk2ZC+fbnNPAo453c6UKdKzAquGJqKzQ/Whyu/22BrbA0o4F3mMZ9U45CT/6165cqPGA2tki1YO48yn/LQOCgP5WXlx4N/yMMVt7YxxtIb6kptbQEP1FeT4nMQ0LlVF2P8zWMwD1w5X2JDsNmw+wb2DtaXlevW2sKqST4+rrhhXKwavSPYBR6YG3lWrcXMUXO9CNjmiwv3y/J63zPehUzeG+npSvuFHlVn44IJ4lAn1y07cP/Dtsb0CcaMzHO+x0P7hR7V3kuCy1l/bZL3jnMen4XWunX6peUT/t6CzHMrsXWTg85w3ajPbxtzWvtL3VP49hV16oBVw5bk+j7wsPLaVQMeGj62/MtrvBCHECfNc1cfbDn87sJTQyd1c8W3dq2LDuU5ctBeiDVX8+O5w07Ojdg9dSiusTw0v1FT2gutnj5FtsT8Q2Bbj7KPtd7dStz7D4TGjOuVzjusJurw8NW6l43BvaxqCK+xJmO98uXmL9kTfBZsw38Yvub/Mt8FPwQ/0+77K2kcz+3GYF3CeoXrRuWE9criUX7/Tzq4nsGY8prahXLcY/H/soOTxiZN+usSV53VXNF7rnq1Jd/5lFb9gL7RmObgm2Zm5yDuJ5iTFY9p4sH5kWfVvuiqVyV+C4eDdHANzXzQN1oDLZu51uj9OwaXeeCh+Y77Kl67u3ySwt6S9y+szzyr8swp5uxLjNUhR9JzB3hovlv7j5zmn6GaNQ09FW3CfxbsX1xrK3T8CcFJ8iXqZZF03XHkR05zsY8WPHHFeTAn1Hbsu8xHx18TXM+quYQ26Jobe++TpNtHWBM6l5UvSxSPjvG++hK1hdxa2aD2yqPuFzi+aMMyfR/xLKnmn4VHMu6VZ4+M2kFNMTBX+JnuF9QXGIfy+p6n5h/mq9SbTDAiGBWMCcYFE4JJo37zPKgt3s8g0McYA9/6tJz3nNE/uB/z/1VrXW2NY27IxRVXhsbAN+ZsoKf7/hPgs5D9lfWOjN8QbCZdHb4WvBG8FbwTvBd8SOLHfTS0/BdUlomr
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztmEkOgjAUhpuUrXoI3arHdATHOzjP3kE3DrfQjegR/Bc2EpTQEpBX0y/5N6ah739DLTBmMBgM/0nPYqxvpR2FPJwzZvHP3zfwsCXuo4X42q8Y8/BQ+OJDBxbwsCSe6zC8tdCZf6iFLEGzrxu6zb5M3m30oEO8D2XyPoOHOXEfBjp00CtdiX7ZYc2ecF+tENtaIr4L1lwJ+/Bi/i/oY2pk0JkazsJ6DOdh2nMwgocx1EAMTciGnAjxJDEHUXKT4W9loRyB2VTJjfBc9KgElWPwkWSv+Z8tPHvjd3nwej8H9OQROkFn35yJZyfhR7WPw9bfELsL3aFHwHmhumfaZ0YYFfisSpyNKnUU9+1ffrccYJ+hwl4ydRT37W/fLanVtYH4mhFyTe1ONIGHqSbvLr/mCXH/Lj0=
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt1ddtFGEYBdC1vbsGbAMtOBJsAy04Z3ALjuTQgiM5tOBIDi04kkMLjmRogcMbSEjMSrs7jJgrnYd5GOneh09/IhEnTpw4ceLkJsWp379LfJdSxm72sDf153//5dTqXEc9hzjMkQjsaNOxnQ466aKbHo5yjN4I7Diu4wlOcorTnOEs5zjPhQjsuKjjJS5zhatc4zo3uMmtCOy4reMd7nKP+zzgIY94zJMI7Hiq4zOe84KXvOI1b3jLuwjseK/jBz7yic984Svf+B6BDT9TnE4kdrCTXZRQSlk67GaZZZ+++znAQWqpoz5iO9r0baeDTrropueXHb0R2xQnzv+eEe/BKGOMM8FkiG9EQTKRKKSIJCnSyb//N6XzNDPMMsd8iDvKda6gkiqqqQmwY0HnRZZYZoXVEHc06NxIE8200Bpgx5rO62ywyRbbIe7o07mfAQYZYjjAjgJvWiFFJEmRzuI7l+n9jeg8yhjjTDAZYEe5zhVUUkU1NVncken9Tek8zQyzzDEfYEeDzo000UwLrVncken9Lei8yBLLrLAaYEefzv0MMMgQw1ncken9rem8zgabbLEdYEeuk+v7y1dyfX/5Sq7vL1/J9f3FCT8/AMJAbmI=
+  </data>
+ </layer>
+ <objectgroup name="cats">
+  <object id="16" x="174" y="493.333"/>
+  <object id="17" x="704" y="526"/>
+ </objectgroup>
+ <objectgroup name="coins">
+  <object id="20" x="143.333" y="484.667"/>
+  <object id="21" x="140.667" y="338"/>
+  <object id="22" x="140" y="298.667"/>
+  <object id="23" x="139.333" y="259.333"/>
+  <object id="24" x="589.333" y="500"/>
+  <object id="25" x="558" y="502.667"/>
+  <object id="26" x="524.667" y="499.333"/>
+ </objectgroup>
+ <objectgroup name="thwompers"/>
+ <objectgroup name="yarn_balls"/>
+ <objectgroup name="portals">
+  <object id="18" x="381.333" y="498.667"/>
+  <object id="19" x="142" y="87.3333"/>
+ </objectgroup>
+ <objectgroup name="zone 1" visible="0">
+  <object id="4" x="32.6667" y="304.667">
+   <polygon points="0,0 238,0 239.333,153.333 253.333,172.667 253.333,228.667 208.667,250.667 81.3333,249.333 21.3333,210"/>
+  </object>
+  <object id="5" x="32" y="296.667">
+   <polygon points="0,0 1.33333,-126 58,-246 178.667,-241.333 222,-201.333 230.667,-66 240.667,2"/>
+  </object>
+  <object id="6" x="560.667" y="414.667">
+   <polygon points="0,0 -0.666667,160 -160,162 -210.667,126 -212,51.3333 -142.667,-4"/>
+  </object>
+  <object id="7" x="566" y="414">
+   <polygon points="0,0 133.333,0 184.667,20 216.667,52 216.667,114 172,162.667 -1.33333,161.333"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="impassable">
+  <object id="8" x="209.333" y="286.667" width="28" height="16"/>
+  <object id="9" x="105.333" y="476" width="22" height="14"/>
+  <object id="10" x="487.333" y="541.333" width="28" height="14"/>
+  <object id="11" x="692" y="479.333" width="21.3333" height="12"/>
+ </objectgroup>
+</map>

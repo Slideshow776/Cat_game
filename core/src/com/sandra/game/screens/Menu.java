@@ -10,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.MenuInputListener;
@@ -26,12 +29,14 @@ public class Menu implements Screen {
     private Table table;
 
     private Button level_1_1_btn;
-	private Sprite level_1_1_btn_sprite;
+    private Sprite level_1_1_btn_sprite;
     private MenuInputListener level_1_1_btn_listener;
 
-    public Menu(Cat_game game) {
-        this.game = game;
-    }
+    private Button level_1_2_btn;
+    private Sprite level_1_2_btn_sprite;
+    private MenuInputListener level_1_2_btn_listener;
+
+    public Menu(Cat_game game) { this.game = game; }
 
     @Override
     public void show() {
@@ -46,14 +51,27 @@ public class Menu implements Screen {
         stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
 
-        button_init();
+        // Buttons
+        ButtonStyle buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.buttonsAssets.button_1_1);
+        Button level_1_1_btn = new Button(buttonStyle);
+        level_1_1_btn_listener = new MenuInputListener();
+        level_1_1_btn.addListener(level_1_1_btn_listener);
+        
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.buttonsAssets.button_1_2);
+        Button level_1_2_btn = new Button(buttonStyle);
+        level_1_2_btn_listener = new MenuInputListener();
+        level_1_2_btn.addListener(level_1_1_btn_listener);
 
+        // Table
         table = new Table();
+        stage.addActor(table);
         table.setFillParent(true);
         table.debug();
-        table.add(level_1_1_btn);
-
-        stage.addActor(table);
+        table.add(level_1_1_btn).colspan(2);
+        table.row();
+        table.add(level_1_1_btn).width(50).height(50);
+        table.add(level_1_2_btn).width(50).height(50);
     }
 
     @Override
@@ -64,13 +82,7 @@ public class Menu implements Screen {
         Gdx.gl.glClearColor(1, 0, 1, 1); // magenta
         
         game.batch.begin();
-        game.batch.draw(
-            level_1_1_btn_sprite,
-            level_1_1_btn.getX(),
-            level_1_1_btn.getY(),
-            level_1_1_btn.getWidth(),
-            level_1_1_btn.getHeight()
-        );
+        stage.draw();
         game.batch.end();
     }
 
@@ -87,18 +99,7 @@ public class Menu implements Screen {
     public void hide() {}
 
     @Override
-    public void dispose() {
-        stage.dispose();
-    }
-
-    private void button_init() {
-        level_1_1_btn = new Button();
-        level_1_1_btn_sprite = new Sprite(Assets.instance.buttonsAssets.button);
-        level_1_1_btn.setSize(100, 100);
-        level_1_1_btn.setPosition(550, 450);
-        level_1_1_btn_listener = new MenuInputListener();
-        level_1_1_btn.addListener(level_1_1_btn_listener);
-    }
+    public void dispose() { stage.dispose(); }
 
     private void update(float delta) {
         camera.update();
@@ -106,11 +107,14 @@ public class Menu implements Screen {
         
         stage.act(delta);
         //stage.getViewport().update(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-
+        
 		if(level_1_1_btn_listener.getTouched()) {
             dispose();
-            // ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
-		}    
+		}
+		if(level_1_2_btn_listener.getTouched()) {
+            dispose();
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+		}
     }
 }

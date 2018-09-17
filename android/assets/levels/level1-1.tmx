@@ -16,17 +16,17 @@
    eJzt01dOAlEUgOGxXCyArsFeAF2Dla5rsHddg2Kva7B3XYO96xrsfQ/+b84TNwSZQDx/8iUkk5xzZhIM4383rAxjBBGMYgzjyvoZ8bbIviUsYwWrWItyg51nDjiRh3wV+4xEdMC+QxzhGCc4jXKDi2dueFCFahX7jER0z74HPOIJz3gx3eDltw9+BBBECGE0oVnpZ1hRms0w0pGBTCjYbL/Pu7inGz3oRR/6MYBBDCn9DCsqYF8hilCMEpSabpjgzklMYRozmMUc5rGg9DOsqIZ9tahDPRrQaLphnTs3sIktbGMHu9jDvtLPsKIW9rWiDe3oQKfphjPuPMcFLnGFa9zgFndKPyMZeuXON7zjA5/4wrfF/+N4y+K7ZiMHubDDAWeSfW9dZdxbjgpUwgU3PCn2Hl7u9cGPAIIIIZxi7yFJkiRJkiRJkiRJkiRJf9EPyvpSfg==
   </data>
  </layer>
- <objectgroup name="yarn_balls" visible="0"/>
- <objectgroup name="coins" visible="0">
+ <objectgroup name="yarn_balls"/>
+ <objectgroup name="coins">
   <object id="4" x="144" y="465"/>
   <object id="5" x="174" y="495"/>
   <object id="6" x="225" y="523"/>
   <object id="7" x="675" y="376"/>
  </objectgroup>
- <objectgroup name="portals" visible="0">
+ <objectgroup name="portals">
   <object id="8" x="580" y="480"/>
  </objectgroup>
- <objectgroup name="impassable" visible="0">
+ <objectgroup name="impassable">
   <object id="198" x="251.5" y="130.5" width="21.5" height="8.5"/>
   <object id="199" x="417.5" y="200.5" width="29" height="7"/>
   <object id="200" x="525" y="133" width="20.5" height="4"/>
@@ -50,21 +50,6 @@
  </objectgroup>
  <objectgroup name="cats">
   <object id="3" x="96" y="124.667"/>
-  <object id="237" x="227.333" y="195.333"/>
-  <object id="249" x="186.667" y="287.333"/>
-  <object id="250" x="145.333" y="329.334"/>
-  <object id="251" x="210" y="334.666"/>
-  <object id="252" x="277.333" y="306"/>
-  <object id="253" x="295.333" y="259.333"/>
-  <object id="254" x="230.667" y="257.333"/>
-  <object id="255" x="164.667" y="427.334"/>
-  <object id="256" x="93.3333" y="446"/>
-  <object id="257" x="228.667" y="421.333"/>
-  <object id="258" x="47.3334" y="288.667"/>
-  <object id="259" x="82.6667" y="202.667"/>
-  <object id="260" x="101.333" y="161.333"/>
  </objectgroup>
- <objectgroup name="thwompers" visible="0">
-  <object id="248" x="347.333" y="318.667"/>
- </objectgroup>
+ <objectgroup name="thwompers"/>
 </map>

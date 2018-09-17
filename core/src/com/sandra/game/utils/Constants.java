@@ -117,7 +117,8 @@ public class Constants {
     public static final float DUST_DURATION = DUST_LOOP_DURATION * DUST_NUMBER_OF_FRAMES;
 
     // Buttons
-    public static String BUTTON = "level1_1_btn";
+    public static String BUTTON_1_1 = "level1_1_btn";
+    public static String BUTTON_1_2 = "level1_2_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper
