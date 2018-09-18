@@ -6,18 +6,19 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.MenuInputListener;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
+import com.sandra.game.screens.Level_1_2;
 
 public class Menu implements Screen {
 
@@ -28,12 +29,12 @@ public class Menu implements Screen {
     private Stage stage;
     private Table table;
 
+    private TextureRegion menu_title_tex;
+
     private Button level_1_1_btn;
-    private Sprite level_1_1_btn_sprite;
     private MenuInputListener level_1_1_btn_listener;
 
     private Button level_1_2_btn;
-    private Sprite level_1_2_btn_sprite;
     private MenuInputListener level_1_2_btn_listener;
 
     public Menu(Cat_game game) { this.game = game; }
@@ -51,27 +52,32 @@ public class Menu implements Screen {
         stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
 
+        // Title
+        menu_title_tex = Assets.instance.menuAssets.menu_title;
+        Image menu_title_image = new Image(menu_title_tex);
+
         // Buttons
         ButtonStyle buttonStyle = new ButtonStyle();
-        buttonStyle.up = new TextureRegionDrawable(Assets.instance.buttonsAssets.button_1_1);
-        Button level_1_1_btn = new Button(buttonStyle);
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_1);
+        level_1_1_btn = new Button(buttonStyle);
         level_1_1_btn_listener = new MenuInputListener();
         level_1_1_btn.addListener(level_1_1_btn_listener);
         
-        buttonStyle.up = new TextureRegionDrawable(Assets.instance.buttonsAssets.button_1_2);
-        Button level_1_2_btn = new Button(buttonStyle);
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_2);
+        level_1_2_btn = new Button(buttonStyle);
         level_1_2_btn_listener = new MenuInputListener();
-        level_1_2_btn.addListener(level_1_1_btn_listener);
+        level_1_2_btn.addListener(level_1_2_btn_listener);
 
         // Table
         table = new Table();
         stage.addActor(table);
         table.setFillParent(true);
-        table.debug();
-        table.add(level_1_1_btn).colspan(2);
+        // table.debug();
+        table.add(menu_title_image).colspan(2).width(425*1.5f).height(107*1.5f);
         table.row();
-        table.add(level_1_1_btn).width(50).height(50);
-        table.add(level_1_2_btn).width(50).height(50);
+        table.add(level_1_1_btn).width(75).height(50);
+        table.add(level_1_2_btn).width(75).height(50);
     }
 
     @Override
@@ -79,7 +85,7 @@ public class Menu implements Screen {
         if (!pause) {update(delta);}
 
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glClearColor(1, 0, 1, 1); // magenta
+        Gdx.gl.glClearColor(0, 0, 0, 1); // black
         
         game.batch.begin();
         stage.draw();
@@ -104,17 +110,18 @@ public class Menu implements Screen {
     private void update(float delta) {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
-        
         stage.act(delta);
         //stage.getViewport().update(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         
 		if(level_1_1_btn_listener.getTouched()) {
             dispose();
+            System.out.println("level_1_1_btn_listener");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
 		}
 		if(level_1_2_btn_listener.getTouched()) {
             dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+            System.out.println("level_1_2_btn_listener");
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
 		}
     }
 }

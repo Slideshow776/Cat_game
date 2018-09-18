@@ -116,7 +116,8 @@ public class Constants {
     public static final float DUST_LOOP_DURATION = .12f;
     public static final float DUST_DURATION = DUST_LOOP_DURATION * DUST_NUMBER_OF_FRAMES;
 
-    // Buttons
+    // Menu
+    public static String MENU_TITLE = "game_title";
     public static String BUTTON_1_1 = "level1_1_btn";
     public static String BUTTON_1_2 = "level1_2_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";

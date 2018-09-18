@@ -22,7 +22,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public CoinAssets coinAssets;
     public YarnBallAssets yarnBallAssets;
     public DustAssets dustAssets;
-    public ButtonsAssets buttonsAssets;
+    public MenuAssets menuAssets;
     public ThwomperAssets thwomperAssets;
     public ShadowAssets shadowAssets;
     public BloodAssets bloodAssets;
@@ -41,7 +41,7 @@ public class Assets implements Disposable, AssetErrorListener {
         coinAssets = new CoinAssets(atlas);
         dustAssets = new DustAssets(atlas);
         yarnBallAssets = new YarnBallAssets(atlas);
-        buttonsAssets = new ButtonsAssets(atlas);
+        menuAssets = new MenuAssets(atlas);
         thwomperAssets = new ThwomperAssets(atlas);
         shadowAssets = new ShadowAssets(atlas);
         bloodAssets = new BloodAssets(atlas);
@@ -71,13 +71,15 @@ public class Assets implements Disposable, AssetErrorListener {
         }
     }
 
-    public class ButtonsAssets {
+    public class MenuAssets {
         // public final AtlasRegion button;
+        public final TextureRegion menu_title;
         public final TextureRegion button_1_1;
         public final TextureRegion button_1_2;
         // public final AtlasRegion button_selected;
 
-        public ButtonsAssets(TextureAtlas atlas) {
+        public MenuAssets(TextureAtlas atlas) {
+            menu_title = atlas.findRegion(Constants.MENU_TITLE);
             button_1_1 = atlas.findRegion(Constants.BUTTON_1_1);
             button_1_2 = atlas.findRegion(Constants.BUTTON_1_2);
             // button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
