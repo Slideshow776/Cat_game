@@ -102,6 +102,13 @@ cat1Dead1
   orig: 27, 21
   offset: 0, 0
   index: -1
+cat1Head
+  rotate: false
+  xy: 480, 283
+  size: 17, 13
+  orig: 17, 13
+  offset: 0, 0
+  index: -1
 cat1Slide1
   rotate: false
   xy: 439, 222
@@ -342,77 +349,77 @@ shadow1
   index: -1
 shadow10
   rotate: false
-  xy: 184, 17
+  xy: 184, 10
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow11
   rotate: false
-  xy: 601, 349
+  xy: 965, 458
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow12
   rotate: false
-  xy: 184, 10
+  xy: 965, 451
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow2
   rotate: false
-  xy: 480, 291
+  xy: 561, 338
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow3
   rotate: false
-  xy: 561, 338
+  xy: 155, 17
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow4
   rotate: false
-  xy: 155, 17
+  xy: 601, 356
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow5
   rotate: false
-  xy: 601, 356
+  xy: 907, 284
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow6
   rotate: false
-  xy: 907, 284
+  xy: 561, 331
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow7
   rotate: false
-  xy: 480, 284
+  xy: 155, 10
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow8
   rotate: false
-  xy: 561, 331
+  xy: 184, 17
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow9
   rotate: false
-  xy: 155, 10
+  xy: 601, 349
   size: 27, 5
   orig: 27, 5
   offset: 0, 0

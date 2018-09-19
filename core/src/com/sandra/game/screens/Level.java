@@ -26,6 +26,7 @@ import com.sandra.game.entities.Shadow;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
+import com.sandra.game.utils.HUD;
 import com.sandra.game.utils.MapUtils;
 import com.sandra.game.handlers.MyContactListener;
 import com.sandra.game.utils.box2D;
@@ -70,6 +71,8 @@ public abstract class Level implements Screen {
     private Array<Blood> blood_list;
 
     private float blood_timer;
+
+    private HUD hud;
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
@@ -136,6 +139,9 @@ public abstract class Level implements Screen {
         entities = new DelayedRemovalArray<Entity>();
         entities.addAll(cat1s);
         controls = new Controls(entities);
+
+        // HUD
+        hud = new HUD(cat1s.size, coins.size);
     }
 
     private void update_entities(float delta) {
@@ -228,6 +234,7 @@ public abstract class Level implements Screen {
             cat1.render(game.batch);
         for (Entity thwomper: thwompers)
             thwomper.render(game.batch);
+        hud.render(game.batch);
         game.batch.end();
 
         Gdx.gl.glEnable(GL20.GL_BLEND);
@@ -290,5 +297,6 @@ public abstract class Level implements Screen {
         b2d_world.dispose();
         b2d_Renderer.dispose();
         mapRenderer.dispose();
+        hud.dispose();
     }
 }
