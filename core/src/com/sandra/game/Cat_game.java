@@ -15,9 +15,9 @@ public class Cat_game extends Game {
 	public void create() {
 		batch = new SpriteBatch();
 		// setScreen(new Splash_intro(this));
-		setScreen(new Menu(this));
+		// setScreen(new Menu(this));
 		// setScreen(new Level_1_1(this));
-		// setScreen(new Level_1_2(this));
+		setScreen(new Level_1_2(this));
 	}
 
 	public void render() {

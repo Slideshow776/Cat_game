@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 
@@ -26,6 +25,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ThwomperAssets thwomperAssets;
     public ShadowAssets shadowAssets;
     public BloodAssets bloodAssets;
+    public HUDAssets hudAssets;
 
     private AssetManager assetManager;
 
@@ -45,6 +45,7 @@ public class Assets implements Disposable, AssetErrorListener {
         thwomperAssets = new ThwomperAssets(atlas);
         shadowAssets = new ShadowAssets(atlas);
         bloodAssets = new BloodAssets(atlas);
+        hudAssets = new HUDAssets(atlas);
     }
 
 	@Override
@@ -55,6 +56,34 @@ public class Assets implements Disposable, AssetErrorListener {
 	@Override
 	public void dispose() {
         assetManager.dispose();
+    }
+
+    public class HUDAssets {
+        public final TextureRegion _x;
+        public final TextureRegion _0;
+        public final TextureRegion _1;
+        public final TextureRegion _2;
+        public final TextureRegion _3;
+        public final TextureRegion _4;
+        public final TextureRegion _5;
+        public final TextureRegion _6;
+        public final TextureRegion _7;
+        public final TextureRegion _8;
+        public final TextureRegion _9;
+
+        public HUDAssets(TextureAtlas atlas) {
+            _x = new TextureRegion(atlas.findRegion(Constants._x));
+            _0 = new TextureRegion(atlas.findRegion(Constants._0));
+            _1 = new TextureRegion(atlas.findRegion(Constants._1));
+            _2 = new TextureRegion(atlas.findRegion(Constants._2));
+            _3 = new TextureRegion(atlas.findRegion(Constants._3));
+            _4 = new TextureRegion(atlas.findRegion(Constants._4));
+            _5 = new TextureRegion(atlas.findRegion(Constants._5));
+            _6 = new TextureRegion(atlas.findRegion(Constants._6));
+            _7 = new TextureRegion(atlas.findRegion(Constants._7));
+            _8 = new TextureRegion(atlas.findRegion(Constants._8));
+            _9 = new TextureRegion(atlas.findRegion(Constants._9));
+        }
     }
 
     public class DustAssets {
@@ -153,9 +182,11 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation<TextureRegion> cat1_sliding_animation;
         public final Animation<TextureRegion> cat1_swimming_animation;
         public final TextureRegion dead1;
+        public final TextureRegion cathead;
 
         public Cat1Assets(TextureAtlas atlas) {
             dead1 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_1));
+            cathead = new TextureRegion(atlas.findRegion(Constants.CAT1_HEAD));
 
             Array<TextureRegion> cat1_idle_frames = new Array<TextureRegion>();
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_1));
@@ -212,6 +243,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class CoinAssets {
         public final Animation<TextureRegion> coin_animation;
+        public final TextureRegion coin;
 
         public CoinAssets(TextureAtlas atlas) {
             Array<TextureRegion> coin_frames = new Array<TextureRegion>();
@@ -221,6 +253,7 @@ public class Assets implements Disposable, AssetErrorListener {
             coin_frames.add(atlas.findRegion(Constants.COIN_SPRITE_4));
             
             coin_animation = new Animation<TextureRegion>(Constants.COIN_LOOP_DURATION, coin_frames, PlayMode.LOOP_PINGPONG);
+            coin = new TextureRegion(atlas.findRegion(Constants.COIN_SPRITE_1));
         }
     }
 

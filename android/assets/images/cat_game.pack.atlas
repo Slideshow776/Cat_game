@@ -4,6 +4,76 @@ size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+0
+  rotate: false
+  xy: 220, 40
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 538, 309
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 561, 327
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 155, 6
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+4
+  rotate: false
+  xy: 601, 345
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+5
+  rotate: false
+  xy: 556, 309
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+6
+  rotate: false
+  xy: 579, 327
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+7
+  rotate: false
+  xy: 173, 6
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+8
+  rotate: false
+  xy: 574, 309
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 597, 327
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 beach_ball1
   rotate: false
   xy: 360, 249
@@ -100,6 +170,13 @@ cat1Dead1
   xy: 994, 489
   size: 27, 21
   orig: 27, 21
+  offset: 0, 0
+  index: -1
+cat1Head
+  rotate: false
+  xy: 480, 283
+  size: 17, 13
+  orig: 17, 13
   offset: 0, 0
   index: -1
 cat1Slide1
@@ -342,77 +419,77 @@ shadow1
   index: -1
 shadow10
   rotate: false
-  xy: 184, 17
+  xy: 965, 437
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow11
   rotate: false
-  xy: 601, 349
+  xy: 965, 430
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow12
   rotate: false
-  xy: 184, 10
+  xy: 965, 423
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow2
   rotate: false
-  xy: 480, 291
+  xy: 515, 302
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow3
   rotate: false
-  xy: 561, 338
+  xy: 191, 17
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow4
   rotate: false
-  xy: 155, 17
+  xy: 907, 284
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow5
   rotate: false
-  xy: 601, 356
+  xy: 544, 302
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow6
   rotate: false
-  xy: 907, 284
+  xy: 191, 10
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow7
   rotate: false
-  xy: 480, 284
+  xy: 965, 458
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow8
   rotate: false
-  xy: 561, 331
+  xy: 965, 451
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow9
   rotate: false
-  xy: 155, 10
+  xy: 965, 444
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
@@ -450,6 +527,13 @@ thwomper_moving1
   xy: 907, 366
   size: 33, 45
   orig: 33, 45
+  offset: 0, 0
+  index: -1
+x
+  rotate: false
+  xy: 277, 219
+  size: 12, 10
+  orig: 12, 10
   offset: 0, 0
   index: -1
 yarn_ball1

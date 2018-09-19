@@ -64,6 +64,7 @@ public class Constants {
     public static final String CAT1_SWIMMING_SPRITE_8 = "cat1Swim8";
     public static final String CAT1_SWIMMING_SPRITE_9 = "cat1Swim9";
     public static final String CAT1_DEAD_1 = "cat1Dead1";
+    public static final String CAT1_HEAD = "cat1Head";
     
     public static final float CAT1_SCALE = 1.3f;
     public static final float CAT1_LOOP_DURATION = .15f;
@@ -158,4 +159,17 @@ public class Constants {
     public static String BLOOD_SPLATTER1 = "bloodSplatter1";
     public static String BLOOD_DRAG1 = "bloodDrag1";
     public static float BLOOD_GENERATION_RATIO = .26f;
+
+    // HUD
+    public static String _x = "x";
+    public static String _0 = "0";
+    public static String _1 = "1";
+    public static String _2 = "2";
+    public static String _3 = "3";
+    public static String _4 = "4";
+    public static String _5 = "5";
+    public static String _6 = "6";
+    public static String _7 = "7";
+    public static String _8 = "8";
+    public static String _9 = "9";
 }
