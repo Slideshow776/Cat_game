@@ -73,7 +73,10 @@ public abstract class Level implements Screen {
     private float blood_timer;
 
     private HUD hud;
+<<<<<<< HEAD
     private int coinScore, cat1Score;
+=======
+>>>>>>> 7683f5365c456426a5b29574ade58f6208506851
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
