@@ -419,121 +419,77 @@ shadow1
   index: -1
 shadow10
   rotate: false
-<<<<<<< HEAD
   xy: 965, 437
-=======
-  xy: 184, 10
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow11
   rotate: false
-<<<<<<< HEAD
   xy: 965, 430
-=======
-  xy: 965, 458
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow12
   rotate: false
-<<<<<<< HEAD
   xy: 965, 423
-=======
-  xy: 965, 451
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow2
   rotate: false
-<<<<<<< HEAD
   xy: 515, 302
-=======
-  xy: 561, 338
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow3
   rotate: false
-<<<<<<< HEAD
   xy: 191, 17
-=======
-  xy: 155, 17
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow4
   rotate: false
-<<<<<<< HEAD
   xy: 907, 284
-=======
-  xy: 601, 356
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow5
   rotate: false
-<<<<<<< HEAD
   xy: 544, 302
-=======
-  xy: 907, 284
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow6
   rotate: false
-<<<<<<< HEAD
   xy: 191, 10
-=======
-  xy: 561, 331
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow7
   rotate: false
-<<<<<<< HEAD
   xy: 965, 458
-=======
-  xy: 155, 10
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow8
   rotate: false
-<<<<<<< HEAD
   xy: 965, 451
-=======
-  xy: 184, 17
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow9
   rotate: false
-<<<<<<< HEAD
   xy: 965, 444
-=======
-  xy: 601, 349
->>>>>>> 7683f5365c456426a5b29574ade58f6208506851
   size: 27, 5
   orig: 27, 5
   offset: 0, 0

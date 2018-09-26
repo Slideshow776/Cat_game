@@ -1,6 +1,5 @@
 package com.sandra.game.utils;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -8,13 +7,13 @@ public class HUD {
     private Sprite coin_image;
     private Sprite cathead_image;
 
-    private Sprite[] numbers; // Holds numbers 0-9
+    private Sprite[] numbers;
     private Sprite cathead_ones, cathead_tens;
     private Sprite coins_ones, coins_tens;
     private int num_coins, num_cats;
     private Sprite x_cat, x_coins;
 
-    public HUD(OrthographicCamera camera) {
+    public HUD() {
         num_cats = num_coins = 0;
 
         coin_image = new Sprite(Assets.instance.coinAssets.coin);
@@ -79,19 +78,25 @@ public class HUD {
     public void update(float delta, int numCats, int numCoins) {
         this.num_cats = numCats;
         this.num_coins = numCoins;
-        if (numCats < 10) {
-            cathead_ones.set(numbers[num_cats]);
-            cathead_ones.setPosition(3.35f, 5.6f);
-        } else {
-            cathead_tens.setPosition(3.35f, 5.6f);
-            cathead_ones.setPosition(3.55f, 5.6f);
-        }
 
-        if (numCoins < 10) {
+        if (num_coins < 10) {
+            coins_ones.set(numbers[numCoins%10]);
             coins_ones.setPosition(4.35f, 5.6f);
         } else {
-            coins_tens.setPosition(4.35f, 5.6f);
+            coins_ones.set(numbers[numCoins%10]);
             coins_ones.setPosition(4.55f, 5.6f);
+            coins_tens.set(numbers[(numCoins %100) / 10]);
+            coins_tens.setPosition(4.35f, 5.6f);
+        }
+
+        if (num_cats < 10) {
+            cathead_ones.set(numbers[num_cats%10]);
+            cathead_ones.setPosition(3.35f, 5.6f);
+        } else {
+            cathead_ones.set(numbers[num_cats%10]);
+            cathead_ones.setPosition(3.55f, 5.6f);
+            cathead_tens.set(numbers[(num_cats %100) / 10]);
+            cathead_tens.setPosition(3.35f, 5.6f);
         }
     }
 
