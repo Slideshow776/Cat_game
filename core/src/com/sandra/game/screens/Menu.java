@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.sandra.game.Cat_game;
-import com.sandra.game.handlers.MenuInputListener;
+import com.sandra.game.handlers.ButtonListener;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.screens.Level_1_2;
@@ -32,10 +32,10 @@ public class Menu implements Screen {
     private TextureRegion menu_title_tex;
 
     private Button level_1_1_btn;
-    private MenuInputListener level_1_1_btn_listener;
+    private ButtonListener level_1_1_btn_listener;
 
     private Button level_1_2_btn;
-    private MenuInputListener level_1_2_btn_listener;
+    private ButtonListener level_1_2_btn_listener;
 
     public Menu(Cat_game game) { this.game = game; }
 
@@ -60,13 +60,13 @@ public class Menu implements Screen {
         ButtonStyle buttonStyle = new ButtonStyle();
         buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_1);
         level_1_1_btn = new Button(buttonStyle);
-        level_1_1_btn_listener = new MenuInputListener();
+        level_1_1_btn_listener = new ButtonListener();
         level_1_1_btn.addListener(level_1_1_btn_listener);
         
         buttonStyle = new ButtonStyle();
         buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_2);
         level_1_2_btn = new Button(buttonStyle);
-        level_1_2_btn_listener = new MenuInputListener();
+        level_1_2_btn_listener = new ButtonListener();
         level_1_2_btn.addListener(level_1_2_btn_listener);
 
         // Table
@@ -117,7 +117,8 @@ public class Menu implements Screen {
             dispose();
             System.out.println("level_1_1_btn_listener");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
-		}
+        }
+        
 		if(level_1_2_btn_listener.getTouched()) {
             dispose();
             System.out.println("level_1_2_btn_listener");

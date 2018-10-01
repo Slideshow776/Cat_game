@@ -142,9 +142,12 @@ public abstract class Level implements Screen {
         controls = new Controls(entities);
 
         // HUD
-        hud = new HUD();
+        hud = new HUD(camera, this);
         coinScore = cat1Score = 0;
     }
+
+    public void set_pause(boolean pause) { this.pause = pause; }
+    public boolean get_pause() { return pause; }
 
     private void update_entities(float delta) {
         for (Entity portal : portals) {
@@ -204,11 +207,13 @@ public abstract class Level implements Screen {
     }
 
     private void update(float delta) {
-        camera.update();
-        b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
-        controls.update(delta);
-        game.batch.setProjectionMatrix(camera.combined);
-        update_entities(delta);
+        if (!pause) {
+            camera.update();
+            b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
+            controls.update(delta);
+            game.batch.setProjectionMatrix(camera.combined);
+            update_entities(delta);
+        }
         hud.update(delta, cat1Score, coinScore);
     }
 
@@ -216,8 +221,8 @@ public abstract class Level implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        if (!pause) update(delta);
+         
+        update(delta);
 
         Gdx.gl.glEnable(GL20.GL_BLEND);
         Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);

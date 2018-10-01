@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 
-public class MenuInputListener extends InputListener {
+public class ButtonListener extends InputListener {
 
 	private boolean enter;
 	private boolean touched;
@@ -14,6 +14,11 @@ public class MenuInputListener extends InputListener {
 		// System.out.println("touchDown");
 		touched = true;
 		return true;
+	}
+
+	public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+		// System.out.println("touchUp");
+		touched = false;
 	}
 	
 	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {

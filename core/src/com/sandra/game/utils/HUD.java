@@ -1,7 +1,17 @@
 package com.sandra.game.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.sandra.game.handlers.ButtonListener;
+import com.sandra.game.screens.Level;
 
 public class HUD {    
     private Sprite coin_image;
@@ -9,11 +19,22 @@ public class HUD {
 
     private Sprite[] numbers;
     private Sprite cathead_ones, cathead_tens;
-    private Sprite coins_ones, coins_tens;
-    private int num_coins, num_cats;
+    private Sprite coins_ones, coins_tens;    
     private Sprite x_cat, x_coins;
+    private int num_coins, num_cats;
 
-    public HUD() {
+    private Button btn_pause;
+    private Button btn_return;
+    private ButtonListener btn_pause_listener;
+    private ButtonListener btn_return_listener;
+    private Stage stage;
+
+    private OrthographicCamera camera;
+    private Level level;
+
+    public HUD(OrthographicCamera camera, Level level) {
+        this.camera = camera;
+        this.level = level;
         num_cats = num_coins = 0;
 
         coin_image = new Sprite(Assets.instance.coinAssets.coin);
@@ -60,6 +81,29 @@ public class HUD {
         coins_tens = new Sprite();
         coins_tens.set(numbers[1]);
         coins_tens.setSize(25 / Constants.PPM, 25 / Constants.PPM);
+
+        stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
+        Gdx.input.setInputProcessor(stage);
+
+        ButtonStyle buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.hudAssets.btn_pause);
+        btn_pause = new Button(buttonStyle);
+        btn_pause_listener = new ButtonListener();
+        btn_pause.addListener(btn_pause_listener);
+        btn_pause.setSize(40 / Constants.PPM, 40 / Constants.PPM);
+        btn_pause.setPosition(7.5f, 5.45f);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.hudAssets.btn_return);
+        btn_return = new Button(buttonStyle);
+        btn_return_listener = new ButtonListener();
+        btn_return.addListener(btn_return_listener);
+        btn_return.setSize(40 / Constants.PPM, 40 / Constants.PPM);
+        btn_return.setPosition(7.1f, 5.45f);
+        
+        stage.addActor(btn_pause);
+        stage.addActor(btn_return);
+        stage.setDebugAll(true);
     }        
 
     public void render(SpriteBatch batch) {
@@ -73,12 +117,41 @@ public class HUD {
 
         if (num_cats >= 10) cathead_tens.draw(batch);
         if (num_coins >= 10) coins_tens.draw(batch);
+
+        btn_pause.draw(batch, 1);
+        btn_return.draw(batch, 1);
+        //stage.draw();
     }
 
     public void update(float delta, int numCats, int numCoins) {
+        update_score(numCats, numCoins);
+        listen_on_buttons(delta);
+    }
+    
+    public void dispose() { stage.dispose(); }
+    
+    private void listen_on_buttons(float delta) {
+        stage.act(delta);
+
+        if (btn_pause_listener.getTouched()) {
+            level.set_pause(btn_pause_listener.getTouched());
+            btn_pause.setColor(Color.BLUE);
+        } else {
+            level.set_pause(false);
+            btn_pause.setColor(Color.RED);
+        }
+
+        if(btn_return_listener.getTouched()) {
+            //dispose();
+            System.out.println("btn_return_listener");
+            //((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+        }
+    }
+
+    private void update_score(int numCats, int numCoins) {
         this.num_cats = numCats;
         this.num_coins = numCoins;
-
+    
         if (num_coins < 10) {
             coins_ones.set(numbers[numCoins%10]);
             coins_ones.setPosition(4.35f, 5.6f);
@@ -88,7 +161,7 @@ public class HUD {
             coins_tens.set(numbers[(numCoins %100) / 10]);
             coins_tens.setPosition(4.35f, 5.6f);
         }
-
+    
         if (num_cats < 10) {
             cathead_ones.set(numbers[num_cats%10]);
             cathead_ones.setPosition(3.35f, 5.6f);
@@ -99,6 +172,4 @@ public class HUD {
             cathead_tens.setPosition(3.35f, 5.6f);
         }
     }
-
-    public void dispose() {}
 }
