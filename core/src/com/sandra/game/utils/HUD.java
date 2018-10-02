@@ -1,5 +1,6 @@
 package com.sandra.game.utils;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,8 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Button.ButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.sandra.game.Cat_game;
 import com.sandra.game.handlers.ButtonListener;
 import com.sandra.game.screens.Level;
+import com.sandra.game.screens.Menu;
 
 public class HUD {    
     private Sprite coin_image;
@@ -31,8 +34,10 @@ public class HUD {
 
     private OrthographicCamera camera;
     private Level level;
+    private Cat_game game;
 
-    public HUD(OrthographicCamera camera, Level level) {
+    public HUD(Cat_game game, OrthographicCamera camera, Level level) {
+        this.game = game;
         this.camera = camera;
         this.level = level;
         num_cats = num_coins = 0;
@@ -135,16 +140,15 @@ public class HUD {
 
         if (btn_pause_listener.getTouched()) {
             level.set_pause(btn_pause_listener.getTouched());
-            btn_pause.setColor(Color.BLUE);
+            btn_pause.setColor(Color.DARK_GRAY);
         } else {
             level.set_pause(false);
-            btn_pause.setColor(Color.RED);
+            btn_pause.setColor(Color.WHITE);
         }
 
         if(btn_return_listener.getTouched()) {
-            //dispose();
-            System.out.println("btn_return_listener");
-            //((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+            // dispose();
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game));
         }
     }
 

@@ -142,7 +142,7 @@ public abstract class Level implements Screen {
         controls = new Controls(entities);
 
         // HUD
-        hud = new HUD(camera, this);
+        hud = new HUD(game, camera, this);
         coinScore = cat1Score = 0;
     }
 
@@ -304,9 +304,9 @@ public abstract class Level implements Screen {
             blood.dispose();
         generic_music.dispose();
         purr1.dispose();
-        b2d_world.dispose();
-        b2d_Renderer.dispose();
-        mapRenderer.dispose();
+        // b2d_world.dispose();
+        // b2d_Renderer.dispose();
+        // mapRenderer.dispose();
         hud.dispose();
     }
 }

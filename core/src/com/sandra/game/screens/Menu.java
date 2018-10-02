@@ -111,17 +111,14 @@ public class Menu implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
         stage.act(delta);
-        //stage.getViewport().update(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         
 		if(level_1_1_btn_listener.getTouched()) {
             dispose();
-            System.out.println("level_1_1_btn_listener");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
         }
         
 		if(level_1_2_btn_listener.getTouched()) {
             dispose();
-            System.out.println("level_1_2_btn_listener");
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
 		}
     }
