@@ -188,6 +188,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation<TextureRegion> cat1_idle_animation;
         public final Animation<TextureRegion> cat1_sliding_animation;
         public final Animation<TextureRegion> cat1_swimming_animation;
+        public final Animation<TextureRegion> cat1_sleeping_animation;
         public final TextureRegion dead1;
         public final TextureRegion cathead;
 
@@ -227,8 +228,14 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_7));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_8));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_9));
-
+            
             cat1_swimming_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_swimming_frames, PlayMode.LOOP_PINGPONG);
+            
+            Array<TextureRegion> cat1_sleeping_frames = new Array<TextureRegion>();
+            cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP1));
+            cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP2));
+
+            cat1_sleeping_animation = new Animation<TextureRegion>(Constants.CAT1_SLEEP_LOOP_DURATION, cat1_sleeping_frames, PlayMode.LOOP);
         }
     }
 
