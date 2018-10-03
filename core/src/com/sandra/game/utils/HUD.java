@@ -148,6 +148,7 @@ public class HUD {
 
         if(btn_return_listener.getTouched()) {
             // dispose();
+            // btn_return.setColor(Color.DARK_GRAY);
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game));
         }
     }

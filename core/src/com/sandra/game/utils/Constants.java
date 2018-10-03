@@ -179,4 +179,7 @@ public class Constants {
     public static String BTN_PAUSE = "btn_pause";
     public static String BTN_PAUSE_PRESSED = "btn_pause_pressed";
     public static String BTN_RETURN = "btn_return";
+
+    // Menu
+    public static String STAR_BACKGROUND1 = "star_background1";
 }

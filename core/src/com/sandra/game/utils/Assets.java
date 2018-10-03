@@ -112,12 +112,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureRegion menu_title;
         public final TextureRegion button_1_1;
         public final TextureRegion button_1_2;
+        public final TextureRegion star_background1;
         // public final AtlasRegion button_selected;
 
         public MenuAssets(TextureAtlas atlas) {
             menu_title = atlas.findRegion(Constants.MENU_TITLE);
             button_1_1 = atlas.findRegion(Constants.BUTTON_1_1);
             button_1_2 = atlas.findRegion(Constants.BUTTON_1_2);
+            star_background1 = atlas.findRegion(Constants.STAR_BACKGROUND1);
             // button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
         }
     }
@@ -232,8 +234,8 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_swimming_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_swimming_frames, PlayMode.LOOP_PINGPONG);
             
             Array<TextureRegion> cat1_sleeping_frames = new Array<TextureRegion>();
-            cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP1));
             cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP2));
+            cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP1));
 
             cat1_sleeping_animation = new Animation<TextureRegion>(Constants.CAT1_SLEEP_LOOP_DURATION, cat1_sleeping_frames, PlayMode.LOOP);
         }

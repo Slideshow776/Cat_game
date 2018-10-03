@@ -208,6 +208,10 @@ public abstract class Level implements Screen {
 
     private void update(float delta) {
         if (!pause) {
+            if (cat1s.size == 0) {
+                // dispose();
+                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game));
+            }
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);
