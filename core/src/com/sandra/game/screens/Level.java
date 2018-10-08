@@ -73,7 +73,7 @@ public abstract class Level implements Screen {
     private float blood_timer;
 
     private HUD hud;
-    private int coinScore, cat1Score;
+    private int coinScore, cat1Score, cat1DeadScore, numCoins;
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
@@ -143,7 +143,8 @@ public abstract class Level implements Screen {
 
         // HUD
         hud = new HUD(game, camera, this);
-        coinScore = cat1Score = 0;
+        coinScore = cat1Score = cat1DeadScore = 0;
+        numCoins = coins.size;
     }
 
     public void set_pause(boolean pause) { this.pause = pause; }
@@ -162,6 +163,7 @@ public abstract class Level implements Screen {
                 cat1Score++;
             }
             if (cat1.is_dead()) {
+                cat1DeadScore++;
                 // purr1.play();
                 // cat1.dispose();
                 // cat1s.removeValue(cat1, false);
@@ -209,8 +211,8 @@ public abstract class Level implements Screen {
     private void update(float delta) {
         if (!pause) {
             if (cat1s.size == 0) {
-                // dispose();
-                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game));
+                dispose();
+                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, cat1Score, coinScore, numCoins, cat1DeadScore));
             }
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);

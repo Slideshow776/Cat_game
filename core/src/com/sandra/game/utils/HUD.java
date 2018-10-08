@@ -133,7 +133,9 @@ public class HUD {
         listen_on_buttons(delta);
     }
     
-    public void dispose() { stage.dispose(); }
+    public void dispose() {
+        // stage.dispose(); 
+    }
     
     private void listen_on_buttons(float delta) {
         stage.act(delta);
@@ -147,9 +149,9 @@ public class HUD {
         }
 
         if(btn_return_listener.getTouched()) {
-            // dispose();
+            dispose();
             // btn_return.setColor(Color.DARK_GRAY);
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game));
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, false));
         }
     }
 

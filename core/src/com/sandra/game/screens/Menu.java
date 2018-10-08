@@ -52,9 +52,13 @@ public class Menu implements Screen {
 	private float background1ScrollSpeed;
     private Sprite background2;
     private float background2ScrollTimer;
-	private float background2ScrollSpeed;
+    private float background2ScrollSpeed;
+    private boolean should_scale;
 
-    public Menu(Cat_game game) { this.game = game; }
+    public Menu(Cat_game game, boolean should_scale) {
+        this.game = game;
+        this.should_scale = should_scale;
+    }
 
     @Override
     public void show() {
@@ -71,20 +75,17 @@ public class Menu implements Screen {
 
         // Title
         menu_title_tex = Assets.instance.menuAssets.menu_title;
-        Image menu_title_image = new Image(menu_title_tex);
-        
+        Image menu_title_image = new Image(menu_title_tex);        
         animation_start_time = TimeUtils.nanoTime();
         animation_pos = new Vector2(550, 395);
         animation_scale = .25f;
         
         // Background
         background1 = new Sprite(new Texture("images/star_background1.png"));
-        background1.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         background1.getTexture().setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
         background1ScrollTimer = 0;
         background1ScrollSpeed = .04f;
         background2 = new Sprite(new Texture("images/star_background2.png"));
-        background2.setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         background2.getTexture().setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
         background2ScrollTimer = 0;
         background2ScrollSpeed = .1f;
@@ -114,8 +115,13 @@ public class Menu implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
         
         game.batch.begin();
-        game.batch.draw(background1, 0, 0, 800, 600);
-        game.batch.draw(background2, 0, 0, 800, 600);
+        if(should_scale) {
+            game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+            game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        } else {
+            game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
+            game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
+        }
         game.batch.end();
 
         stage.draw();
