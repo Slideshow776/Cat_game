@@ -54,6 +54,10 @@ public class Menu implements Screen {
     private float background2ScrollTimer;
     private float background2ScrollSpeed;
     private boolean should_scale;
+    private Sprite fade_transition;
+    private float transition_alpha;
+    private boolean[] is_level_selected;
+    private boolean is_level_button_pressed;
 
     public Menu(Cat_game game, boolean should_scale) {
         this.game = game;
@@ -102,6 +106,14 @@ public class Menu implements Screen {
         table.row();
         table.add(level_1_1_btn).width(75).height(50);
         table.add(level_1_2_btn).width(75).height(50);
+
+        // Transition effect
+        fade_transition = new Sprite(new Texture("images/black_screen.png"));
+        fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        fade_transition .setPosition(0, 0);
+        transition_alpha = 1f;
+        is_level_selected = new boolean[]{false, false};
+        is_level_button_pressed = false;
     }
 
     @Override
@@ -128,6 +140,8 @@ public class Menu implements Screen {
 
         game.batch.begin();        
         Utils.drawTextureRegion(game.batch, animation_region, animation_pos.x, animation_pos.y, animation_scale, true);
+        if (transition_alpha >= 0)
+            fade_transition.draw(game.batch, transition_alpha);
         game.batch.end();
     }
 
@@ -144,7 +158,10 @@ public class Menu implements Screen {
     public void hide() {}
 
     @Override
-    public void dispose() { stage.dispose(); }
+    public void dispose() {
+        stage.dispose();
+        fade_transition.getTexture().dispose();
+    }
 
     private void groundWrapScrolling1() {
 		background1ScrollTimer += Gdx.graphics.getDeltaTime()*background1ScrollSpeed;
@@ -166,16 +183,36 @@ public class Menu implements Screen {
         stage.act(delta);
         groundWrapScrolling1();
         groundWrapScrolling2();
-
-		if(level_1_1_btn_listener.getTouched()) {
-            dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+        
+		if (level_1_1_btn_listener.getTouched() || is_level_selected[0]) {
+            is_level_selected[0] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Splash_how_to_play(game));
+            }
+        }
+		else if(level_1_2_btn_listener.getTouched() || is_level_selected[1]) {
+            is_level_selected[1] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
+            }
         }
         
-		if(level_1_2_btn_listener.getTouched()) {
-            dispose();
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
-		}
+        if (transition_alpha < 1f && is_level_button_pressed) {
+            transition_alpha += .09f;
+            if (transition_alpha > 1f) {
+                transition_alpha = 1f;
+            }
+        }
+        else if(!is_level_button_pressed) {
+            if (transition_alpha > 0) { transition_alpha -= .03f; }
+            else if (transition_alpha <= 0) { transition_alpha = 0; }
+        }
     }
 
     private void init_btns() {

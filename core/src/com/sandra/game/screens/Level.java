@@ -7,6 +7,8 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
@@ -74,6 +76,10 @@ public abstract class Level implements Screen {
 
     private HUD hud;
     private int coinScore, cat1Score, cat1DeadScore, numCoins;
+
+    private Sprite fade_transition;
+
+    private float transition_alpha;
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
@@ -145,6 +151,12 @@ public abstract class Level implements Screen {
         hud = new HUD(game, camera, this);
         coinScore = cat1Score = cat1DeadScore = 0;
         numCoins = coins.size;
+
+        // Transition effect
+        fade_transition = new Sprite(new Texture("images/black_screen.png"));
+        fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        fade_transition .setPosition(0, 0);
+        transition_alpha = 1f;
     }
 
     public void set_pause(boolean pause) { this.pause = pause; }
@@ -218,7 +230,9 @@ public abstract class Level implements Screen {
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);
             game.batch.setProjectionMatrix(camera.combined);
-            update_entities(delta);
+            update_entities(delta);            
+            if (transition_alpha > 0) { transition_alpha -= .03f; }
+            else if (transition_alpha <= 0) { transition_alpha = 0; }
         }
         hud.update(delta, cat1Score, coinScore);
     }
@@ -260,6 +274,11 @@ public abstract class Level implements Screen {
 
         if (Constants.B2D_DEBUGGING)
             b2d_Renderer.render(b2d_world, camera.combined);
+
+        game.batch.begin();
+        if (transition_alpha >= 0)
+            fade_transition.draw(game.batch, transition_alpha);
+        game.batch.end();
     }
 
     @Override
@@ -314,5 +333,6 @@ public abstract class Level implements Screen {
         // b2d_Renderer.dispose();
         // mapRenderer.dispose();
         hud.dispose();
+        fade_transition.getTexture().dispose();
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -126,6 +127,7 @@ public class HUD {
         btn_pause.draw(batch, 1);
         btn_return.draw(batch, 1);
         //stage.draw();
+
     }
 
     public void update(float delta, int numCats, int numCoins) {
@@ -134,7 +136,13 @@ public class HUD {
     }
     
     public void dispose() {
-        // stage.dispose(); 
+        // stage.dispose();
+        cathead_image.getTexture().dispose(); 
+        cathead_ones.getTexture().dispose();
+        cathead_tens.getTexture().dispose();
+        coin_image.getTexture().dispose();
+        coins_ones.getTexture().dispose();
+        coins_tens.getTexture().dispose();
     }
     
     private void listen_on_buttons(float delta) {
@@ -150,8 +158,7 @@ public class HUD {
 
         if(btn_return_listener.getTouched()) {
             dispose();
-            // btn_return.setColor(Color.DARK_GRAY);
-            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, false));
+            ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
         }
     }
 

@@ -40,6 +40,8 @@ public class Score implements Screen {
     private Sprite gold_title;
 
     private boolean bronze, silver, gold;
+    private Sprite fade_transition;
+    private float transition_alpha;
 
     public Score(Cat_game game, int cat1s, int coins, int numCoins, int deadCat1s) {
         this.game = game;
@@ -72,6 +74,12 @@ public class Score implements Screen {
         silver_title = new Sprite(new Texture("images/Score_silver.png"));
         gold_title = new Sprite(new Texture("images/Score_gold.png"));
 
+        // Transition effect
+        fade_transition = new Sprite(new Texture("images/black_screen.png"));
+        fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        fade_transition .setPosition(0, 0);
+        transition_alpha = 1f;
+
         // Timer to go to menu
         Timer timer = new Timer();
         Task task = new Task() {
@@ -101,6 +109,7 @@ public class Score implements Screen {
         else if (silver) { drawTitle(game.batch, silver_title); }
         else if (gold) { drawTitle(game.batch, gold_title); }
         /* Utils.drawTextureRegion(game.batch, animation_region, animation_pos.x, animation_pos.y); */
+        fade_transition.draw(game.batch, transition_alpha);
         game.batch.end();
     }
 
