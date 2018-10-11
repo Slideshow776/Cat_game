@@ -9,22 +9,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
+import com.badlogic.gdx.math.MathUtils;
 import com.sandra.game.Cat_game;
-import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
-import com.sandra.game.utils.Utils;
 
 public class Score implements Screen {
-
-    private TextureRegion animation_region;
-    private float animation_start_time;
-    private Vector2 animation_pos;
-    private float animation_scale;
 
     private Sprite background1;
     private float background1ScrollTimer;
@@ -43,6 +32,9 @@ public class Score implements Screen {
     private Sprite fade_transition;
     private float transition_alpha;
 
+    private boolean pause;
+    private boolean fading_in;
+
     public Score(Cat_game game, int cat1s, int coins, int numCoins, int deadCat1s) {
         this.game = game;
         
@@ -55,9 +47,6 @@ public class Score implements Screen {
 
     @Override
     public void show() {
-        /* animation_start_time = TimeUtils.nanoTime();
-        animation_pos = new Vector2(550 / Constants.PPM, 395 / Constants.PPM);
-        // animation_scale = .25f / Constants.PPM; */
 
         // Background
         background1 = new Sprite(new Texture("images/star_background1.png"));
@@ -79,27 +68,25 @@ public class Score implements Screen {
         fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
+        fading_in = true;
 
         // Timer to go to menu
-        Timer timer = new Timer();
+        /* Timer timer = new Timer();
         Task task = new Task() {
             public void run() {
                 dispose();
                 ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
             }
         };
-        timer.schedule(task, 3);
+        timer.schedule(task, 3); */
     }
 
     @Override
-    public void render(float delta) {
-        update(delta);
+    public void render(float delta){
+        if(!pause) update(delta);
 
-        /* float animation_time_seconds = Utils.secondsSince(animation_start_time);
-        animation_region = Assets.instance.cat1Assets.cat1_sleeping_animation.getKeyFrame(animation_time_seconds); */
-         
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glClearColor(1, 0, 1, 1); // black
+        Gdx.gl.glClearColor(0, 0, 0, 1); // black
 
         game.batch.begin();
         game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
@@ -108,21 +95,13 @@ public class Score implements Screen {
         if(bronze) { drawTitle(game.batch, bronze_title); }
         else if (silver) { drawTitle(game.batch, silver_title); }
         else if (gold) { drawTitle(game.batch, gold_title); }
-        /* Utils.drawTextureRegion(game.batch, animation_region, animation_pos.x, animation_pos.y); */
-        fade_transition.draw(game.batch, transition_alpha);
+        fade_transition.draw(game.batch, transition_alpha); // 1 is black, 0 is transparent
         game.batch.end();
     }
-
-    @Override
+    
     public void resize(int width, int height) {}
-
-    @Override
-    public void pause() {}
-
-    @Override
-    public void resume() {} 
-
-    @Override
+	public void pause() {pause = true;}
+	public void resume() {pause = false;}
     public void hide() {}
 
     @Override
@@ -135,8 +114,22 @@ public class Score implements Screen {
     }
 
     private void update(float delta) {
+        alpha();
         groundWrapScrolling1();
         groundWrapScrolling2();
+    }
+
+    private void alpha() {
+        if (transition_alpha > 0 && fading_in) {
+            transition_alpha -= .008f;
+        } else if (transition_alpha <= 0 && fading_in) {
+            transition_alpha = 0;
+            fading_in = false;
+        } else if (transition_alpha < 1f) {
+            transition_alpha += .008f;
+        } else {
+            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
+        }
     }
 
     private void drawTitle(SpriteBatch sb, Sprite sprite) {

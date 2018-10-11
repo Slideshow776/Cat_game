@@ -43,7 +43,7 @@ public class Splash_intro implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1); // black
 		
         game.batch.begin();
-		splash_image.draw(game.batch, alpha);		
+		splash_image.draw(game.batch, alpha);
         game.batch.end(); 
 
 		if(!pause) {update();}
@@ -51,9 +51,9 @@ public class Splash_intro implements Screen {
 
 	public void dispose() {splash_image.getTexture().dispose();}
 	public void resize(int width, int height) {}
-	public void hide() {dispose();}	
+	public void hide() {dispose();}
 	public void pause() {pause = true;}
-	public void resume() {pause = false;}	
+	public void resume() {pause = false;}
 
 	private void update() { // alpha fade in/out
         game.batch.setProjectionMatrix(camera.combined);
