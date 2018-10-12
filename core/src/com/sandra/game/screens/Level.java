@@ -180,6 +180,9 @@ public abstract class Level implements Screen {
                 // cat1.dispose();
                 // cat1s.removeValue(cat1, false);
             }
+            if (cat1.is_annihilated()) {
+                cat1s.removeValue(cat1, false);
+            }
             cat1.update(delta);
         }
 
@@ -220,12 +223,25 @@ public abstract class Level implements Screen {
         }
     }
 
+    private void win_condition() {
+        if (cat1s.size == 0) {
+            dispose();
+            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, cat1Score, coinScore, numCoins, cat1DeadScore));
+        }
+    }
+
+    private void game_over_condition() {
+        if (cat1s.size <= 0) { 
+            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, 0, coinScore, numCoins, cat1DeadScore)); 
+            try {Thread.sleep(500);}
+            catch (InterruptedException e) {e.printStackTrace();}
+        }
+    }
+
     private void update(float delta) {
         if (!pause) {
-            if (cat1s.size == 0) {
-                dispose();
-                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, cat1Score, coinScore, numCoins, cat1DeadScore));
-            }
+            win_condition();
+            game_over_condition();
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);

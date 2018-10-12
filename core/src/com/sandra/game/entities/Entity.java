@@ -17,6 +17,7 @@ public abstract class Entity {
     protected int zone_count;
     protected boolean delete;
     protected boolean dead;
+    protected boolean annihilated;
     protected float blood_timer;
 
     public void dispose() {}
@@ -32,9 +33,11 @@ public abstract class Entity {
     public int get_zoneCount() {return zone_count;}
     public boolean get_delete() {return delete;}
     public boolean is_dead() {return dead;}
+    public boolean is_annihilated() {return annihilated;}
 
     public void set_action(Action action) {this.action = action;}
     public void set_dead(boolean dead) {this.dead = dead;}
+    public void set_annihilated(boolean annihilated) {this.annihilated = annihilated;}
 
     public void increment_blood_timer(float delta) { blood_timer += delta; }
     public float get_blood_timer() { return blood_timer; }

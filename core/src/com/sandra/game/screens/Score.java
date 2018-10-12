@@ -34,10 +34,13 @@ public class Score implements Screen {
 
     private boolean pause;
     private boolean fading_in;
+    private Sprite game_over;
+    private int cat1s;
 
     public Score(Cat_game game, int cat1s, int coins, int numCoins, int deadCat1s) {
         this.game = game;
-        
+        this.cat1s = cat1s;
+
         // Score algorithm
         bronze = silver = gold = false;
         if (deadCat1s == 0 && coins == numCoins) { gold = true; }
@@ -62,7 +65,8 @@ public class Score implements Screen {
         bronze_title = new Sprite(new Texture("images/Score_bronze.png"));
         silver_title = new Sprite(new Texture("images/Score_silver.png"));
         gold_title = new Sprite(new Texture("images/Score_gold.png"));
-
+        game_over = new Sprite(new Texture("images/Game_Over.png"));
+        
         // Transition effect
         fade_transition = new Sprite(new Texture("images/black_screen.png"));
         fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
@@ -92,9 +96,10 @@ public class Score implements Screen {
         game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         
-        if(bronze) { drawTitle(game.batch, bronze_title); }
-        else if (silver) { drawTitle(game.batch, silver_title); }
-        else if (gold) { drawTitle(game.batch, gold_title); }
+        if(cat1s == 0) { drawTitle(game_over); }
+        else if(bronze) { drawTitle(bronze_title); }
+        else if (silver) { drawTitle(silver_title); }
+        else if (gold) { drawTitle(gold_title); }
         fade_transition.draw(game.batch, transition_alpha); // 1 is black, 0 is transparent
         game.batch.end();
     }
@@ -132,8 +137,8 @@ public class Score implements Screen {
         }
     }
 
-    private void drawTitle(SpriteBatch sb, Sprite sprite) {
-        sb.draw(
+    private void drawTitle(Sprite sprite) {
+        game.batch.draw(
             sprite,
             (Constants.GAME_WIDTH / 2 - 283 * 1.5f / 2) / Constants.PPM,
             (Constants.GAME_HEIGHT / 2 - 173 * 1.5f / 2) / Constants.PPM,
