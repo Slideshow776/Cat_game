@@ -1,15 +1,11 @@
 package com.sandra.game.screens;
 
-import java.util.TimerTask;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.sandra.game.Cat_game;
 import com.sandra.game.utils.Constants;
 
@@ -35,11 +31,11 @@ public class Score implements Screen {
     private boolean pause;
     private boolean fading_in;
     private Sprite game_over;
-    private int cat1s;
+    private boolean is_all_cat1s_annihilated;
 
-    public Score(Cat_game game, int cat1s, int coins, int numCoins, int deadCat1s) {
+    public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s) {
         this.game = game;
-        this.cat1s = cat1s;
+        this.is_all_cat1s_annihilated = is_all_cat1s_annihilated;
 
         // Score algorithm
         bronze = silver = gold = false;
@@ -50,7 +46,6 @@ public class Score implements Screen {
 
     @Override
     public void show() {
-
         // Background
         background1 = new Sprite(new Texture("images/star_background1.png"));
         background1.getTexture().setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
@@ -73,16 +68,6 @@ public class Score implements Screen {
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
         fading_in = true;
-
-        // Timer to go to menu
-        /* Timer timer = new Timer();
-        Task task = new Task() {
-            public void run() {
-                dispose();
-                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
-            }
-        };
-        timer.schedule(task, 3); */
     }
 
     @Override
@@ -96,7 +81,15 @@ public class Score implements Screen {
         game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         
-        if(cat1s == 0) { drawTitle(game_over); }
+        if(is_all_cat1s_annihilated) { 
+            game.batch.draw(
+                game_over,
+                (Constants.GAME_WIDTH / 2 - 530 * 1.0f / 2) / Constants.PPM,
+                (Constants.GAME_HEIGHT / 2 - 83 * 1.0f / 2) / Constants.PPM,
+                530 * 1.0f / Constants.PPM,
+                83 * 1.0f / Constants.PPM
+            );
+        }
         else if(bronze) { drawTitle(bronze_title); }
         else if (silver) { drawTitle(silver_title); }
         else if (gold) { drawTitle(gold_title); }
@@ -119,12 +112,12 @@ public class Score implements Screen {
     }
 
     private void update(float delta) {
-        alpha();
+        update_alpha();
         groundWrapScrolling1();
         groundWrapScrolling2();
     }
 
-    private void alpha() {
+    private void update_alpha() {
         if (transition_alpha > 0 && fading_in) {
             transition_alpha -= .008f;
         } else if (transition_alpha <= 0 && fading_in) {

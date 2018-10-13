@@ -81,6 +81,9 @@ public abstract class Level implements Screen {
 
     private float transition_alpha;
 
+    private int total_num_cat1s;
+    private int total_cat1s_annihilated;
+
     public Level(Cat_game game, String level_filename) {
         this.game = game;
         pause = false;
@@ -138,6 +141,8 @@ public abstract class Level implements Screen {
         
         blood_list = new Array<Blood>();
         blood_timer = 0;
+        total_num_cat1s = cat1s.size;
+        total_cat1s_annihilated = 0;
 
         box2d.set_world_impassables(map);
         box2d.popuate_zones_from_map(map);
@@ -181,6 +186,7 @@ public abstract class Level implements Screen {
                 // cat1s.removeValue(cat1, false);
             }
             if (cat1.is_annihilated()) {
+                total_cat1s_annihilated++;
                 cat1s.removeValue(cat1, false);
             }
             cat1.update(delta);
@@ -223,25 +229,26 @@ public abstract class Level implements Screen {
         }
     }
 
-    private void win_condition() {
+    private void end_level_condition() {
         if (cat1s.size == 0) {
-            dispose();
-            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, cat1Score, coinScore, numCoins, cat1DeadScore));
-        }
-    }
-
-    private void game_over_condition() {
-        if (cat1s.size <= 0) { 
-            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Score(game, 0, coinScore, numCoins, cat1DeadScore)); 
-            try {Thread.sleep(500);}
+            try {Thread.sleep(250);}
             catch (InterruptedException e) {e.printStackTrace();}
+            dispose();
+            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(
+                new Score(
+                    game,
+                    total_num_cat1s == total_cat1s_annihilated,
+                    coinScore,
+                    numCoins,
+                    cat1DeadScore
+                )
+            );
         }
     }
 
     private void update(float delta) {
         if (!pause) {
-            win_condition();
-            game_over_condition();
+            end_level_condition();
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);
