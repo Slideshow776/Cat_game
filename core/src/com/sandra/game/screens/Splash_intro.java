@@ -30,7 +30,7 @@ public class Splash_intro implements Screen {
 		camera.setToOrtho(false, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         game.batch.setProjectionMatrix(camera.combined);
 
-		splash_image = new Sprite(new Texture("images/splash_intro2.jpg"));
+		splash_image = new Sprite(new Texture("images/splash_intro.jpg"));
 		splash_image.setSize(splash_image.getWidth() / 3.9f, splash_image.getHeight() / 3.4f);
 		splash_image.setPosition(
 			Constants.GAME_WIDTH / 2  - splash_image.getWidth() / 2.4f,

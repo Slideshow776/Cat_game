@@ -112,6 +112,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureRegion menu_title;
         public final TextureRegion button_1_1;
         public final TextureRegion button_1_2;
+        public final TextureRegion button_1_3;
         public final TextureRegion star_background1;
         // public final AtlasRegion button_selected;
 
@@ -119,6 +120,7 @@ public class Assets implements Disposable, AssetErrorListener {
             menu_title = atlas.findRegion(Constants.MENU_TITLE);
             button_1_1 = atlas.findRegion(Constants.BUTTON_1_1);
             button_1_2 = atlas.findRegion(Constants.BUTTON_1_2);
+            button_1_3 = atlas.findRegion(Constants.BUTTON_1_3);
             star_background1 = atlas.findRegion(Constants.STAR_BACKGROUND1);
             // button_selected = atlas.findRegion(Constants.BUTTON_SELECTED);
         }

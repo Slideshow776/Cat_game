@@ -124,6 +124,7 @@ public class Constants {
     public static String MENU_TITLE = "game_title";
     public static String BUTTON_1_1 = "level1_1_btn";
     public static String BUTTON_1_2 = "level1_2_btn";
+    public static String BUTTON_1_3 = "level1_3_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper

@@ -58,6 +58,8 @@ public class Menu implements Screen {
     private float transition_alpha;
     private boolean[] is_level_selected;
     private boolean is_level_button_pressed;
+    private Button level_1_3_btn;
+    private ButtonListener level_1_3_btn_listener;
 
     public Menu(Cat_game game, boolean should_scale) {
         this.game = game;
@@ -102,17 +104,19 @@ public class Menu implements Screen {
         stage.addActor(table);
         table.setFillParent(true);
         // table.debug();
-        table.add(menu_title_image).colspan(2).width(425*1.5f).height(107*1.5f);
+        table.add(menu_title_image).colspan(3).width(425*1.5f).height(107*1.5f);
         table.row();
-        table.add(level_1_1_btn).width(75).height(50);
-        table.add(level_1_2_btn).width(75).height(50);
+        table.defaults().width(75).height(50);
+        table.add(level_1_1_btn);
+        table.add(level_1_2_btn);
+        table.add(level_1_3_btn);
 
         // Transition effect
         fade_transition = new Sprite(new Texture("images/black_screen.png"));
         fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
-        is_level_selected = new boolean[]{false, false};
+        is_level_selected = new boolean[]{false, false, false};
         is_level_button_pressed = false;
     }
 
@@ -201,6 +205,14 @@ public class Menu implements Screen {
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
             }
+        } else if(level_1_3_btn_listener.getTouched() || is_level_selected[2]) {
+            is_level_selected[2] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_3(game));
+            }
         }
         
         if (transition_alpha < 1f && is_level_button_pressed) {
@@ -227,5 +239,11 @@ public class Menu implements Screen {
         level_1_2_btn = new Button(buttonStyle);
         level_1_2_btn_listener = new ButtonListener();
         level_1_2_btn.addListener(level_1_2_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_3);
+        level_1_3_btn = new Button(buttonStyle);
+        level_1_3_btn_listener = new ButtonListener();
+        level_1_3_btn.addListener(level_1_3_btn_listener);
     }
 }

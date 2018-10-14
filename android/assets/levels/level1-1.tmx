@@ -31,6 +31,7 @@
   <object id="199" x="417.5" y="200.5" width="29" height="7"/>
   <object id="200" x="525" y="133" width="20.5" height="4"/>
  </objectgroup>
+ <objectgroup name="zone 2"/>
  <objectgroup name="zone 1">
   <object id="231" x="516.667" y="568">
    <polygon points="0,0 188,-3.33333 222,-38 222.667,-80.6667 196.667,-101.333 228.667,-138 269.333,-162.666 0.666667,-166"/>
