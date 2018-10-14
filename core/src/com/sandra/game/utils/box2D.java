@@ -21,18 +21,18 @@ import com.badlogic.gdx.utils.Array;
 public class box2D {
 
     World b2d_world;
-	private Array<PolygonMapObject> land_polygon;
-
+    
     public box2D(World b2d_world) {
         this.b2d_world = b2d_world;
     }
-
-    public void popuate_zones_from_map(TiledMap map) {
-        land_polygon = map.getLayers().get("zone 1").getObjects()
+    
+    public void popuate_zones_from_map(TiledMap map, String zone) {
+        Array<PolygonMapObject> zone_polygon;
+        zone_polygon = map.getLayers().get(zone).getObjects()
                 .getByType(PolygonMapObject.class);
 
-        for (int j = 0; j < land_polygon.size; j++) {
-            float[] raw_verticies = land_polygon.get(j).getPolygon().getTransformedVertices();
+        for (int j = 0; j < zone_polygon.size; j++) {
+            float[] raw_verticies = zone_polygon.get(j).getPolygon().getTransformedVertices();
             Vector2[] verticies = new Vector2[raw_verticies.length / 2];
 
             for (int i = 0; i < verticies.length; i++) {
@@ -55,8 +55,14 @@ public class box2D {
             fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
             fdef.isSensor = true;
 
-            Body land_zone = b2d_world.createBody(bdef);
-            land_zone.createFixture(fdef).setUserData(Constants.B2D_LAND_ZONE);
+            if (zone == "zone 1") {
+                Body land_zone = b2d_world.createBody(bdef);
+                land_zone.createFixture(fdef).setUserData(Constants.B2D_LAND_ZONE);
+            } else if (zone == "zone 2") {
+                Body lava_zone = b2d_world.createBody(bdef);
+                lava_zone.createFixture(fdef).setUserData(Constants.B2D_LAVA_ZONE);
+
+            }
         }
     }
 

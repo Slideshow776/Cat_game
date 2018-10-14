@@ -17,6 +17,7 @@ public class Constants {
     public static final float B2D_WORLD_BOUNDS_OFFSET = 20f;
     public static final String B2D_WORLD = "world";
     public static final String B2D_LAND_ZONE = "land_zone";
+    public static final String B2D_LAVA_ZONE = "lava_zone";
 
     public static final short B2D_BIT_WORLD = 2;
     public static final short B2D_BIT_CAT1S = 4;
@@ -125,6 +126,7 @@ public class Constants {
     public static String BUTTON_1_1 = "level1_1_btn";
     public static String BUTTON_1_2 = "level1_2_btn";
     public static String BUTTON_1_3 = "level1_3_btn";
+    public static String BUTTON_2_1 = "level2_1_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper

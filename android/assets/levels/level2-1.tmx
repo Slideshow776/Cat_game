@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="4">
+ <tileset firstgid="1" source="beach.tsx"/>
+ <layer name="Tile Layer 1" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt1MkNwjAQheGRwG6JOiiFUiiApYOIAkhogQIgNbDeWJ6URIwMN2xHE73Dpxwzv16UQkQKIiIiIqJIxqOPvm/59/4UcncsvMgSylYFK1h7Gz3de7bqft2yi9CRc4+jb9TtU7dY7ShVS4yOnN9V2FGxo7eOqRtGxyzo0A2WOuZBh96kNtSxQcfhx3fVdUycjY497nzg3qf/3uVlaI8TOs5wgSvc4O6aHWJskfO/m1rqDiIioiF5A21eSRc=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAvgwc6AAB
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAvgwc6AAB
+  </data>
+ </layer>
+ <objectgroup name="cats">
+  <object id="1" x="421" y="352.5"/>
+ </objectgroup>
+ <objectgroup name="coins"/>
+ <objectgroup name="thwompers"/>
+ <objectgroup name="yarn_balls"/>
+ <objectgroup name="impassable"/>
+ <objectgroup name="zone 1" visible="0">
+  <object id="2" x="194" y="443.5">
+   <polygon points="0,0 0,-219.5 379.5,-217.5 412,-116.5 411,2.5"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="zone 2">
+  <object id="3" x="255" y="415">
+   <polygon points="0,0 -29,-31 -29,-142 4.5,-174.5 48,-174 79,-141 80,-12 67.5,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="portals"/>
+</map>

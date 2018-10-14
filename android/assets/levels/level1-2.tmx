@@ -13,10 +13,10 @@
  </layer>
  <layer name="Tile Layer 3" width="50" height="37">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="impassable">
+ <objectgroup name="impassable" visible="0">
   <object id="13" x="186.667" y="274.667" width="44.6667" height="312.667"/>
   <object id="15" x="84.6667" y="192.667" width="18" height="10.6667"/>
   <object id="16" x="212" y="216" width="30" height="53.3333"/>
@@ -31,7 +31,7 @@
   <object id="26" x="674.667" y="326.667" width="28.6667" height="8.66667"/>
   <object id="27" x="547.333" y="113.333" width="20.6667" height="10"/>
  </objectgroup>
- <objectgroup name="zone 1">
+ <objectgroup name="zone 1" visible="0">
   <object id="28" x="101" y="539">
    <polygon points="0,0 -37,-33 -52,-99 -67,-204 -49,-396 14,-457 139,-457 129,2"/>
   </object>
@@ -60,7 +60,7 @@
  </objectgroup>
  <objectgroup name="thwompers" visible="0"/>
  <objectgroup name="yarn_balls" visible="0"/>
- <objectgroup name="portals">
+ <objectgroup name="portals" visible="0">
   <object id="3" x="578.667" y="465.333"/>
  </objectgroup>
 </map>

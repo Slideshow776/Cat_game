@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.sandra.game.screens.Level_1_1;
 import com.sandra.game.screens.Level_1_2;
+import com.sandra.game.screens.Level_2_1;
 import com.sandra.game.screens.Splash_intro;
 import com.sandra.game.screens.Menu;
 
@@ -18,6 +19,7 @@ public class Cat_game extends Game {
 		setScreen(new Menu(this, false));
 		// setScreen(new Level_1_1(this));
 		// setScreen(new Level_1_2(this));
+		// setScreen(new Level_2_1(this));
 	}
 
 	public void render() {

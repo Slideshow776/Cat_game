@@ -71,6 +71,10 @@ public class Cat1 extends Entity {
     }
 
     public void update(float delta) {
+        if (body.getUserData() == "annihilate") {
+            set_annihilated(true);
+        }
+
         if (action == Enums.Action.IDLE) {
             render_position.set( // the "- .1f" is a magical offset render position when idle ...
                 (body.getPosition().x - (Constants.CAT1_PIXEL_WIDTH * Constants.CAT1_SCALE) / 2 / Constants.PPM) - .1f,

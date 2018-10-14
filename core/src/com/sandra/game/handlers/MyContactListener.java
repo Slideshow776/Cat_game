@@ -26,41 +26,46 @@ public class MyContactListener implements ContactListener{
 
 		if (fa.getUserData() != null && fb.getUserData() != null) {
 
-			String test = (String)fa.getUserData();
+			String temp = (String)fa.getUserData();
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs hole
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs hole
 					fb.getUserData().equals(Constants.PORTAL_SPRITE_1)) {
 				fa.getBody().setUserData("win_condition");
 			}
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs coin
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs coin
 					fb.getUserData().equals(Constants.COIN_SPRITE_1)) {
 				fb.getBody().setUserData("remove_me");
 			}
 			
-			if(fa.getUserData().equals(Constants.B2D_WORLD) &&		// world vs yarn ball
+			if(fa.getUserData().equals(Constants.B2D_WORLD) &&					// world vs yarn ball
 					fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 				fb.getBody().setUserData("collision");
 			}
 
-			if(fa.getUserData().equals(Constants.YARN_BALL_SPRITE_1) &&		// world vs yarn ball
+			if(fa.getUserData().equals(Constants.YARN_BALL_SPRITE_1) &&			// world vs yarn ball
 					fb.getUserData().equals(Constants.B2D_WORLD)) {
 				fa.getBody().setUserData("collision");
 			}
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs yarn ball
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs yarn ball
 					fb.getUserData().equals(Constants.YARN_BALL_SPRITE_1)) {
 				fb.getBody().setUserData("collision");
 			}
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
 					fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
 				fa.getBody().setUserData("zone_count_up");
 			}
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs thwomper
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
+					fb.getUserData().equals(Constants.B2D_LAVA_ZONE)) {
+				fa.getBody().setUserData("annihilate");
+			}
+
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs thwomper
 					fb.getUserData().equals(Constants.THWOMPER_IDLE_SPRITE1)) {
-				fb.getBody().setUserData("cat_collision-increment" + "-" + test.split("-")[1]);
+				fb.getBody().setUserData("cat_collision-increment" + "-" + temp.split("-")[1]);
 			}
 		}
 	}
@@ -72,14 +77,14 @@ public class MyContactListener implements ContactListener{
 
 		if (fa.getUserData() != null && fb.getUserData() != null) {
 
-			String test = (String)fa.getUserData();
+			String temp = (String)fa.getUserData();
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs thwomper
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs thwomper
 					fb.getUserData().equals(Constants.THWOMPER_IDLE_SPRITE1)) {
-				fb.getBody().setUserData("cat_collision-decrement" + "-" + test.split("-")[1]);
+				fb.getBody().setUserData("cat_collision-decrement" + "-" + temp.split("-")[1]);
 			}
 
-			if(test.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat vs zone
 					fb.getUserData().equals(Constants.B2D_LAND_ZONE)) {
 				fa.getBody().setUserData("zone_count_down");
 			}

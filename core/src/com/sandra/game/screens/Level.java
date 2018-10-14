@@ -145,7 +145,8 @@ public abstract class Level implements Screen {
         total_cat1s_annihilated = 0;
 
         box2d.set_world_impassables(map);
-        box2d.popuate_zones_from_map(map);
+        box2d.popuate_zones_from_map(map, "zone 1"); // land
+        box2d.popuate_zones_from_map(map, "zone 2"); // lava
 
         // controls
         entities = new DelayedRemovalArray<Entity>();
