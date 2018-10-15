@@ -26,6 +26,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ShadowAssets shadowAssets;
     public BloodAssets bloodAssets;
     public HUDAssets hudAssets;
+    public LavaBubbleBurstAssets lavaBubbleBurstAssets;
 
     private AssetManager assetManager;
 
@@ -46,6 +47,7 @@ public class Assets implements Disposable, AssetErrorListener {
         shadowAssets = new ShadowAssets(atlas);
         bloodAssets = new BloodAssets(atlas);
         hudAssets = new HUDAssets(atlas);
+        lavaBubbleBurstAssets = new LavaBubbleBurstAssets(atlas);
     }
 
 	@Override
@@ -135,6 +137,26 @@ public class Assets implements Disposable, AssetErrorListener {
         public BloodAssets(TextureAtlas atlas) {
             bloodSplatter1 = new TextureRegion(atlas.findRegion(Constants.BLOOD_SPLATTER1));
             bloodDrag1 = new TextureRegion(atlas.findRegion(Constants.BLOOD_DRAG1));
+        }
+    }
+
+    public class LavaBubbleBurstAssets {
+		public final Animation<TextureRegion> lava_bubble_burst_animation;
+
+        public LavaBubbleBurstAssets(TextureAtlas atlas) {
+            Array<TextureRegion> lava_bubble_burst_frames = new Array<TextureRegion>();
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST1));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST2));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST3));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST4));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST5));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST6));
+            lava_bubble_burst_frames.add(atlas.findRegion(Constants.LAVA_BUBBLE_BURST7));
+            lava_bubble_burst_animation = new Animation<TextureRegion>(
+                Constants.LAVA_BUBBLE_BURST_LOOP_DURATION,
+                lava_bubble_burst_frames,
+                PlayMode.NORMAL
+            );
         }
     }
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
@@ -36,5 +37,16 @@ public class MapUtils {
                 entity_list.add(new Thwomper(position, b2d_world, second_entity_list));
         }
         return entity_list;
+    }
+
+    public Array<Vector2> get_position_from_map(String entity, Array<Vector2> list, TiledMap map) {
+        for (MapObject object : map.getLayers().get(entity).getObjects().getByType(RectangleMapObject.class)) {
+            Vector2 position = new Vector2(((RectangleMapObject) object).getRectangle().getX() / Constants.PPM,
+                    ((RectangleMapObject) object).getRectangle().getY() / Constants.PPM);
+        
+            if (entity == "lava_bubble_bursts")
+                list.add(position);
+        }
+        return list;
     }
 }

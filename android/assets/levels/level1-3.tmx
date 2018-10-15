@@ -55,4 +55,5 @@
   <object id="11" x="692" y="479.333" width="21.3333" height="12"/>
  </objectgroup>
  <objectgroup name="zone 2" visible="0"/>
+ <objectgroup name="lava_bubble_bursts"/>
 </map>

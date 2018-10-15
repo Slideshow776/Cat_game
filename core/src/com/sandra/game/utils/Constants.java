@@ -10,7 +10,7 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = true;
+    public static final boolean B2D_DEBUGGING = false;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 4;
@@ -185,4 +185,16 @@ public class Constants {
 
     // Menu
     public static String STAR_BACKGROUND1 = "star_background1";
+
+    // Lava bubble burst
+    public static String LAVA_BUBBLE_BURST1 = "lava_bubble_burst1";
+    public static String LAVA_BUBBLE_BURST2 = "lava_bubble_burst2";
+    public static String LAVA_BUBBLE_BURST3 = "lava_bubble_burst3";
+    public static String LAVA_BUBBLE_BURST4 = "lava_bubble_burst4";
+    public static String LAVA_BUBBLE_BURST5 = "lava_bubble_burst5";
+    public static String LAVA_BUBBLE_BURST6 = "lava_bubble_burst6";
+    public static String LAVA_BUBBLE_BURST7 = "lava_bubble_burst7";
+    public static int LAVA_BUBBLE_BURST_NUMBER_OF_FRAMES = 7;
+    public static float LAVA_BUBBLE_BURST_LOOP_DURATION = .20f;
+    public static float LAVA_BUBBLE_BURST_DURATION = LAVA_BUBBLE_BURST_LOOP_DURATION * LAVA_BUBBLE_BURST_NUMBER_OF_FRAMES;
 }

@@ -1,5 +1,7 @@
 package com.sandra.game.screens;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
@@ -17,11 +19,14 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.utils.Timer.Task;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Blood;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
+import com.sandra.game.entities.Lava_bubble_burst;
 import com.sandra.game.entities.Portal;
 import com.sandra.game.entities.Yarn_Ball;
 import com.sandra.game.entities.Shadow;
@@ -59,30 +64,33 @@ public abstract class Level implements Screen {
     private DelayedRemovalArray<Entity> portals;
 	private DelayedRemovalArray<Entity> thwompers;
 	private DelayedRemovalArray<Entity> shadows;
+    private Array<Vector2> lava_bubble_bursts_positions;
 
     private Controls controls;
 
     private TiledMap map;
     private OrthoCachedTiledMapRenderer mapRenderer;
-
     private int[] backgroundLayers = { 0, 1 };
     private int[] foregroundLayers = { 2 };
-
     private MapUtils mapUtils;
 
     private Array<Blood> blood_list;
-
     private float blood_timer;
 
     private HUD hud;
     private int coinScore, cat1Score, cat1DeadScore, numCoins;
 
     private Sprite fade_transition;
-
     private float transition_alpha;
 
     private int total_num_cat1s;
     private int total_cat1s_annihilated;
+
+    private DelayedRemovalArray<Entity> lava_bubble_bursts;
+
+    private float lava_bubble_burst_timer;
+
+    private float lava_bubble_burst_ratio;
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
@@ -138,6 +146,11 @@ public abstract class Level implements Screen {
 
         shadows = new DelayedRemovalArray<Entity>();
         for (Entity thwomper: thwompers) { shadows.add(new Shadow(thwomper.get_render_position())); }
+
+        lava_bubble_bursts = new DelayedRemovalArray<Entity>();
+        lava_bubble_bursts_positions = new Array<Vector2>();
+        mapUtils.get_position_from_map("lava_bubble_bursts", lava_bubble_bursts_positions, map);        
+        lava_bubble_burst_ratio = 1;
         
         blood_list = new Array<Blood>();
         blood_timer = 0;
@@ -228,6 +241,11 @@ public abstract class Level implements Screen {
                 }
             }
         }
+
+        for (Entity bubble : lava_bubble_bursts) {
+            bubble.update(delta);
+            if (bubble.get_delete()) lava_bubble_bursts.removeValue(bubble, false);
+        }
     }
 
     private void end_level_condition() {
@@ -247,6 +265,21 @@ public abstract class Level implements Screen {
         }
     }
 
+    private void create_and_update_lava_bubble_burst(float delta) {
+        // when random time create and add to list a new random Lava_bubble_burst entity from positions list
+        if (lava_bubble_bursts_positions.size > 0) {
+            lava_bubble_burst_timer += delta;
+            if (lava_bubble_burst_timer >= lava_bubble_burst_ratio) {
+                
+                Random random = new Random();
+                int random_position = random.nextInt(lava_bubble_bursts_positions.size);
+
+                lava_bubble_bursts.add(new Lava_bubble_burst(lava_bubble_bursts_positions.get(random_position)));
+                lava_bubble_burst_timer -= lava_bubble_burst_ratio;
+            }
+        }
+    }
+
     private void update(float delta) {
         if (!pause) {
             end_level_condition();
@@ -254,7 +287,8 @@ public abstract class Level implements Screen {
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);
             game.batch.setProjectionMatrix(camera.combined);
-            update_entities(delta);            
+            update_entities(delta);
+            create_and_update_lava_bubble_burst(delta);
             if (transition_alpha > 0) { transition_alpha -= .03f; }
             else if (transition_alpha <= 0) { transition_alpha = 0; }
         }
@@ -288,6 +322,8 @@ public abstract class Level implements Screen {
             cat1.render(game.batch);
         for (Entity thwomper: thwompers)
             thwomper.render(game.batch);
+        for (Entity bubble : lava_bubble_bursts)
+            bubble.render(game.batch);
         hud.render(game.batch);
         game.batch.end();
 
