@@ -97,6 +97,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class DustAssets {
         public final Animation<TextureRegion> dust_animation;
+        public final Animation<TextureRegion> grey_dust_animation;
 
         public DustAssets(TextureAtlas atlas) {
             Array<TextureRegion> dust_frames = new Array<TextureRegion>();
@@ -106,6 +107,14 @@ public class Assets implements Disposable, AssetErrorListener {
             dust_frames.add(atlas.findRegion(Constants.DUST_SPRITE_4));
 
             dust_animation = new Animation<TextureRegion>(Constants.DUST_LOOP_DURATION, dust_frames, PlayMode.NORMAL);
+        
+            Array<TextureRegion> grey_dust_frames = new Array<TextureRegion>();
+            grey_dust_frames.add(atlas.findRegion(Constants.GREY_DUST_SPRITE_1));
+            grey_dust_frames.add(atlas.findRegion(Constants.GREY_DUST_SPRITE_2));
+            grey_dust_frames.add(atlas.findRegion(Constants.GREY_DUST_SPRITE_3));
+            grey_dust_frames.add(atlas.findRegion(Constants.GREY_DUST_SPRITE_4));
+
+            grey_dust_animation = new Animation<TextureRegion>(Constants.DUST_LOOP_DURATION, grey_dust_frames, PlayMode.NORMAL);
         }
     }
 

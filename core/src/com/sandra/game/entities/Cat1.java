@@ -120,9 +120,11 @@ public class Cat1 extends Entity {
             if (action == Enums.Action.SLIDING && 
                 (Math.abs(body.getLinearVelocity().x) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100 || // magic numbers
                 Math.abs(body.getLinearVelocity().y) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100) ) {
-                dusts.add(new Dust(new Vector2(
-                            render_position.x - Constants.CAT1_HALF_WIDTH,
-                            render_position.y - Constants.CAT1_HALF_HEIGHT)
+                dusts.add(new Dust(
+                    new Vector2(
+                        render_position.x - Constants.CAT1_HALF_WIDTH,
+                        render_position.y - Constants.CAT1_HALF_HEIGHT),
+                    true
                 ));
             }
             dust_timer = 0f;

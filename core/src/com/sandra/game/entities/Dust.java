@@ -11,8 +11,11 @@ import com.sandra.game.utils.Utils;
 public class Dust extends Entity {
     private float start_time;
     private long animation_start_time;
+    private boolean isRegular;
+    TextureRegion region;
 
-    public Dust(Vector2 position) {
+    public Dust(Vector2 position, boolean isRegular) {
+        this.isRegular = isRegular;
         render_position = position;
         start_time = TimeUtils.nanoTime();
         delete = false;
@@ -21,7 +24,8 @@ public class Dust extends Entity {
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
-        TextureRegion region = Assets.instance.dustAssets.dust_animation.getKeyFrame(animation_time_seconds);
+        if (isRegular) region = Assets.instance.dustAssets.dust_animation.getKeyFrame(animation_time_seconds);
+        else region = Assets.instance.dustAssets.grey_dust_animation.getKeyFrame(animation_time_seconds);
         Utils.drawTextureRegion(batch, region, render_position);
     }
 

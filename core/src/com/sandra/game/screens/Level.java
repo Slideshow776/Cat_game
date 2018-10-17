@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
+import com.badlogic.gdx.math.DelaunayTriangulator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -25,6 +26,7 @@ import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Blood;
 import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
+import com.sandra.game.entities.Dust;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.entities.Lava_bubble_burst;
 import com.sandra.game.entities.Portal;
@@ -64,6 +66,7 @@ public abstract class Level implements Screen {
     private DelayedRemovalArray<Entity> portals;
 	private DelayedRemovalArray<Entity> thwompers;
 	private DelayedRemovalArray<Entity> shadows;
+    private DelayedRemovalArray<Entity> annihilate_dusts;
     private Array<Vector2> lava_bubble_bursts_positions;
 
     private Controls controls;
@@ -92,9 +95,12 @@ public abstract class Level implements Screen {
 
     private float lava_bubble_burst_ratio;
 
+    private float end_level_timer;
+
     public Level(Cat_game game, String level_filename) {
         this.game = game;
         pause = false;
+        end_level_timer = 0f;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
@@ -152,6 +158,8 @@ public abstract class Level implements Screen {
         mapUtils.get_position_from_map("lava_bubble_bursts", lava_bubble_bursts_positions, map);        
         lava_bubble_burst_ratio = 1;
         
+        annihilate_dusts = new DelayedRemovalArray<Entity>();
+
         blood_list = new Array<Blood>();
         blood_timer = 0;
         total_num_cat1s = cat1s.size;
@@ -201,6 +209,12 @@ public abstract class Level implements Screen {
             }
             if (cat1.is_annihilated()) {
                 total_cat1s_annihilated++;
+                annihilate_dusts.add(new Dust(
+                    new Vector2(
+                        cat1.get_render_position().x - Constants.CAT1_HALF_WIDTH,
+                        cat1.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
+                    false
+                ));
                 cat1s.removeValue(cat1, false);
             }
             cat1.update(delta);
@@ -246,22 +260,28 @@ public abstract class Level implements Screen {
             bubble.update(delta);
             if (bubble.get_delete()) lava_bubble_bursts.removeValue(bubble, false);
         }
+
+        for (Entity dust : annihilate_dusts) { 
+            dust.update(delta);
+            if (dust.get_delete()) annihilate_dusts.removeValue(dust, false);
+        }
     }
 
-    private void end_level_condition() {
+    private void end_level_condition(float delta) {
         if (cat1s.size == 0) {
-            try {Thread.sleep(250);}
-            catch (InterruptedException e) {e.printStackTrace();}
-            dispose();
-            ((Cat_game) Gdx.app.getApplicationListener()).setScreen(
-                new Score(
-                    game,
-                    total_num_cat1s == total_cat1s_annihilated,
-                    coinScore,
-                    numCoins,
-                    cat1DeadScore
-                )
-            );
+            end_level_timer += delta;
+            if (end_level_timer >= .9f) {
+                dispose();
+                ((Cat_game) Gdx.app.getApplicationListener()).setScreen(
+                    new Score(
+                        game,
+                        total_num_cat1s == total_cat1s_annihilated,
+                        coinScore,
+                        numCoins,
+                        cat1DeadScore
+                    )
+                );
+            }
         }
     }
 
@@ -282,7 +302,7 @@ public abstract class Level implements Screen {
 
     private void update(float delta) {
         if (!pause) {
-            end_level_condition();
+            end_level_condition(delta);
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
             controls.update(delta);
@@ -324,6 +344,8 @@ public abstract class Level implements Screen {
             thwomper.render(game.batch);
         for (Entity bubble : lava_bubble_bursts)
             bubble.render(game.batch);
+        for (Entity dust : annihilate_dusts) 
+            dust.render(game.batch);;
         hud.render(game.batch);
         game.batch.end();
 

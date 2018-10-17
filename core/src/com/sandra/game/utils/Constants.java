@@ -117,6 +117,10 @@ public class Constants {
     public static final String DUST_SPRITE_2 = "dust2";
     public static final String DUST_SPRITE_3 = "dust3";
     public static final String DUST_SPRITE_4 = "dust4";
+    public static final String GREY_DUST_SPRITE_1 = "grey_dust1";
+    public static final String GREY_DUST_SPRITE_2 = "grey_dust2";
+    public static final String GREY_DUST_SPRITE_3 = "grey_dust3";
+    public static final String GREY_DUST_SPRITE_4 = "grey_dust4";
     public static final float DUST_GENERATION_RATIO = .13f;
     public static final float DUST_LOOP_DURATION = .12f;
     public static final float DUST_DURATION = DUST_LOOP_DURATION * DUST_NUMBER_OF_FRAMES;
