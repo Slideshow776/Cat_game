@@ -68,6 +68,7 @@ public abstract class Level implements Screen {
 	private DelayedRemovalArray<Entity> shadows;
     private DelayedRemovalArray<Entity> annihilate_dusts;
     private Array<Vector2> lava_bubble_bursts_positions;
+    private DelayedRemovalArray<Entity> saw_blades;
 
     private Controls controls;
 
@@ -152,6 +153,9 @@ public abstract class Level implements Screen {
 
         shadows = new DelayedRemovalArray<Entity>();
         for (Entity thwomper: thwompers) { shadows.add(new Shadow(thwomper.get_render_position())); }
+
+        saw_blades = new DelayedRemovalArray<Entity>();
+        mapUtils.populate_entity_from_map("saw_blades", saw_blades, map, b2d_world, null);
 
         lava_bubble_bursts = new DelayedRemovalArray<Entity>();
         lava_bubble_bursts_positions = new Array<Vector2>();
@@ -265,6 +269,10 @@ public abstract class Level implements Screen {
             dust.update(delta);
             if (dust.get_delete()) annihilate_dusts.removeValue(dust, false);
         }
+
+        for (Entity saw_blade : saw_blades) {
+            saw_blade.update(delta);
+        }
     }
 
     private void end_level_condition(float delta) {
@@ -345,7 +353,9 @@ public abstract class Level implements Screen {
         for (Entity bubble : lava_bubble_bursts)
             bubble.render(game.batch);
         for (Entity dust : annihilate_dusts) 
-            dust.render(game.batch);;
+            dust.render(game.batch);
+        for (Entity saw_blade : saw_blades)
+            saw_blade.render(game.batch);
         hud.render(game.batch);
         game.batch.end();
 

@@ -33,6 +33,7 @@
  </objectgroup>
  <objectgroup name="zone 2"/>
  <objectgroup name="lava_bubble_bursts"/>
+ <objectgroup name="saw_blades"/>
  <objectgroup name="zone 1">
   <object id="231" x="516.667" y="568">
    <polygon points="0,0 188,-3.33333 222,-38 222.667,-80.6667 196.667,-101.333 228.667,-138 269.333,-162.666 0.666667,-166"/>

@@ -27,6 +27,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public BloodAssets bloodAssets;
     public HUDAssets hudAssets;
     public LavaBubbleBurstAssets lavaBubbleBurstAssets;
+    public SawBlade sawBladeAssets;
 
     private AssetManager assetManager;
 
@@ -48,6 +49,7 @@ public class Assets implements Disposable, AssetErrorListener {
         bloodAssets = new BloodAssets(atlas);
         hudAssets = new HUDAssets(atlas);
         lavaBubbleBurstAssets = new LavaBubbleBurstAssets(atlas);
+        sawBladeAssets = new SawBlade(atlas);
     }
 
 	@Override
@@ -58,6 +60,27 @@ public class Assets implements Disposable, AssetErrorListener {
 	@Override
 	public void dispose() {
         assetManager.dispose();
+    }
+
+    public class SawBlade {
+        public final Animation<TextureRegion> saw_blade_animation;
+
+        public SawBlade(TextureAtlas atlas) {
+            Array<TextureRegion> saw_blade_frames = new Array<TextureRegion>();
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE1));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE2));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE3));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE4));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE5));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE6));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE7));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE8));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE9));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE10));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE11));
+            saw_blade_frames.add(atlas.findRegion(Constants.SAW_BLADE12));
+            saw_blade_animation = new Animation<TextureRegion>(Constants.SAW_BLADE_LOOP_DURATION, saw_blade_frames, PlayMode.LOOP);
+        }
     }
 
     public class HUDAssets {

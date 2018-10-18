@@ -17,6 +17,7 @@
   </data>
  </layer>
  <objectgroup name="lava_bubble_bursts"/>
+ <objectgroup name="saw_blades"/>
  <objectgroup name="impassable" visible="0">
   <object id="13" x="186.667" y="274.667" width="44.6667" height="312.667"/>
   <object id="15" x="84.6667" y="192.667" width="18" height="10.6667"/>

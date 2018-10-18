@@ -10,7 +10,7 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = false;
+    public static final boolean B2D_DEBUGGING = true;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 4;
@@ -201,4 +201,23 @@ public class Constants {
     public static int LAVA_BUBBLE_BURST_NUMBER_OF_FRAMES = 7;
     public static float LAVA_BUBBLE_BURST_LOOP_DURATION = .20f;
     public static float LAVA_BUBBLE_BURST_DURATION = LAVA_BUBBLE_BURST_LOOP_DURATION * LAVA_BUBBLE_BURST_NUMBER_OF_FRAMES;
+
+    // Saw blade
+    public static String SAW_BLADE1 = "saw_blade1";
+    public static String SAW_BLADE2 = "saw_blade2";
+    public static String SAW_BLADE3 = "saw_blade3";
+    public static String SAW_BLADE4 = "saw_blade4";
+    public static String SAW_BLADE5 = "saw_blade5";
+    public static String SAW_BLADE6 = "saw_blade6";
+    public static String SAW_BLADE7 = "saw_blade7";
+    public static String SAW_BLADE8 = "saw_blade8";
+    public static String SAW_BLADE9 = "saw_blade9";
+    public static String SAW_BLADE10 = "saw_blade10";
+    public static String SAW_BLADE11 = "saw_blade11";
+    public static String SAW_BLADE12 = "saw_blade12";
+    public static float SAW_BLADE_LOOP_DURATION = .02f;
+    public static int SAW_BLADE_PIXEL_WIDTH = 27;
+    public static int SAW_BLADE_PIXEL_HEIGHT = 14;
+    public static float SAW_BLADE_HALF_WIDTH = 14f / PPM;
+    public static float SAW_BLADE_HALF_HEIGHT = 10f / PPM;
 }

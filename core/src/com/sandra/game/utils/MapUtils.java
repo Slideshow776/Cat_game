@@ -11,6 +11,7 @@ import com.sandra.game.entities.Cat1;
 import com.sandra.game.entities.Coin;
 import com.sandra.game.entities.Entity;
 import com.sandra.game.entities.Portal;
+import com.sandra.game.entities.Saw_Blade;
 import com.sandra.game.entities.Thwomper;
 import com.sandra.game.entities.Yarn_Ball;
 
@@ -35,6 +36,8 @@ public class MapUtils {
                 entity_list.add(new Portal(position, b2d_world));
             else if (entity == "thwompers")
                 entity_list.add(new Thwomper(position, b2d_world, second_entity_list));
+            else if (entity == "saw_blades")
+                entity_list.add(new Saw_Blade(position, b2d_world));
         }
         return entity_list;
     }
