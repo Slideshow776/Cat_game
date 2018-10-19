@@ -113,7 +113,9 @@ public class Thwomper extends Entity {
         set_action(action);
     }
 
-    public void dispose() {b2d_world.dispose();}
+    public void dispose() {
+        b2d_world.dispose();
+    }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();

@@ -71,9 +71,8 @@ public class Cat1 extends Entity {
     }
 
     public void update(float delta) {
-        if (body.getUserData() == "annihilate") {
-            set_annihilated(true);
-        }
+        if (body.getUserData() == "annihilate") { set_annihilated(true); }
+        else if (body.getUserData() == "cut") { set_cut(true); }
 
         if (action == Enums.Action.IDLE) {
             render_position.set( // the "- .1f" is a magical offset render position when idle ...
@@ -112,7 +111,9 @@ public class Cat1 extends Entity {
         update_dust(delta);
     }
 
-    public void dispose() { b2d_world.destroyBody(body); }
+    public void dispose() {
+        b2d_world.destroyBody(body);
+    }
 
     private void update_dust(float delta) {
         dust_timer += delta;
@@ -157,7 +158,7 @@ public class Cat1 extends Entity {
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
         fdef.filter.maskBits = Constants.B2D_BIT_WORLD | Constants.B2D_BIT_CAT1S | 
             Constants.B2D_BIT_HOLE | Constants.B2D_BIT_COINS | Constants.B2D_YARN_BALLS
-            | Constants.B2D_THWOMPER;
+            | Constants.B2D_THWOMPER | Constants.B2D_SAW_BLADE;
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);

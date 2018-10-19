@@ -219,6 +219,18 @@ public abstract class Level implements Screen {
                         cat1.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
                     false
                 ));
+                cat1.get_body().setTransform(new Vector2(-99, -99), 0);
+                cat1s.removeValue(cat1, false);
+            } else if (cat1.is_cut()) {
+                System.out.println("Level.java: Cat1 was cut!");
+                total_cat1s_annihilated++;
+                annihilate_dusts.add(new Dust(
+                    new Vector2(
+                        cat1.get_render_position().x - Constants.CAT1_HALF_WIDTH,
+                        cat1.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
+                    false
+                ));
+                cat1.get_body().setTransform(new Vector2(-99, -99), 0);
                 cat1s.removeValue(cat1, false);
             }
             cat1.update(delta);

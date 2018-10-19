@@ -20,6 +20,7 @@ public class Yarn_Ball extends Entity {
     private float animation_start_time;
     private Vector2 original_velocity;
     private Direction direction;
+    private TextureRegion region;
 
     public Yarn_Ball(Vector2 position, World b2d_world) {
         render_position = position;
@@ -36,7 +37,7 @@ public class Yarn_Ball extends Entity {
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
-        TextureRegion region = Assets.instance.yarnBallAssets.yarn_ball_animation.getKeyFrame(animation_time_seconds);
+        region = Assets.instance.yarnBallAssets.yarn_ball_animation.getKeyFrame(animation_time_seconds);
 
         // Directions
         if (direction == Enums.Direction.LEFT) {
@@ -63,7 +64,9 @@ public class Yarn_Ball extends Entity {
         );
     }
 
-    public void dispose() {b2d_world.dispose();}
+    public void dispose() {
+        b2d_world.dispose();
+    }
 
     private void bounce_off_of_things() { // imagine a cartesian coordinate system
         if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||              // 1st quadrant

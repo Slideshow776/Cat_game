@@ -1,7 +1,10 @@
 package com.sandra.game.entities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -18,25 +21,60 @@ public class Saw_Blade extends Entity {
     private World b2d_world;
     private float animation_start_time;
     private TextureRegion region;
+    private Vector2 original_position;
+    private boolean moving_right;
+    private ShapeRenderer shape_renderer;
 
     public Saw_Blade(Vector2 position, World b2d_world) {
         this.b2d_world = b2d_world;
         render_position = position;
+        original_position = new Vector2(render_position);
         animation_start_time = TimeUtils.nanoTime();
         init_body();
+        moving_right = true;
+        shape_renderer = new ShapeRenderer();
     }
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
         region = Assets.instance.sawBladeAssets.saw_blade_animation.getKeyFrame(animation_time_seconds);
-        Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, 1.5f);
+        Utils.drawTextureRegion(
+            batch,
+            region,
+            render_position.x - .205f, // magic number found by manual positioning
+            render_position.y - .09f, // magic number found by manual positioning
+            !moving_right,
+            1.5f
+        );
+
+        batch.end();
+        shape_renderer.setColor(Color.BLACK);
+        shape_renderer.begin(ShapeType.Line);
+        shape_renderer.line(original_position.x*100 - 100f, 0, 0, original_position.x*100 + 100f);
+        shape_renderer.end();
+        batch.begin();
     }
 
     public void update(float delta) {
+        if (moving_right && (render_position.x <= original_position.x + 1f)) {
+            render_position.set(render_position.x + .01f, render_position.y);
+        } else {
+            moving_right = false;
+        }
 
+        if (!moving_right && render_position.x > original_position.x - 1f) {
+            render_position.set(render_position.x - .01f, render_position.y);
+        } else {
+            moving_right = true;
+        }
+
+        body.setTransform(render_position, 0);
     }
 
-    public void dispose() { b2d_world.dispose(); }
+    public void dispose() { 
+        b2d_world.dispose();
+        region.getTexture().dispose();
+    }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();
@@ -54,12 +92,11 @@ public class Saw_Blade extends Entity {
         // fdef.density = ;
         // fdef.friction = ;
         // fdef.restitution = ;
-		fdef.filter.categoryBits = Constants.B2D_THWOMPER;
-        fdef.filter.maskBits = Constants.B2D_BIT_CAT1S | Constants.B2D_YARN_BALLS;
-        fdef.isSensor = true;
+		fdef.filter.categoryBits = Constants.B2D_SAW_BLADE;
+        fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;
 
 		body = b2d_world.createBody(bdef);
-        body.createFixture(fdef).setUserData(Constants.THWOMPER_IDLE_SPRITE1);
-        body.setUserData(Constants.THWOMPER_IDLE_SPRITE1);
+        body.createFixture(fdef).setUserData(Constants.SAW_BLADE1);
+        body.setUserData(Constants.SAW_BLADE1);
     }
 }

@@ -25,6 +25,7 @@ public class Constants {
     public static final short B2D_BIT_COINS = 16;
     public static final short B2D_YARN_BALLS = 32;
     public static final short B2D_THWOMPER = 64;
+    public static final short B2D_SAW_BLADE = 128;
 
     // Entities
     public static final float ENTETIES_ACCELERATION = .002f;
@@ -218,6 +219,6 @@ public class Constants {
     public static float SAW_BLADE_LOOP_DURATION = .02f;
     public static int SAW_BLADE_PIXEL_WIDTH = 27;
     public static int SAW_BLADE_PIXEL_HEIGHT = 14;
-    public static float SAW_BLADE_HALF_WIDTH = 14f / PPM;
-    public static float SAW_BLADE_HALF_HEIGHT = 10f / PPM;
+    public static float SAW_BLADE_HALF_WIDTH = 19f / PPM;
+    public static float SAW_BLADE_HALF_HEIGHT = 9f / PPM;
 }

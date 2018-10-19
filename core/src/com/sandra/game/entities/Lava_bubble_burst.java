@@ -11,6 +11,7 @@ import com.sandra.game.utils.Utils;
 public class Lava_bubble_burst extends Entity {
     private float start_time;
     private long animation_start_time;
+    private TextureRegion region;
 
     public Lava_bubble_burst(Vector2 position) {
         render_position = position;
@@ -21,7 +22,7 @@ public class Lava_bubble_burst extends Entity {
 
     public void render(SpriteBatch batch) {
         float animation_time_seconds = Utils.secondsSince(animation_start_time);
-        TextureRegion region = Assets.instance.lavaBubbleBurstAssets.lava_bubble_burst_animation.getKeyFrame(animation_time_seconds);
+        region = Assets.instance.lavaBubbleBurstAssets.lava_bubble_burst_animation.getKeyFrame(animation_time_seconds);
         Utils.drawTextureRegion(batch, region, render_position);
     }
 
@@ -32,5 +33,7 @@ public class Lava_bubble_burst extends Entity {
         }
     }
 
-    public void dispose() { delete = true; }
+    public void dispose() {
+        delete = true; 
+    }
 }

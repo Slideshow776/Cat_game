@@ -18,6 +18,7 @@ public abstract class Entity {
     protected boolean delete;
     protected boolean dead;
     protected boolean annihilated;
+    protected boolean cut;
     protected float blood_timer;
 
     public void dispose() {}
@@ -34,10 +35,12 @@ public abstract class Entity {
     public boolean get_delete() {return delete;}
     public boolean is_dead() {return dead;}
     public boolean is_annihilated() {return annihilated;}
+    public boolean is_cut() {return cut;}
 
     public void set_action(Action action) {this.action = action;}
     public void set_dead(boolean dead) {this.dead = dead;}
     public void set_annihilated(boolean annihilated) {this.annihilated = annihilated;}
+    public void set_cut(boolean cut) {this.cut = cut;}
 
     public void increment_blood_timer(float delta) { blood_timer += delta; }
     public float get_blood_timer() { return blood_timer; }

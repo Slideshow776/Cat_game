@@ -67,6 +67,11 @@ public class MyContactListener implements ContactListener{
 					fb.getUserData().equals(Constants.THWOMPER_IDLE_SPRITE1)) {
 				fb.getBody().setUserData("cat_collision-increment" + "-" + temp.split("-")[1]);
 			}
+
+			if(temp.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs saw blade
+					fb.getUserData().equals(Constants.SAW_BLADE1)) {
+				fa.getBody().setUserData("cut");
+			}
 		}
 	}
 
