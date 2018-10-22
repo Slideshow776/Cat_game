@@ -14,14 +14,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
-import com.badlogic.gdx.math.DelaunayTriangulator;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 import com.sandra.game.Cat_game;
 import com.sandra.game.entities.Blood;
 import com.sandra.game.entities.Cat1;
@@ -32,6 +29,7 @@ import com.sandra.game.entities.Lava_bubble_burst;
 import com.sandra.game.entities.Portal;
 import com.sandra.game.entities.Yarn_Ball;
 import com.sandra.game.entities.Shadow;
+import com.sandra.game.entities.Cat1_part;
 import com.sandra.game.handlers.Controls;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
@@ -69,6 +67,7 @@ public abstract class Level implements Screen {
     private DelayedRemovalArray<Entity> annihilate_dusts;
     private Array<Vector2> lava_bubble_bursts_positions;
     private DelayedRemovalArray<Entity> saw_blades;
+    private DelayedRemovalArray<Entity> cat1_parts;
 
     private Controls controls;
 
@@ -97,6 +96,7 @@ public abstract class Level implements Screen {
     private float lava_bubble_burst_ratio;
 
     private float end_level_timer;
+
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
@@ -163,6 +163,7 @@ public abstract class Level implements Screen {
         lava_bubble_burst_ratio = 1;
         
         annihilate_dusts = new DelayedRemovalArray<Entity>();
+        cat1_parts = new DelayedRemovalArray<Entity>();        
 
         blood_list = new Array<Blood>();
         blood_timer = 0;
@@ -223,13 +224,29 @@ public abstract class Level implements Screen {
                 cat1s.removeValue(cat1, false);
             } else if (cat1.is_cut()) {
                 System.out.println("Level.java: Cat1 was cut!");
-                total_cat1s_annihilated++;
+
+                cat1.set_cut(false);
+                cat1.set_dead(true);
+                cat1DeadScore++;
+
+                // TODO: Insert cat-parts here, (one cat-part gives .5 cat1DeadScore)
+                Cat1_part top_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
+                Cat1_part bottom_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
+                
+                controls.add_entities(top_part);
+                controls.add_entities(bottom_part);
+                
+                cat1_parts.add(top_part);
+                cat1_parts.add(bottom_part);
+                // ------------------------------------------------------------------
+
+                /* total_cat1s_annihilated++;
                 annihilate_dusts.add(new Dust(
                     new Vector2(
                         cat1.get_render_position().x - Constants.CAT1_HALF_WIDTH,
                         cat1.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
                     false
-                ));
+                )); */
                 cat1.get_body().setTransform(new Vector2(-99, -99), 0);
                 cat1s.removeValue(cat1, false);
             }
@@ -284,6 +301,10 @@ public abstract class Level implements Screen {
 
         for (Entity saw_blade : saw_blades) {
             saw_blade.update(delta);
+        }
+
+        for (Entity cat1_part : cat1_parts) {
+            cat1_part.update(delta);
         }
     }
 
@@ -368,6 +389,8 @@ public abstract class Level implements Screen {
             dust.render(game.batch);
         for (Entity saw_blade : saw_blades)
             saw_blade.render(game.batch);
+        for (Entity cat1_part : cat1_parts)
+            cat1_part.render(game.batch);
         hud.render(game.batch);
         game.batch.end();
 

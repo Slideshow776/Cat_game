@@ -162,7 +162,6 @@ public class Cat1 extends Entity {
 
 		this.body = b2d_world.createBody(bdef);
         this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
-        // this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1);
         this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1 + "-" + id);
     }    
 }

@@ -35,6 +35,8 @@ public class Controls {
         max_acceleration = Constants.ENTETIES_ACCELERATION;
     }
 
+    public void add_entities(Entity entity) { entities.add(entity); }
+
     public void update(float delta) {
         for (Entity entity : entities) {
             if(entity.get_action() == Enums.Action.SWIMMING || entity.is_dead()) {
