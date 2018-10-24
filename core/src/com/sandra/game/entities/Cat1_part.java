@@ -1,6 +1,9 @@
 package com.sandra.game.entities;
 
+import java.util.Random;
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -12,10 +15,12 @@ import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
 
 public class Cat1_part extends Entity {
-
     private World b2d_world;
-    private boolean top_part;
+
+    private TextureRegion region;
     private float animation_start_time;
+        
+    private boolean top_part;
 
     public Cat1_part(Vector2 position, World b2d_world, boolean top_part) {
         render_position = position;
@@ -25,6 +30,12 @@ public class Cat1_part extends Entity {
         animation_start_time = TimeUtils.nanoTime();
         init_body();
         velocity = new Vector2(0, 0);
+        set_dead(true);
+
+        Random random = new Random();
+        float x = random.nextFloat() * 2 - 1.5f;
+        float y = random.nextFloat() * 2 - 1.5f;
+        body.setLinearVelocity(x, y); // Gives a random velocity push from being killed by the saw blade.
     }
 
     public void render(SpriteBatch batch) {
@@ -41,24 +52,30 @@ public class Cat1_part extends Entity {
         ); */
     }
 
-    public void update(float delta) {
+    public void dispose() {
+        b2d_world.destroyBody(body);
+    }
 
+    public void update(float delta) {
+        if (body.getUserData() == "annihilate") set_annihilated(true);
+        if (body.getUserData() == "zone_count_up") body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
+        else if (body.getUserData() == "zone_count_down") body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
     }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
         bdef.position.set(
-            (render_position.x + (Constants.SAW_BLADE_PIXEL_WIDTH / 2 / Constants.PPM) / 2),
-            (render_position.y + (Constants.SAW_BLADE_PIXEL_HEIGHT / Constants.PPM) / 2)
+            (render_position.x + (Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM) / 2),
+            (render_position.y + (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2)
         );
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(Constants.SAW_BLADE_HALF_WIDTH, Constants.SAW_BLADE_HALF_HEIGHT);
+        shape.setAsBox(Constants.CAT1_HALF_WIDTH, Constants.CAT1_HALF_HEIGHT / 2);
 
         FixtureDef fdef = new FixtureDef();
         fdef.shape = shape;
-        // fdef.density = ;
+        fdef.density = Constants.CAT1_DENSITY;
         // fdef.friction = ;
         fdef.restitution = Constants.CAT1_RESTITUTION;
 		fdef.filter.categoryBits = Constants.B2D_BIT_CAT1S;
@@ -66,9 +83,10 @@ public class Cat1_part extends Entity {
             Constants.B2D_BIT_HOLE | Constants.B2D_BIT_COINS | Constants.B2D_YARN_BALLS
             | Constants.B2D_THWOMPER | Constants.B2D_SAW_BLADE;
 
-        body = b2d_world.createBody(bdef);
-        id = 0; // we don't need ids here, only applies for thwomper collision/detection logic
+            
+        this.body = b2d_world.createBody(bdef);
+        id = 0; // we don't need ids here, only applies for Thwomper collision/detection logic
+        this.body.setLinearDamping(Constants.ENTITIES_LINEAR_DAMPING);
         this.body.createFixture(fdef).setUserData(Constants.CAT1_IDLE_SPRITE_1 + "-" + id);
-        body.setUserData(Constants.SAW_BLADE1);
     }
 }

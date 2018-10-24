@@ -230,12 +230,19 @@ public abstract class Level implements Screen {
                 cat1DeadScore++;
 
                 // TODO: Insert cat-parts here, (one cat-part gives .5 cat1DeadScore)
+
+                /* Cat1 top_part = new Cat1(cat1.get_render_position(), b2d_world, 0, true, true);
+                Cat1 bottom_part = new Cat1(cat1.get_render_position(), b2d_world, 0, true, false);
+                controls.add_entities(top_part);
+                controls.add_entities(bottom_part);
+                cat1s.add(top_part);
+                cat1s.add(bottom_part); */
+
                 Cat1_part top_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
                 Cat1_part bottom_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
                 
                 controls.add_entities(top_part);
                 controls.add_entities(bottom_part);
-                
                 cat1_parts.add(top_part);
                 cat1_parts.add(bottom_part);
                 // ------------------------------------------------------------------
@@ -251,6 +258,28 @@ public abstract class Level implements Screen {
                 cat1s.removeValue(cat1, false);
             }
             cat1.update(delta);
+        }
+
+        for (Entity cat1_part : cat1_parts) {
+            System.out.println(cat1_part.get_body().getUserData());
+            if (cat1_part.get_body().getUserData() == "win_condition") {
+                System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddd");
+                score1.play();
+                cat1_part.dispose();
+                cat1_parts.removeValue(cat1_part, false);
+                cat1Score += .5f;
+            } else if (cat1_part.is_annihilated()) {
+                total_cat1s_annihilated += .5f;
+                annihilate_dusts.add(new Dust(
+                    new Vector2(
+                        cat1_part.get_render_position().x - Constants.CAT1_HALF_WIDTH,
+                        cat1_part.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
+                    false
+                ));
+                cat1_part.get_body().setTransform(new Vector2(-99, -99), 0);
+                cat1_parts.removeValue(cat1_part, false);
+            }
+            cat1_part.update(delta);
         }
 
         for (Entity coin : coins) {
@@ -278,6 +307,15 @@ public abstract class Level implements Screen {
             }
         }
 
+        for (Entity cat1_part : cat1_parts) {
+            cat1_part.increment_blood_timer(delta);
+            blood_timer += delta;
+            if(cat1_part.get_blood_timer() >= Constants.BLOOD_GENERATION_RATIO) {
+                blood_list.add(new Blood(new Vector2(cat1_part.get_render_position()), true));
+                cat1_part.set_blood_timer(0);
+            }
+        }
+
         for (Entity cat1 : cat1s) {
             if (cat1.is_dead()) {
                 cat1.increment_blood_timer(delta);
@@ -301,10 +339,6 @@ public abstract class Level implements Screen {
 
         for (Entity saw_blade : saw_blades) {
             saw_blade.update(delta);
-        }
-
-        for (Entity cat1_part : cat1_parts) {
-            cat1_part.update(delta);
         }
     }
 
@@ -454,6 +488,8 @@ public abstract class Level implements Screen {
             thwomper.dispose();
         for (Blood blood : blood_list)
             blood.dispose();
+        for (Entity cat1_part: cat1_parts)
+            cat1_part.dispose();
         generic_music.dispose();
         purr1.dispose();
         // b2d_world.dispose();

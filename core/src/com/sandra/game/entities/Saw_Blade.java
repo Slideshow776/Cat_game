@@ -83,8 +83,8 @@ public class Saw_Blade extends Entity {
 		fdef.filter.categoryBits = Constants.B2D_SAW_BLADE;
         fdef.filter.maskBits = Constants.B2D_BIT_CAT1S;
 
-		body = b2d_world.createBody(bdef);
-        body.createFixture(fdef).setUserData(Constants.SAW_BLADE1);
-        body.setUserData(Constants.SAW_BLADE1);
+		this.body = b2d_world.createBody(bdef);
+        this.body.createFixture(fdef).setUserData(Constants.SAW_BLADE1);
+        this.body.setUserData(Constants.SAW_BLADE1);
     }
 }
