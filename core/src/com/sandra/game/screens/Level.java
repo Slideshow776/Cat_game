@@ -223,37 +223,19 @@ public abstract class Level implements Screen {
                 cat1.get_body().setTransform(new Vector2(-99, -99), 0);
                 cat1s.removeValue(cat1, false);
             } else if (cat1.is_cut()) {
-                System.out.println("Level.java: Cat1 was cut!");
 
                 cat1.set_cut(false);
                 cat1.set_dead(true);
                 cat1DeadScore++;
 
-                // TODO: Insert cat-parts here, (one cat-part gives .5 cat1DeadScore)
-
-                /* Cat1 top_part = new Cat1(cat1.get_render_position(), b2d_world, 0, true, true);
-                Cat1 bottom_part = new Cat1(cat1.get_render_position(), b2d_world, 0, true, false);
-                controls.add_entities(top_part);
-                controls.add_entities(bottom_part);
-                cat1s.add(top_part);
-                cat1s.add(bottom_part); */
-
+                // Split the cat1 in two body parts
                 Cat1_part top_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
-                Cat1_part bottom_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, true);
-                
+                Cat1_part bottom_part = new Cat1_part(new Vector2(cat1.get_render_position()), b2d_world, false);                
                 controls.add_entities(top_part);
                 controls.add_entities(bottom_part);
                 cat1_parts.add(top_part);
                 cat1_parts.add(bottom_part);
-                // ------------------------------------------------------------------
 
-                /* total_cat1s_annihilated++;
-                annihilate_dusts.add(new Dust(
-                    new Vector2(
-                        cat1.get_render_position().x - Constants.CAT1_HALF_WIDTH,
-                        cat1.get_render_position().y - Constants.CAT1_HALF_HEIGHT),
-                    false
-                )); */
                 cat1.get_body().setTransform(new Vector2(-99, -99), 0);
                 cat1s.removeValue(cat1, false);
             }
@@ -261,9 +243,7 @@ public abstract class Level implements Screen {
         }
 
         for (Entity cat1_part : cat1_parts) {
-            System.out.println(cat1_part.get_body().getUserData());
             if (cat1_part.get_body().getUserData() == "win_condition") {
-                System.out.println("dddddddddddddddddddddddddddddddddddddddddddddddddd");
                 score1.play();
                 cat1_part.dispose();
                 cat1_parts.removeValue(cat1_part, false);
@@ -343,7 +323,7 @@ public abstract class Level implements Screen {
     }
 
     private void end_level_condition(float delta) {
-        if (cat1s.size == 0) {
+        if (cat1s.size == 0 && cat1_parts.size == 0) {
             end_level_timer += delta;
             if (end_level_timer >= .9f) {
                 dispose();
@@ -488,6 +468,8 @@ public abstract class Level implements Screen {
             thwomper.dispose();
         for (Blood blood : blood_list)
             blood.dispose();
+        for (Entity saw_blade : saw_blades)
+            saw_blade.dispose();
         for (Entity cat1_part: cat1_parts)
             cat1_part.dispose();
         generic_music.dispose();

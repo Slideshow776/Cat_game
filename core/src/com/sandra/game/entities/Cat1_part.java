@@ -10,16 +10,13 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.utils.TimeUtils;
+import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
 
 public class Cat1_part extends Entity {
     private World b2d_world;
-
-    private TextureRegion region;
-    private float animation_start_time;
-        
+    private TextureRegion region;        
     private boolean top_part;
 
     public Cat1_part(Vector2 position, World b2d_world, boolean top_part) {
@@ -27,7 +24,6 @@ public class Cat1_part extends Entity {
         this.b2d_world = b2d_world;
         this.top_part = top_part;
 
-        animation_start_time = TimeUtils.nanoTime();
         init_body();
         velocity = new Vector2(0, 0);
         set_dead(true);
@@ -35,36 +31,42 @@ public class Cat1_part extends Entity {
         Random random = new Random();
         float x = random.nextFloat() * 2 - 1.5f;
         float y = random.nextFloat() * 2 - 1.5f;
+        System.out.println(x + y);
         body.setLinearVelocity(x, y); // Gives a random velocity push from being killed by the saw blade.
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);   
-
-        /* region = Assets.instance.sawBladeAssets.saw_blade_animation.getKeyFrame(animation_time_seconds);
+        if (top_part)
+            region = Assets.instance.cat1Assets.dead3;
+        else
+            region = Assets.instance.cat1Assets.dead2;
+            
         Utils.drawTextureRegion(
             batch,
             region,
-            render_position.x - .205f, // magic number found by manual positioning
-            render_position.y - .09f, // magic number found by manual positioning
-            !moving_right,
+            render_position.x - .08f, // magic number found by manual positioning
+            render_position.y,
             1.5f
-        ); */
+        );
     }
 
-    public void dispose() {
-        b2d_world.destroyBody(body);
-    }
+    public void dispose() { b2d_world.destroyBody(body); }
 
     public void update(float delta) {
         if (body.getUserData() == "annihilate") set_annihilated(true);
         if (body.getUserData() == "zone_count_up") body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
         else if (body.getUserData() == "zone_count_down") body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
+
+        render_position.set(
+            body.getPosition().x - (Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM) / 2,
+            body.getPosition().y - (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2
+        );
     }
 
     private void init_body() {
         BodyDef bdef = new BodyDef();
         bdef.type = BodyType.DynamicBody;
+        bdef.fixedRotation = true;
         bdef.position.set(
             (render_position.x + (Constants.CAT1_PIXEL_WIDTH / 2 / Constants.PPM) / 2),
             (render_position.y + (Constants.CAT1_PIXEL_HEIGHT / Constants.PPM) / 2)

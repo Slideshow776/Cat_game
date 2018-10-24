@@ -60,8 +60,7 @@ public class Saw_Blade extends Entity {
     }
 
     public void dispose() { 
-        b2d_world.dispose();
-        region.getTexture().dispose();
+        b2d_world.destroyBody(body);
     }
 
     private void init_body() {

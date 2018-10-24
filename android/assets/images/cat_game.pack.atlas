@@ -186,9 +186,23 @@ cat1Dead1
   orig: 27, 21
   offset: 0, 0
   index: -1
+cat1Dead2
+  rotate: false
+  xy: 973, 870
+  size: 18, 14
+  orig: 18, 14
+  offset: 0, 0
+  index: -1
+cat1Dead3
+  rotate: false
+  xy: 986, 854
+  size: 18, 14
+  orig: 18, 14
+  offset: 0, 0
+  index: -1
 cat1Head
   rotate: false
-  xy: 973, 871
+  xy: 974, 825
   size: 17, 13
   orig: 17, 13
   offset: 0, 0
@@ -510,7 +524,7 @@ saw_blade11
   index: -1
 saw_blade12
   rotate: false
-  xy: 957, 855
+  xy: 957, 854
   size: 27, 14
   orig: 27, 14
   offset: 0, 0
@@ -580,21 +594,21 @@ shadow1
   index: -1
 shadow10
   rotate: false
-  xy: 986, 864
+  xy: 986, 847
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow11
   rotate: false
-  xy: 986, 857
+  xy: 993, 883
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow12
   rotate: false
-  xy: 986, 850
+  xy: 993, 876
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
@@ -643,14 +657,14 @@ shadow7
   index: -1
 shadow8
   rotate: false
-  xy: 957, 848
+  xy: 957, 847
   size: 27, 5
   orig: 27, 5
   offset: 0, 0
   index: -1
 shadow9
   rotate: false
-  xy: 974, 841
+  xy: 974, 840
   size: 27, 5
   orig: 27, 5
   offset: 0, 0

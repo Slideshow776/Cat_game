@@ -250,10 +250,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation<TextureRegion> cat1_swimming_animation;
         public final Animation<TextureRegion> cat1_sleeping_animation;
         public final TextureRegion dead1;
+        public final TextureRegion dead2;
+        public final TextureRegion dead3;
         public final TextureRegion cathead;
 
         public Cat1Assets(TextureAtlas atlas) {
             dead1 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_1));
+            dead2 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_2));
+            dead3 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_3));
             cathead = new TextureRegion(atlas.findRegion(Constants.CAT1_HEAD));
 
             Array<TextureRegion> cat1_idle_frames = new Array<TextureRegion>();

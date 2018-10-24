@@ -66,6 +66,8 @@ public class Constants {
     public static final String CAT1_SWIMMING_SPRITE_8 = "cat1Swim8";
     public static final String CAT1_SWIMMING_SPRITE_9 = "cat1Swim9";
     public static final String CAT1_DEAD_1 = "cat1Dead1";
+    public static final String CAT1_DEAD_2 = "cat1Dead2";
+    public static final String CAT1_DEAD_3 = "cat1Dead3";
     public static final String CAT1_HEAD = "cat1Head";
     public static final String CAT1_SLEEP1 = "cat1_sleep1";
     public static final String CAT1_SLEEP2 = "cat1_sleep2";

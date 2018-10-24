@@ -19,11 +19,6 @@ public class MyContactListener implements ContactListener{
 		/* System.out.println(TAG + ": fa, " + fa.getUserData());
 		System.out.println(TAG + ": fb, " + fb.getUserData()); */
 		
-		/* if(fa.getUserData() != null && fa.getUserData().equals(Constants.B2D_WORLD) &&		// world vs cat1
-				fb.getUserData() != null && fb.getUserData().equals(Constants.CAT1_IDLE_SPRITE_1)) {
-			fb.getBody().setUserData("collision");
-		} */
-
 		if (fa.getUserData() != null && fb.getUserData() != null) {
 
 			String temp_a = (String)fa.getUserData();
@@ -31,14 +26,11 @@ public class MyContactListener implements ContactListener{
 
 			if(temp_a.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1) &&		// cat1 vs portal
 					fb.getUserData().equals(Constants.PORTAL_SPRITE_1)) {
-				System.out.println("cat1 vs portal");
 				fa.getBody().setUserData("win_condition");
-				System.out.println(fa.getBody().getUserData());
 			}
 
 			if(fa.getUserData().equals(Constants.PORTAL_SPRITE_1) &&			// portal vs cat1
 				temp_b.split("-")[0].equals(Constants.CAT1_IDLE_SPRITE_1)) {
-				System.out.println("portal vs cat1");
 				fb.getBody().setUserData("win_condition");
 			}
 

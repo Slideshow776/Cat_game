@@ -56,6 +56,5 @@ public class Coin extends Entity {
 
 		this.body = b2d_world.createBody(bdef);
         this.body.createFixture(fdef).setUserData(Constants.COIN_SPRITE_1);
-        System.out.println(body.getUserData());
     }
 }
