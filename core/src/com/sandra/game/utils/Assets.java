@@ -98,6 +98,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureRegion btn_pause;
         public final TextureRegion btn_pause_pressed;
         public final TextureRegion btn_return;
+        public final TextureRegion clock;
 
         public HUDAssets(TextureAtlas atlas) {
             _x = new TextureRegion(atlas.findRegion(Constants._x));
@@ -115,6 +116,7 @@ public class Assets implements Disposable, AssetErrorListener {
             btn_pause = new TextureRegion(atlas.findRegion(Constants.BTN_PAUSE));
             btn_pause_pressed = new TextureRegion(atlas.findRegion(Constants.BTN_PAUSE_PRESSED));
             btn_return = new TextureRegion(atlas.findRegion(Constants.BTN_RETURN));
+            clock = new TextureRegion(atlas.findRegion(Constants.CLOCK));
         }
     }
 

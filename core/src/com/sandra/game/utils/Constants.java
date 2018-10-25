@@ -8,6 +8,9 @@ public class Constants {
     public static final int GAME_HEIGHT = 592;
     public static final String TEXTURE_ATLAS = "images/cat_game.pack.atlas";
 
+    // Level
+    public static final int TIME = 99;
+
     // Box2d
     public static final float PPM = 100;
     public static final boolean B2D_DEBUGGING = true;
@@ -189,6 +192,7 @@ public class Constants {
     public static String BTN_PAUSE = "btn_pause";
     public static String BTN_PAUSE_PRESSED = "btn_pause_pressed";
     public static String BTN_RETURN = "btn_return";
+    public static String CLOCK = "clock";
 
     // Menu
     public static String STAR_BACKGROUND1 = "star_background1";

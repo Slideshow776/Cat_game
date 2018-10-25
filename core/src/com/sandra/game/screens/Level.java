@@ -95,13 +95,16 @@ public abstract class Level implements Screen {
 
     private float lava_bubble_burst_ratio;
 
-    private float end_level_timer;
+    private float end_level_timer, update_clock_timer;
 
+    private int time;
 
     public Level(Cat_game game, String level_filename) {
         this.game = game;
         pause = false;
         end_level_timer = 0f;
+        update_clock_timer = 0f;
+        time = Constants.TIME;
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
@@ -323,7 +326,7 @@ public abstract class Level implements Screen {
     }
 
     private void end_level_condition(float delta) {
-        if (cat1s.size == 0 && cat1_parts.size == 0) {
+        if ((cat1s.size == 0 && cat1_parts.size == 0) || time <= 0) {
             end_level_timer += delta;
             if (end_level_timer >= .9f) {
                 dispose();
@@ -333,7 +336,8 @@ public abstract class Level implements Screen {
                         total_num_cat1s == total_cat1s_annihilated,
                         coinScore,
                         numCoins,
-                        cat1DeadScore
+                        cat1DeadScore,
+                        time
                     )
                 );
             }
@@ -355,8 +359,17 @@ public abstract class Level implements Screen {
         }
     }
 
+    private void update_clock(float delta) {
+        update_clock_timer += delta;
+        if (update_clock_timer >= 1) {
+            update_clock_timer = 0;
+            time--;
+        }
+    }
+
     private void update(float delta) {
         if (!pause) {
+            update_clock(delta);
             end_level_condition(delta);
             camera.update();
             b2d_world.step(Constants.B2D_TIMESTEP, Constants.B2D_VELOCITY_ITERATIONS, Constants.B2D_POSITION_ITERATIONS);
@@ -367,7 +380,7 @@ public abstract class Level implements Screen {
             if (transition_alpha > 0) { transition_alpha -= .03f; }
             else if (transition_alpha <= 0) { transition_alpha = 0; }
         }
-        hud.update(delta, cat1Score, coinScore);
+        hud.update(delta, cat1Score, coinScore, time);
     }
 
     @Override

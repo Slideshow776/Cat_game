@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,8 +17,7 @@ import com.sandra.game.screens.Level;
 import com.sandra.game.screens.Menu;
 
 public class HUD {    
-    private Sprite coin_image;
-    private Sprite cathead_image;
+    private Sprite coin_image, cathead_image, clock_image;
 
     private Sprite[] numbers;
     private Sprite cathead_ones, cathead_tens;
@@ -33,13 +31,15 @@ public class HUD {
     private ButtonListener btn_return_listener;
     private Stage stage;
 
-    private OrthographicCamera camera;
     private Level level;
     private Cat_game game;
 
+    private Sprite clock_ones, clock_tens;
+
+    private Sprite x_clock;
+
     public HUD(Cat_game game, OrthographicCamera camera, Level level) {
         this.game = game;
-        this.camera = camera;
         this.level = level;
         num_cats = num_coins = 0;
 
@@ -58,6 +58,14 @@ public class HUD {
         x_coins = new Sprite(Assets.instance.hudAssets._x);
         x_coins.setSize(12.5f / Constants.PPM, 12.5f / Constants.PPM);
         x_coins.setPosition(3.23f, 5.62f);
+        
+        clock_image = new Sprite(Assets.instance.hudAssets.clock);
+        clock_image.setSize(25 / Constants.PPM, 25 / Constants.PPM);
+        clock_image.setPosition(5f, 5.6f);
+
+        x_clock = new Sprite(Assets.instance.hudAssets._x);
+        x_clock.setSize(12.5f / Constants.PPM, 12.5f / Constants.PPM);
+        x_clock.setPosition(5.23f, 5.62f);
 
         numbers = new Sprite[10];
         numbers[0] = new Sprite(Assets.instance.hudAssets._0);
@@ -87,6 +95,16 @@ public class HUD {
         coins_tens = new Sprite();
         coins_tens.set(numbers[1]);
         coins_tens.setSize(25 / Constants.PPM, 25 / Constants.PPM);
+        coins_ones = new Sprite();
+        
+        clock_ones = new Sprite();
+        clock_ones.set(numbers[0]);
+        clock_ones.setSize(25 / Constants.PPM, 25 / Constants.PPM);
+        clock_ones.setPosition(5.35f, 5.6f);
+        clock_tens = new Sprite();
+        clock_tens.set(numbers[1]);
+        clock_tens.setSize(25 / Constants.PPM, 25 / Constants.PPM);
+        clock_tens.setPosition(5.55f, 5.6f);
 
         stage = new Stage(new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera));
         Gdx.input.setInputProcessor(stage);
@@ -115,6 +133,7 @@ public class HUD {
     public void render(SpriteBatch batch) {
         cathead_image.draw(batch);
         coin_image.draw(batch);
+        clock_image.draw(batch);
 
         cathead_ones.draw(batch);
         x_cat.draw(batch);
@@ -124,13 +143,17 @@ public class HUD {
         if (num_cats >= 10) cathead_tens.draw(batch);
         if (num_coins >= 10) coins_tens.draw(batch);
 
+        x_clock.draw(batch);
+        clock_ones.draw(batch);
+        clock_tens.draw(batch);
+
         btn_pause.draw(batch, 1);
         btn_return.draw(batch, 1);
         //stage.draw();
-
     }
 
-    public void update(float delta, int numCats, int numCoins) {
+    public void update(float delta, int numCats, int numCoins, int time) {
+        update_clock(time);
         update_score(numCats, numCoins);
         listen_on_buttons(delta);
     }
@@ -143,6 +166,7 @@ public class HUD {
         coin_image.getTexture().dispose();
         coins_ones.getTexture().dispose();
         coins_tens.getTexture().dispose();
+        clock_image.getTexture().dispose();
     }
     
     private void listen_on_buttons(float delta) {
@@ -160,6 +184,19 @@ public class HUD {
             dispose();
             ((Game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
         }
+    }
+
+    private void update_clock(int time) {
+        if (time <= 0) {
+            clock_ones.set(numbers[0]);
+            clock_tens.set(numbers[0]);
+        } else {
+            clock_ones.set(numbers[time%10]);
+            clock_tens.set(numbers[(time %100) / 10]);
+        }
+
+        clock_tens.setPosition(5.35f, 5.6f);
+        clock_ones.setPosition(5.55f, 5.6f);
     }
 
     private void update_score(int numCats, int numCoins) {

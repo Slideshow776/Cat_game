@@ -31,7 +31,6 @@ public class Cat1_part extends Entity {
         Random random = new Random();
         float x = random.nextFloat() * 2 - 1.5f;
         float y = random.nextFloat() * 2 - 1.5f;
-        System.out.println(x + y);
         body.setLinearVelocity(x, y); // Gives a random velocity push from being killed by the saw blade.
     }
 

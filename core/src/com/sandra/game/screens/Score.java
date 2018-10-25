@@ -33,15 +33,28 @@ public class Score implements Screen {
     private Sprite game_over;
     private boolean is_all_cat1s_annihilated;
 
-    public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s) {
+    public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s, int time) {
         this.game = game;
         this.is_all_cat1s_annihilated = is_all_cat1s_annihilated;
 
         // Score algorithm
         bronze = silver = gold = false;
-        if (deadCat1s == 0 && coins == numCoins) { gold = true; }
-        else if (deadCat1s == 0 && coins >= numCoins/2) { silver = true; }
-        else { bronze = true; }
+        if (
+            deadCat1s == 0 &&
+                coins == numCoins &&
+                    time >= 2*(Constants.TIME/3)
+            ) {
+            gold = true; 
+        }
+        else if (deadCat1s == 0 &&
+                    coins >= numCoins/2 &&
+                            time >= 1*(Constants.TIME/3)
+                ) {
+            silver = true; 
+        }
+        else {
+            bronze = true; 
+        }
     }
 
     @Override
