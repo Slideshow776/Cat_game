@@ -32,10 +32,17 @@ public class Score implements Screen {
     private boolean fading_in;
     private Sprite game_over;
     private boolean is_all_cat1s_annihilated;
+    private boolean game_over;
 
     public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s, int time) {
         this.game = game;
         this.is_all_cat1s_annihilated = is_all_cat1s_annihilated;
+	
+	if (is_all_cat1s_annihilated || time <= 0) {
+	    game_over = true;
+	} else {
+	    game_over = false;
+	}
 
         // Score algorithm
         bronze = silver = gold = false;
@@ -94,7 +101,7 @@ public class Score implements Screen {
         game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         
-        if(is_all_cat1s_annihilated) { 
+        if(game_over) { 
             game.batch.draw(
                 game_over,
                 (Constants.GAME_WIDTH / 2 - 530 * 1.0f / 2) / Constants.PPM,
