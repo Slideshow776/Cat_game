@@ -64,9 +64,7 @@ public class Yarn_Ball extends Entity {
         );
     }
 
-    public void dispose() {
-        b2d_world.dispose();
-    }
+    public void dispose() {}
 
     private void bounce_off_of_things() { // imagine a cartesian coordinate system
         if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||              // 1st quadrant
