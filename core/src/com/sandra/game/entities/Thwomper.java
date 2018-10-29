@@ -114,7 +114,7 @@ public class Thwomper extends Entity {
     }
 
     public void dispose() {
-        b2d_world.dispose();
+        // b2d_world.destroyBody(body);
     }
 
     private void init_body() {

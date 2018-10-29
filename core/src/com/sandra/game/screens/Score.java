@@ -31,37 +31,18 @@ public class Score implements Screen {
     private boolean pause;
     private boolean fading_in;
     private Sprite game_over;
-    private boolean is_all_cat1s_annihilated;
-    private boolean game_over;
+    private boolean is_game_over;
 
     public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s, int time) {
-        this.game = game;
-        this.is_all_cat1s_annihilated = is_all_cat1s_annihilated;
-	
-	if (is_all_cat1s_annihilated || time <= 0) {
-	    game_over = true;
-	} else {
-	    game_over = false;
-	}
+        this.game = game;	
+        if (is_all_cat1s_annihilated || time <= 0) is_game_over = true;
+        else is_game_over = false;
 
         // Score algorithm
         bronze = silver = gold = false;
-        if (
-            deadCat1s == 0 &&
-                coins == numCoins &&
-                    time >= 2*(Constants.TIME/3)
-            ) {
-            gold = true; 
-        }
-        else if (deadCat1s == 0 &&
-                    coins >= numCoins/2 &&
-                            time >= 1*(Constants.TIME/3)
-                ) {
-            silver = true; 
-        }
-        else {
-            bronze = true; 
-        }
+        if (deadCat1s == 0 && coins == numCoins && time >= 2*(Constants.TIME/3)) gold = true; 
+        else if (deadCat1s == 0 && coins >= numCoins/2 && time >= 1*(Constants.TIME/3)) silver = true; 
+        else bronze = true;  
     }
 
     @Override
@@ -101,7 +82,7 @@ public class Score implements Screen {
         game.batch.draw(background1, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         game.batch.draw(background2, 0, 0, Constants.GAME_WIDTH / Constants.PPM, Constants.GAME_HEIGHT / Constants.PPM);
         
-        if(game_over) { 
+        if(is_game_over) { 
             game.batch.draw(
                 game_over,
                 (Constants.GAME_WIDTH / 2 - 530 * 1.0f / 2) / Constants.PPM,
