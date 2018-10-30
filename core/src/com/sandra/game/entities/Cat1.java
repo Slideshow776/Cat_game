@@ -1,5 +1,6 @@
 package com.sandra.game.entities;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -29,6 +30,8 @@ public class Cat1 extends Entity {
     private DelayedRemovalArray<Entity> dusts;
     private float dust_timer;
 
+	private Animation<TextureRegion> spawning_animation;
+
     public Cat1(Vector2 position, World b2d_world, int id) {
         render_position = position;
         velocity = new Vector2(0, 0);
@@ -44,6 +47,8 @@ public class Cat1 extends Entity {
         dusts = new DelayedRemovalArray<Entity>();
         dust_timer = 0;
         blood_timer = 0;
+        set_spawning(true);
+        spawning_animation = Assets.instance.cat1Assets.spawning_animation;
     }
 
     public void render(SpriteBatch batch) {
@@ -52,7 +57,10 @@ public class Cat1 extends Entity {
         for (Entity dust : dusts) dust.render(batch);        
 
         // Actions
-        if (is_dead()) {
+        if(is_spawning()) {
+            region = spawning_animation.getKeyFrame(animation_time_seconds);
+            if (spawning_animation.isAnimationFinished(animation_time_seconds)) set_spawning(false);
+        } else if (is_dead()) {
             region = Assets.instance.cat1Assets.dead1;
         } else if(action == Enums.Action.IDLE) {
             region = Assets.instance.cat1Assets.cat1_idle_animation.getKeyFrame(animation_time_seconds);

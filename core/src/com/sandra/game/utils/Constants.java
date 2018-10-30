@@ -74,7 +74,10 @@ public class Constants {
     public static final String CAT1_HEAD = "cat1Head";
     public static final String CAT1_SLEEP1 = "cat1_sleep1";
     public static final String CAT1_SLEEP2 = "cat1_sleep2";
+    public static final String SPAWNING1 = "READY";
+    public static final String EMPTY = "empty";
     
+    public static final float SPAWNING_FRAME_DURATION = .15f;
     public static final float CAT1_SCALE = 1.3f;
     public static final float CAT1_LOOP_DURATION = .15f;
     public static final float CAT1_SLEEP_LOOP_DURATION = 1.5f;

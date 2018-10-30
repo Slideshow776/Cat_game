@@ -48,10 +48,10 @@ public class Controls {
                 max_acceleration = Constants.ENTETIES_ACCELERATION;
             }
 
-            if (Gdx.app.getType() == ApplicationType.Android) {
+            if (Gdx.app.getType() == ApplicationType.Android && !entity.is_spawning()) {
                 android_movement(delta, entity);
             } 
-            else if (Gdx.app.getType() == ApplicationType.Desktop) {
+            else if (Gdx.app.getType() == ApplicationType.Desktop && !entity.is_spawning()) {
                 desktop_movement(delta, entity);
             }
         }

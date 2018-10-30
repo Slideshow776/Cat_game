@@ -251,6 +251,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Animation<TextureRegion> cat1_sliding_animation;
         public final Animation<TextureRegion> cat1_swimming_animation;
         public final Animation<TextureRegion> cat1_sleeping_animation;
+        public final Animation<TextureRegion> spawning_animation;
         public final TextureRegion dead1;
         public final TextureRegion dead2;
         public final TextureRegion dead3;
@@ -262,13 +263,25 @@ public class Assets implements Disposable, AssetErrorListener {
             dead3 = new TextureRegion(atlas.findRegion(Constants.CAT1_DEAD_3));
             cathead = new TextureRegion(atlas.findRegion(Constants.CAT1_HEAD));
 
+            Array<TextureRegion> spawning_frames = new Array<TextureRegion>();
+            spawning_frames.add(atlas.findRegion(Constants.SPAWNING1));
+            spawning_frames.add(atlas.findRegion(Constants.EMPTY));
+            spawning_frames.add(atlas.findRegion(Constants.SPAWNING1));
+            spawning_frames.add(atlas.findRegion(Constants.EMPTY));
+            spawning_frames.add(atlas.findRegion(Constants.SPAWNING1));
+            spawning_frames.add(atlas.findRegion(Constants.EMPTY));
+            spawning_frames.add(atlas.findRegion(Constants.SPAWNING1));
+            spawning_frames.add(atlas.findRegion(Constants.EMPTY));
+            spawning_frames.add(atlas.findRegion(Constants.SPAWNING1));
+            spawning_frames.add(atlas.findRegion(Constants.EMPTY));
+            spawning_animation = new Animation<TextureRegion>(Constants.SPAWNING_FRAME_DURATION, spawning_frames, PlayMode.NORMAL);
+            
             Array<TextureRegion> cat1_idle_frames = new Array<TextureRegion>();
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_1));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_2));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_3));
             cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_4));
-            cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_5));
-            
+            cat1_idle_frames.add(atlas.findRegion(Constants.CAT1_IDLE_SPRITE_5));            
             cat1_idle_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_idle_frames, PlayMode.LOOP_PINGPONG);
             
             Array<TextureRegion> cat1_sliding_frames = new Array<TextureRegion>();
@@ -281,7 +294,6 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_5));
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_6));
             cat1_sliding_frames.add(atlas.findRegion(Constants.CAT1_SLIDE_SPRITE_7));
-
             cat1_sliding_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_sliding_frames, PlayMode.LOOP_PINGPONG);
 
             Array<TextureRegion> cat1_swimming_frames = new Array<TextureRegion>();
@@ -293,14 +305,12 @@ public class Assets implements Disposable, AssetErrorListener {
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_6));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_7));
             cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_8));
-            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_9));
-            
+            cat1_swimming_frames.add(atlas.findRegion(Constants.CAT1_SWIMMING_SPRITE_9));            
             cat1_swimming_animation = new Animation<TextureRegion>(Constants.CAT1_LOOP_DURATION, cat1_swimming_frames, PlayMode.LOOP_PINGPONG);
             
             Array<TextureRegion> cat1_sleeping_frames = new Array<TextureRegion>();
             cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP2));
             cat1_sleeping_frames.add(atlas.findRegion(Constants.CAT1_SLEEP1));
-
             cat1_sleeping_animation = new Animation<TextureRegion>(Constants.CAT1_SLEEP_LOOP_DURATION, cat1_sleeping_frames, PlayMode.LOOP);
         }
     }
