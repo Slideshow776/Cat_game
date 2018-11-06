@@ -13,7 +13,7 @@ public class Constants {
 
     // Box2d
     public static final float PPM = 100;
-    public static final boolean B2D_DEBUGGING = true;
+    public static final boolean B2D_DEBUGGING = false;
     public static final float B2D_TIMESTEP = 1 / 30f;
     public static final int B2D_VELOCITY_ITERATIONS = 8;
     public static final int B2D_POSITION_ITERATIONS = 4;
@@ -139,7 +139,11 @@ public class Constants {
     public static String BUTTON_1_1 = "level1_1_btn";
     public static String BUTTON_1_2 = "level1_2_btn";
     public static String BUTTON_1_3 = "level1_3_btn";
+    public static String BUTTON_1_4 = "level1_4_btn";
     public static String BUTTON_2_1 = "level2_1_btn";
+    public static String BUTTON_2_2 = "level2_2_btn";
+    public static String BUTTON_2_3 = "level2_3_btn";
+    public static String BUTTON_2_4 = "level2_4_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper

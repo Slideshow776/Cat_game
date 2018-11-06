@@ -20,7 +20,7 @@ public class Cat_game extends Game {
 		setScreen(new Menu(this, true));
 		// setScreen(new Level_1_1(this));
 		// setScreen(new Level_1_2(this));
-		setScreen(new Level_1_3(this));
+		// setScreen(new Level_1_3(this));
 		// setScreen(new Level_2_1(this));
 	}
 

@@ -23,7 +23,7 @@ public class HUD {
     private Sprite cathead_ones, cathead_tens;
     private Sprite coins_ones, coins_tens;    
     private Sprite x_cat, x_coins;
-    private int num_coins, num_cats;
+    private int num_coins, num_cats, time;
 
     private Button btn_pause;
     private Button btn_return;
@@ -34,9 +34,7 @@ public class HUD {
     private Level level;
     private Cat_game game;
 
-    private Sprite clock_ones, clock_tens;
-
-    private Sprite x_clock;
+    private Sprite clock_ones, clock_tens, x_clock;
 
     public HUD(Cat_game game, OrthographicCamera camera, Level level) {
         this.game = game;
@@ -187,6 +185,7 @@ public class HUD {
     }
 
     private void update_clock(int time) {
+        this.time = time;
         if (time <= 0) {
             clock_ones.set(numbers[0]);
             clock_tens.set(numbers[0]);

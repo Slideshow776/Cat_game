@@ -113,7 +113,7 @@ public class Controls {
 
     public void removeEntity(int id) {
         for (int i = 0; i < entities.size; i++) {
-            if (entities.get(i).getId() == id) { // TODO: BUG!
+            if (entities.get(i).getId() == id) {
                 entities.removeIndex(i);
                 return;
             }

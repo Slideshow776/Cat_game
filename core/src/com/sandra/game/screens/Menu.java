@@ -62,6 +62,14 @@ public class Menu implements Screen {
     private ButtonListener level_1_3_btn_listener;
     private Button level_2_1_btn;
     private ButtonListener level_2_1_btn_listener;
+    private Button level_1_4_btn;
+    private ButtonListener level_1_4_btn_listener;
+    private Button level_2_2_btn;
+    private ButtonListener level_2_2_btn_listener;
+    private Button level_2_3_btn;
+    private ButtonListener level_2_3_btn_listener;
+    private Button level_2_4_btn;
+    private ButtonListener level_2_4_btn_listener;
 
     public Menu(Cat_game game, boolean should_scale) {
         this.game = game;
@@ -106,21 +114,25 @@ public class Menu implements Screen {
         stage.addActor(table);
         table.setFillParent(true);
         // table.debug();
-        table.add(menu_title_image).colspan(3).width(425*1.5f).height(107*1.5f);
+        table.add(menu_title_image).colspan(4).width(425*1.5f).height(107*1.5f);
         table.row();
         table.defaults().width(75).height(50);
         table.add(level_1_1_btn);
         table.add(level_1_2_btn);
         table.add(level_1_3_btn);
+        table.add(level_1_4_btn);
         table.row();
         table.add(level_2_1_btn);
+        table.add(level_2_2_btn);
+        table.add(level_2_3_btn);
+        table.add(level_2_4_btn);
 
         // Transition effect
         fade_transition = new Sprite(new Texture("images/black_screen.png"));
         fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
-        is_level_selected = new boolean[]{false, false, false, false};
+        is_level_selected = new boolean[]{false, false, false, false, false, false, false, false};
         is_level_button_pressed = false;
     }
 
@@ -191,7 +203,11 @@ public class Menu implements Screen {
         stage.act(delta);
         groundWrapScrolling1();
         groundWrapScrolling2();
-        
+        check_if_buttons_was_touched();
+        transition();
+    }
+
+    private void check_if_buttons_was_touched() {
 		if (level_1_1_btn_listener.getTouched() || is_level_selected[0]) {
             is_level_selected[0] = true;
             is_level_button_pressed = true;
@@ -217,8 +233,40 @@ public class Menu implements Screen {
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_3(game));
             }
-        } else if(level_2_1_btn_listener.getTouched() || is_level_selected[3]) {
+        } else if(level_1_4_btn_listener.getTouched() || is_level_selected[3]) {
             is_level_selected[3] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_4(game));
+            }
+        } else if(level_2_1_btn_listener.getTouched() || is_level_selected[4]) {
+            is_level_selected[4] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+            }
+        } else if(level_2_2_btn_listener.getTouched() || is_level_selected[5]) {
+            is_level_selected[5] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+            }
+        } else if(level_2_3_btn_listener.getTouched() || is_level_selected[6]) {
+            is_level_selected[6] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+            }
+        } else if(level_2_4_btn_listener.getTouched() || is_level_selected[7]) {
+            is_level_selected[7] = true;
             is_level_button_pressed = true;
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
@@ -226,7 +274,9 @@ public class Menu implements Screen {
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
             }
         }
-        
+    }
+
+    private void transition() {        
         if (transition_alpha < 1f && is_level_button_pressed) {
             transition_alpha += .09f;
             if (transition_alpha > 1f) {
@@ -259,9 +309,33 @@ public class Menu implements Screen {
         level_1_3_btn.addListener(level_1_3_btn_listener);
 
         buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_1_4);
+        level_1_4_btn = new Button(buttonStyle);
+        level_1_4_btn_listener = new ButtonListener();
+        level_1_4_btn.addListener(level_1_4_btn_listener);
+
+        buttonStyle = new ButtonStyle();
         buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_2_1);
         level_2_1_btn = new Button(buttonStyle);
         level_2_1_btn_listener = new ButtonListener();
         level_2_1_btn.addListener(level_2_1_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_2_2);
+        level_2_2_btn = new Button(buttonStyle);
+        level_2_2_btn_listener = new ButtonListener();
+        level_2_2_btn.addListener(level_2_2_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_2_3);
+        level_2_3_btn = new Button(buttonStyle);
+        level_2_3_btn_listener = new ButtonListener();
+        level_2_3_btn.addListener(level_2_3_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_2_4);
+        level_2_4_btn = new Button(buttonStyle);
+        level_2_4_btn_listener = new ButtonListener();
+        level_2_4_btn.addListener(level_2_4_btn_listener);
     }
 }
