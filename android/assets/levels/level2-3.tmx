@@ -1,28 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="210">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="251">
  <tileset firstgid="1" source="beach.tsx"/>
  <layer name="Tile Layer 1" width="50" height="37">
   <data encoding="base64" compression="zlib">
-   eJztV8tRxDAMtZcOaIEzCz1wTiiCs5cSUgFQyhZBQVtCcIY4cRT5I1mJwwyHNzub2NJ7+tm5npS6/iH0yvuvwTP9i04TbOrZDmmfx2fBqVSTpyuENsefTtuB62I6ohojfrK4ptaPHId3nBz5dqi5ovJ3uE/w7Dg1p1V+Xgn1VIIhnq2ac+PiJVqjQIfzV8Qd+h3nRgfmB9dXak9RHWdog/5vBfFyM65VeDyKcxGKjaZxb7FZDOLsv5fmvYq/xjmwa8ezs4uOUF5yfMZ6G+hwWnoV2SMEWB+h/p6eEfj0/uzbWEdu3UxcGHz2qiuSjsie4JqNZ61/LqGciDb7wOyAtfstmR/kbtEiM4Zzn/Pzgs5oAfSEWA/rHgHOFk8WzyPXG9CeY/tuh56HPBo1A2pJ7Q3hQUgH9Jd752kSOkJ+oL8X6Xxg35d6eYZReGM6sBn2JqkjcBbAO14z/r5aXE5rpHpi6vMteiLT5sDBDPwt3gNca51xkMOqN8D/D7vm0+IrdjesfOcwubOd+x3LqAGOjiPURIkOke/jA6C6Dqkaq9CX/zgmJOuZausiqMNU+saVhsHO3oq55ebI1J6VQqg+84Xg+gOexxR9R4iFUUv4dzf3zN2zp32ap3dL/j+e186E
+   eJzVWd152zAQE6sBqE2sPZrY3qO1rQ0yUkbrCInZ+mwIxvFIx33Iw32UzB8dDjhIX/L+Yxjev1F8DHCf6Lf0L95Sx5npdk7XPshnldNXMQEuL7Ytz0vxObyuhqOKsfKcplyj9Zccy9wjHOE5vVz15m+Rx7aYKJq46q1Bx3rOb9MYM0UTrl4s6cYJ82K1rOU9N/LhYZprWDp1o3Rsz59FDhsxWrCOGAvf92Ixj9sOuvZ4j7ls4Dm5Yaz1Rw6wWB6Rl+K8xxE+t1b/Hl44Zw9LuXa1k9pxMAbUfysfvbzcceL1NuEwLH/HpHHM47p/GVcPL8gPn6c4afUnw7ENcLAnqbrvLvFa9AD3JfaCH6Unpa2e94bnscqj1FhyPV3icI4j3P88xwvgQU4YC2LEfudcVd2VB7CmEIfiwXJexPyvc/wmbrD+ERZXR+k+d/Y25SkeD6ajZVz7D/vcidbze4Xvox5hXpRH13Bg3UwzR1FP5VUnwMHrJjr/qq1Lrn8GgSHoF3U+87EDzfA8aoN9yvqHfYN963qeyLf1W7aGw37DnmD/qvmb0ijqj3WlcHi4at+EHh+mj5qPse4nMWe5o0f1vkM8D8uUg+oP0wdjVjXAQF6wV/i9gdfHhp649nnSODy/Mk1FPLCv4jzWgnHjOk8zmfZ6/aFwYH+YXzEP7D8bmkev2NP+SZxzfU9Ardk/FBZVG1X3ml9xDVg7pqk96KfGB+fHZyos/EzFRwZt7R0+srNvB5paxnX/4HoPB/PAPenhYExRn+B+zqtgMD16/RXxYXPMdYQDz59ojzeqOlg/mB6jcyI+FNeMQ/WI4p9H3Iv9jP2wiDW9fGCNuE9sD66bx3tt1eqIdTf9lGvsB+Uzj/BhuSktKM9C75lpPc+V0XrG9LOM6+9h9jHFocrJw8KaL9f2vmE+vPV4j32Rx3b+PG7sGREOrmmZP8C7Xa1Vvc/6s3qqtbVR1cn7DlHax/UH+puyWsu6YnyTyCs7+1RgTseG70QVB/E95nlVFFGeXjySt/sN/IUzIpzPyLOFD/ufBWLqwfeMWjwDBwb+D8J+29qc7UuP4f2f+X8CFbmuUA==
   </data>
  </layer>
  <layer name="Tile Layer 2" width="50" height="37">
   <data encoding="base64" compression="zlib">
-   eJztkkEKwzAMBBOa5/fRpYdAELIk24pXm1ZgcHIwM9rdj23bf/B8B82Q5XEdNE+GQ0UPySQ5W4Pmbu3a+mbo1ZVLclqD5m55aJxP82Dq1VPzYMrC6478f97RzLMebHnIvWsOsz7Z+9B4LY+qubQ8tMwqe1jd8VzQzKOcfw+sh2Rl9rAGzTzSLRaH3kzQrCM+bHloHiwOkf6wOJx3a/fZHpG33q++t7w87vDIzsPz0foX3WcVj2hW6OOxeh7ZLjPveYwR1won4rEqj7u6FXWtcHoZV3ms2lGGh7cvdMZRrkiXvXc/Jk0dmw==
+   eJzllmdywyAQRuVRbpvcJE65R+oV0ruTK6T3coR8+rEzO4SFlYxZcJh5I1sS+HuwlhgtNM3oH9I16wypPHizzpPCoUQPN5ObU2rWuaW5Dn2voa54LjdnqFnnljx8OefNo6a6mtf1iK3FWts06619ftdDcvLd0x134LBbqQc/dw2HG7AH9sEBODT0is2760F5v8EPuAV34B489PDg46fykJy64zKyjcEKWGV5pRwnuHYKzsB5xvWRPIgNZNkEW2C7/VtfLs+45wW8gjeDOpPyXSDLJbgCE4WHNb7WnX9H9g/wCb4q9qD/9VLrv14aUuPPoZo9juBw7FmLUj0kl0c4PFVSUyGPRfbOHupB/a196J091IP6W3r4vDRj0H44174r1nxeGmg/3HffNY0DfQ7NfV8P2g+Hfjs2xljpL2WfxoOe07QfnnU9uR6Sj6/+eB93f0vP6Rz5tR6atbLe32rqKubB1ytlnqF9Yx4x1xLQeORaj1nVlta1BPpmzOWRa45SeMTmy3qNtbk0tRwb9xe1oWEe
   </data>
  </layer>
  <layer name="Tile Layer 3" width="50" height="37">
   <data encoding="base64" compression="zlib">
-   eJzt1r0JgDAQBWAFk8ZCpxBLV7Dwp3QFC93LiXQJa1cwrSEgGPFy5/u6gxT3Ai8aRQAAAN9I1XXOzJwr91luKiE5AMBtNR3fBPT8EJCBm1JTb+CvMxn6mxyDgJwAQCdOqDcA+IeC8Hu9POx57di5ZfjfMVo7T2aeA8qxB/wO64DuyQdl/97SaJ79s4XWP/B3AoBGCWE=
+   eJztlkkOgkAQRTFKb1zoKYxLr+DCYekVXOhlHK/g2vEWzsIljPNwBL8JJEoaRGihMP2SH9JoJVUVfnUpikQikUgkwZBU388pnNMq/79RI/cndUho0ogrShNqQe142NnYM0VuM2gOLTh59vFuAA2hEeE6dshtDx2go5GnBo/rhs+XeLeC1tDG+L2DZ5dwTSa3l1l1Qr5n6AJdjdzHeE4I1eG1rxpidCJ1ZJn3vt4QcydQRwk1lJlzXyss2Jz8IKKvFDwvwq8UPC/CrxQ8L+K7Ctvzn+7xX8U+iSW+j7GDd48HERskFGaQCMwZFJVd1w5zBll3XS9e+DUZh/vanEHWXVeUF3oefZ7n5Fx0sXfwdt0wqVpyruFcJ7Q/bQXOYdEwQn3yg5P/okKBufMfdaj5T+KfB68tVN4=
   </data>
  </layer>
  <objectgroup name="cats"/>
- <objectgroup name="coins"/>
- <objectgroup name="thwompers"/>
+ <objectgroup name="coins">
+  <object id="215" x="246.667" y="296"/>
+  <object id="216" x="299.333" y="286.667"/>
+  <object id="217" x="350" y="290"/>
+  <object id="218" x="250.667" y="358.667"/>
+  <object id="219" x="306" y="355.333"/>
+  <object id="220" x="354" y="352.667"/>
+  <object id="221" x="297.333" y="391.333"/>
+  <object id="222" x="346" y="397.333"/>
+ </objectgroup>
+ <objectgroup name="thwompers">
+  <object id="213" x="244" y="430.667"/>
+  <object id="214" x="442" y="308.667"/>
+ </objectgroup>
  <objectgroup name="yarn_balls"/>
  <objectgroup name="portals"/>
  <objectgroup name="zone 1"/>
- <objectgroup name="impassable"/>
+ <objectgroup name="impassable">
+  <object id="223" x="194.5" y="384.5" width="22.5" height="18"/>
+  <object id="224" x="176.5" y="371" width="34" height="24.5"/>
+  <object id="225" x="171" y="255.5" width="35.5" height="122.5"/>
+  <object id="226" x="166.5" y="266" width="8" height="99.5"/>
+  <object id="227" x="187.5" y="240" width="29" height="35"/>
+  <object id="228" x="207" y="230.5" width="25" height="26.5"/>
+  <object id="229" x="223.5" y="215.5" width="28.5" height="22.5"/>
+  <object id="230" x="211.5" y="218.5" width="18.5" height="14.5"/>
+  <object id="231" x="225.5" y="203" width="39.5" height="17"/>
+  <object id="232" x="233" y="207.5" width="119.5" height="13.5"/>
+  <object id="233" x="264.5" y="198.5" width="83.5" height="12"/>
+  <object id="234" x="326.5" y="217" width="41" height="24.5"/>
+  <object id="235" x="360.5" y="226.5" width="24" height="18"/>
+  <object id="236" x="380" y="236.5" width="22" height="11"/>
+  <object id="237" x="380" y="245" width="26" height="16"/>
+  <object id="238" x="388.5" y="251.5" width="24" height="16.5"/>
+  <object id="239" x="400.5" y="261" width="26.5" height="21"/>
+  <object id="240" x="276" y="441" width="27.5" height="20"/>
+  <object id="241" x="296" y="446.5" width="56" height="25"/>
+  <object id="242" x="345" y="443" width="40" height="19.5"/>
+  <object id="243" x="381" y="425" width="29" height="22.5"/>
+  <object id="244" x="406" y="407.5" width="16" height="23.5"/>
+  <object id="245" x="414.5" y="382.5" width="32" height="31.5"/>
+  <object id="246" x="436.5" y="362" width="23.5" height="36.5"/>
+  <object id="247" x="451.5" y="338" width="17.5" height="36"/>
+  <object id="248" x="450.5" y="326" width="26.5" height="30"/>
+  <object id="249" x="411" y="273.5" width="19.5" height="11.5"/>
+ </objectgroup>
  <objectgroup name="zone 2"/>
  <objectgroup name="lava_bubble_bursts"/>
  <objectgroup name="saw_blades"/>
