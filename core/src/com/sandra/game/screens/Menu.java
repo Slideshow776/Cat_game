@@ -263,7 +263,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_3(game));
             }
         } else if(level_2_4_btn_listener.getTouched() || is_level_selected[7]) {
             is_level_selected[7] = true;
@@ -271,7 +271,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_4(game));
             }
         }
     }
