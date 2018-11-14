@@ -24,7 +24,6 @@ import com.sandra.game.handlers.ButtonListener;
 import com.sandra.game.utils.Assets;
 import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Utils;
-import com.sandra.game.screens.Level_1_2;
 
 public class Menu implements Screen {
 
@@ -40,13 +39,7 @@ public class Menu implements Screen {
     private float animation_start_time;
     private Vector2 animation_pos;
     private float animation_scale;
-
-    private Button level_1_1_btn;
-    private ButtonListener level_1_1_btn_listener;
-
-    private Button level_1_2_btn;
-    private ButtonListener level_1_2_btn_listener;
-
+    
     private Sprite background1;
     private float background1ScrollTimer;
 	private float background1ScrollSpeed;
@@ -58,6 +51,11 @@ public class Menu implements Screen {
     private float transition_alpha;
     private boolean[] is_level_selected;
     private boolean is_level_button_pressed;
+    
+    private Button level_1_1_btn;
+    private ButtonListener level_1_1_btn_listener;
+    private Button level_1_2_btn;
+    private ButtonListener level_1_2_btn_listener;
     private Button level_1_3_btn;
     private ButtonListener level_1_3_btn_listener;
     private Button level_2_1_btn;
@@ -70,6 +68,22 @@ public class Menu implements Screen {
     private ButtonListener level_2_3_btn_listener;
     private Button level_2_4_btn;
     private ButtonListener level_2_4_btn_listener;
+    private Button level_3_1_btn;
+    private ButtonListener level_3_1_btn_listener;
+    private Button level_3_2_btn;
+    private ButtonListener level_3_2_btn_listener;
+    private Button level_3_3_btn;
+    private ButtonListener level_3_3_btn_listener;
+    private Button level_3_4_btn;
+    private ButtonListener level_3_4_btn_listener;
+    private Button level_4_1_btn;
+    private ButtonListener level_4_1_btn_listener;
+    private Button level_4_2_btn;
+    private ButtonListener level_4_2_btn_listener;
+    private Button level_4_3_btn;
+    private ButtonListener level_4_3_btn_listener;
+    private Button level_4_4_btn;
+    private ButtonListener level_4_4_btn_listener;
 
     public Menu(Cat_game game, boolean should_scale) {
         this.game = game;
@@ -93,7 +107,7 @@ public class Menu implements Screen {
         menu_title_tex = Assets.instance.menuAssets.menu_title;
         Image menu_title_image = new Image(menu_title_tex);        
         animation_start_time = TimeUtils.nanoTime();
-        animation_pos = new Vector2(550, 415);
+        animation_pos = new Vector2(550, 465);
         animation_scale = .25f;
         
         // Background
@@ -126,13 +140,23 @@ public class Menu implements Screen {
         table.add(level_2_2_btn);
         table.add(level_2_3_btn);
         table.add(level_2_4_btn);
+        table.row();
+        table.add(level_3_1_btn);
+        table.add(level_3_2_btn);
+        table.add(level_3_3_btn);
+        table.add(level_3_4_btn);
+        table.row();
+        table.add(level_4_1_btn);
+        table.add(level_4_2_btn);
+        table.add(level_4_3_btn);
+        table.add(level_4_4_btn);
 
         // Transition effect
         fade_transition = new Sprite(new Texture("images/black_screen.png"));
         fade_transition .setSize(Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
-        is_level_selected = new boolean[]{false, false, false, false, false, false, false, false};
+        is_level_selected = new boolean[]{false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false};
         is_level_button_pressed = false;
     }
 
@@ -223,7 +247,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_2(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level1-2"));
             }
         } else if(level_1_3_btn_listener.getTouched() || is_level_selected[2]) {
             is_level_selected[2] = true;
@@ -231,7 +255,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_3(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level1-3"));
             }
         } else if(level_1_4_btn_listener.getTouched() || is_level_selected[3]) {
             is_level_selected[3] = true;
@@ -239,7 +263,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_4(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level1-4"));
             }
         } else if(level_2_1_btn_listener.getTouched() || is_level_selected[4]) {
             is_level_selected[4] = true;
@@ -247,7 +271,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_1(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level2-1"));
             }
         } else if(level_2_2_btn_listener.getTouched() || is_level_selected[5]) {
             is_level_selected[5] = true;
@@ -255,7 +279,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_2(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level2-2"));
             }
         } else if(level_2_3_btn_listener.getTouched() || is_level_selected[6]) {
             is_level_selected[6] = true;
@@ -263,7 +287,7 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_3(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level2-3"));
             }
         } else if(level_2_4_btn_listener.getTouched() || is_level_selected[7]) {
             is_level_selected[7] = true;
@@ -271,7 +295,71 @@ public class Menu implements Screen {
             if (transition_alpha >= 1f) {
                 transition_alpha = 1f;
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_2_4(game));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level2-4"));
+            }
+        } else if(level_3_1_btn_listener.getTouched() || is_level_selected[8]) {
+            is_level_selected[8] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level3-1"));
+            }
+        } else if(level_3_2_btn_listener.getTouched() || is_level_selected[9]) {
+            is_level_selected[9] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level3-2"));
+            }
+        } else if(level_3_3_btn_listener.getTouched() || is_level_selected[10]) {
+            is_level_selected[10] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level3-3"));
+            }
+        } else if(level_3_4_btn_listener.getTouched() || is_level_selected[11]) {
+            is_level_selected[11] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level3-4"));
+            }
+        } else if(level_4_1_btn_listener.getTouched() || is_level_selected[12]) {
+            is_level_selected[12] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level4-1"));
+            }
+        } else if(level_4_2_btn_listener.getTouched() || is_level_selected[13]) {
+            is_level_selected[13] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level4-2"));
+            }
+        } else if(level_4_3_btn_listener.getTouched() || is_level_selected[14]) {
+            is_level_selected[14] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level4-3"));
+            }
+        } else if(level_4_4_btn_listener.getTouched() || is_level_selected[15]) {
+            is_level_selected[15] = true;
+            is_level_button_pressed = true;
+            if (transition_alpha >= 1f) {
+                transition_alpha = 1f;
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level4-4"));
             }
         }
     }
@@ -337,5 +425,53 @@ public class Menu implements Screen {
         level_2_4_btn = new Button(buttonStyle);
         level_2_4_btn_listener = new ButtonListener();
         level_2_4_btn.addListener(level_2_4_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_3_1);
+        level_3_1_btn = new Button(buttonStyle);
+        level_3_1_btn_listener = new ButtonListener();
+        level_3_1_btn.addListener(level_3_1_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_3_2);
+        level_3_2_btn = new Button(buttonStyle);
+        level_3_2_btn_listener = new ButtonListener();
+        level_3_2_btn.addListener(level_3_2_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_3_3);
+        level_3_3_btn = new Button(buttonStyle);
+        level_3_3_btn_listener = new ButtonListener();
+        level_3_3_btn.addListener(level_3_3_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_3_4);
+        level_3_4_btn = new Button(buttonStyle);
+        level_3_4_btn_listener = new ButtonListener();
+        level_3_4_btn.addListener(level_3_4_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_4_1);
+        level_4_1_btn = new Button(buttonStyle);
+        level_4_1_btn_listener = new ButtonListener();
+        level_4_1_btn.addListener(level_4_1_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_4_2);
+        level_4_2_btn = new Button(buttonStyle);
+        level_4_2_btn_listener = new ButtonListener();
+        level_4_2_btn.addListener(level_4_2_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_4_3);
+        level_4_3_btn = new Button(buttonStyle);
+        level_4_3_btn_listener = new ButtonListener();
+        level_4_3_btn.addListener(level_4_3_btn_listener);
+
+        buttonStyle = new ButtonStyle();
+        buttonStyle.up = new TextureRegionDrawable(Assets.instance.menuAssets.button_4_4);
+        level_4_4_btn = new Button(buttonStyle);
+        level_4_4_btn_listener = new ButtonListener();
+        level_4_4_btn.addListener(level_4_4_btn_listener);
     }
 }

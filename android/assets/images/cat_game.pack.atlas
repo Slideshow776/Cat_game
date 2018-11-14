@@ -831,34 +831,90 @@ star_background2
   index: -1
 
 cat_game.pack3.png
-size: 1024,128
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 level2_1_btn
   rotate: false
-  xy: 2, 2
+  xy: 2, 344
   size: 236, 112
   orig: 236, 112
   offset: 0, 0
   index: -1
 level2_2_btn
   rotate: false
-  xy: 240, 2
+  xy: 2, 230
   size: 236, 112
   orig: 236, 112
   offset: 0, 0
   index: -1
 level2_3_btn
   rotate: false
-  xy: 478, 2
+  xy: 240, 344
   size: 236, 112
   orig: 236, 112
   offset: 0, 0
   index: -1
 level2_4_btn
   rotate: false
-  xy: 716, 2
+  xy: 2, 116
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level3_1_btn
+  rotate: false
+  xy: 240, 230
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level3_2_btn
+  rotate: false
+  xy: 478, 344
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level3_3_btn
+  rotate: false
+  xy: 2, 2
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level3_4_btn
+  rotate: false
+  xy: 240, 116
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level4_1_btn
+  rotate: false
+  xy: 478, 230
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level4_2_btn
+  rotate: false
+  xy: 716, 344
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level4_3_btn
+  rotate: false
+  xy: 240, 2
+  size: 236, 112
+  orig: 236, 112
+  offset: 0, 0
+  index: -1
+level4_4_btn
+  rotate: false
+  xy: 478, 116
   size: 236, 112
   orig: 236, 112
   offset: 0, 0

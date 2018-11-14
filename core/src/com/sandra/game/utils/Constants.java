@@ -144,6 +144,14 @@ public class Constants {
     public static String BUTTON_2_2 = "level2_2_btn";
     public static String BUTTON_2_3 = "level2_3_btn";
     public static String BUTTON_2_4 = "level2_4_btn";
+    public static String BUTTON_3_1 = "level3_1_btn";
+    public static String BUTTON_3_2 = "level3_2_btn";
+    public static String BUTTON_3_3 = "level3_3_btn";
+    public static String BUTTON_3_4 = "level3_4_btn";
+    public static String BUTTON_4_1 = "level4_1_btn";
+    public static String BUTTON_4_2 = "level4_2_btn";
+    public static String BUTTON_4_3 = "level4_3_btn";
+    public static String BUTTON_4_4 = "level4_4_btn";
     public static String BUTTON_SELECTED  = "level1_1_btn_selected";
 
     // Thwomper

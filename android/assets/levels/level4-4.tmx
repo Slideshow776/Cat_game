@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="210">
+ <tileset firstgid="1" source="beach.tsx"/>
+ <layer name="Tile Layer 1" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztV8tRxDAMtZcOaIEzCz1wTiiCs5cSUgFQyhZBQVtCcIY4cRT5I1mJwwyHNzub2NJ7+tm5npS6/iH0yvuvwTP9i04TbOrZDmmfx2fBqVSTpyuENsefTtuB62I6ohojfrK4ptaPHId3nBz5dqi5ovJ3uE/w7Dg1p1V+Xgn1VIIhnq2ac+PiJVqjQIfzV8Qd+h3nRgfmB9dXak9RHWdog/5vBfFyM65VeDyKcxGKjaZxb7FZDOLsv5fmvYq/xjmwa8ezs4uOUF5yfMZ6G+hwWnoV2SMEWB+h/p6eEfj0/uzbWEdu3UxcGHz2qiuSjsie4JqNZ61/LqGciDb7wOyAtfstmR/kbtEiM4Zzn/Pzgs5oAfSEWA/rHgHOFk8WzyPXG9CeY/tuh56HPBo1A2pJ7Q3hQUgH9Jd752kSOkJ+oL8X6Xxg35d6eYZReGM6sBn2JqkjcBbAO14z/r5aXE5rpHpi6vMteiLT5sDBDPwt3gNca51xkMOqN8D/D7vm0+IrdjesfOcwubOd+x3LqAGOjiPURIkOke/jA6C6Dqkaq9CX/zgmJOuZausiqMNU+saVhsHO3oq55ebI1J6VQqg+84Xg+gOexxR9R4iFUUv4dzf3zN2zp32ap3dL/j+e186E
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJztkkEKwzAMBBOa5/fRpYdAELIk24pXm1ZgcHIwM9rdj23bf/B8B82Q5XEdNE+GQ0UPySQ5W4Pmbu3a+mbo1ZVLclqD5m55aJxP82Dq1VPzYMrC6478f97RzLMebHnIvWsOsz7Z+9B4LY+qubQ8tMwqe1jd8VzQzKOcfw+sh2Rl9rAGzTzSLRaH3kzQrCM+bHloHiwOkf6wOJx3a/fZHpG33q++t7w87vDIzsPz0foX3WcVj2hW6OOxeh7ZLjPveYwR1won4rEqj7u6FXWtcHoZV3ms2lGGh7cvdMZRrkiXvXc/Jk0dmw==
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt1r0JgDAQBWAFk8ZCpxBLV7Dwp3QFC93LiXQJa1cwrSEgGPFy5/u6gxT3Ai8aRQAAAN9I1XXOzJwr91luKiE5AMBtNR3fBPT8EJCBm1JTb+CvMxn6mxyDgJwAQCdOqDcA+IeC8Hu9POx57di5ZfjfMVo7T2aeA8qxB/wO64DuyQdl/97SaJ79s4XWP/B3AoBGCWE=
+  </data>
+ </layer>
+ <objectgroup name="cats"/>
+ <objectgroup name="coins"/>
+ <objectgroup name="thwompers"/>
+ <objectgroup name="yarn_balls"/>
+ <objectgroup name="portals"/>
+ <objectgroup name="zone 1"/>
+ <objectgroup name="impassable"/>
+ <objectgroup name="zone 2"/>
+ <objectgroup name="lava_bubble_bursts"/>
+ <objectgroup name="saw_blades"/>
+</map>

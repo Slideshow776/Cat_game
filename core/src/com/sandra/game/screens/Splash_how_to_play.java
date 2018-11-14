@@ -59,7 +59,7 @@ public class Splash_how_to_play implements Screen {
 		if(alpha < 0) {
 			try {Thread.sleep(250);} // creates a dramatic pause between splash and next game-state.
 			catch (InterruptedException e) {e.printStackTrace();}
-			((Game) Gdx.app.getApplicationListener()).setScreen(new Level_1_1(game));
+			((Game) Gdx.app.getApplicationListener()).setScreen(new Level_loader(game, "level1-1"));
 		}
 		else if(alpha > .6f) {alphaSpeed+=.016f;} // peek speed
 		else {alphaSpeed+=.008f;} // standard speed

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="236">
+ <tileset firstgid="1" source="beach.tsx"/>
+ <layer name="Tile Layer 1" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzVmHlu00AUxmew8neR2CmbxAFiiX1HQuxguEPYIS036Ak4Sw7RA3GE8hk6yefnN+MZe5yGP35K7caT981bx4tjxiz+Iw4MXVtxz/5jzyasaVfrJD1H9jRsGqqJdNVsFcYcL1afQwnpD+kIagzsW2VWOiS1PWWk3aVA1RLh61RfVfR99sWUkLaFcGvwc8mxmhqn4vtbpOHExJiT4BQ4Dc6As+AcOA+2wQVwEVwCl8GVSdOHTkudP26/qph9TtViV2vXTCmWrsGm6+AGuAlugdvgDrgL7oH74AF4CB6Bx5NmXrEO9n+UlkDcaMhaw/HUhbSZr0vSwev/HlCjXI2rjL4fffbHaXY5wTr4Xv13rO2VVottW8tQuzXYB7LGuc8+sRNb/3Pr4Bon9UTt3WFuyxoRquc5tWj9RuaK06FpqWimkPml2a31gRw6QnVA/o5Xh6IhFKdSU67Y6hP/fE9qYL++Bm+UWuirh9mgHqbVRXnPF5eO7+CHqIVl0fS5W2s/Y/3SZotKqZXOD9Jutu8tqBRfaBpycZDQpzmWuM9wrNT/m4MdJeZ8Gooe54ehuSFzV/bRd+B9oh+uZtIhbQ2dr1iH7Bn19S746ckH38z5JLc/tPOlbZ4BNT9ovW9atGvTsl4Iu2c5dXhmbjnjsf2c79qZRoul5Sw2Rk5ErlnbMO+oV5ofxsI3w82Mkhvi+pc474T6yJg6fLPQ33oZ+y7Edp9xOjUMiCttVmc9Oc8F6/CDnG2Pam7LoWGjdET0K6ZUNGyEDsV2af9T8Ozw/gx8KJrvqzZNh5x7noMX4CP4pNRD7sFHqUM729e8BK/AZ/CF7JwWzd47RMdORh1zz7nyK/hWtHsV62C/rKv3hnTs2XZOsJ2hsw7PqDl09PXRPDC3afOBrLfrnCG68sPlCO9xzLyQPEOMHFcL235nmvI+ue+759w6GH5P4O65OXv5nO2nd0z7/wB5BbVF
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzdmctOFEEUhvsyo5I4iaBPYJtJxEkQ9AnEkBjjQt9ABlRkNaxcuFMcBk0UNproXtGFwkJN9C0c79f4Ct7x+lemTywOdeuL3Ykn+dLd1UWd8/epOl3T+BXP8/9DjgaeNw6aYAJMgmPgODgR2O9PgZNgGhzyio//MPweCez9yGph72jqu9X3vG1+sTpa0DAT62ggxkc4dsFj8AQ8Bc/Ac/ACvASvwGvwBrwF79iYe6Bhr19cXurwtSXsQW0fwEfwCXwGX8BX8A2sgu/gB/gJfoHfIlfVv3/fkMbaWZCOsVjHbsk3mXwtt/P7nIvgUnx+oMB1sgAti/76WFWxu+i4De7E51MF6liGhhVfHWcaHTJ9BeogOwsts+AcaIM50FG09aMmDMR1oSbNxyhcey1Isz5c67tOh2s+hjHGiEOdFiRZH02pbrrQYnXdZqo+mx3fDS7rQ/X+qoZu44feeh06Tao+9VhHQ+OP5lfHQUfLkgc+V/PQQTbmmI8lgw7XfYSJyKKDzlVzj9rkuqCrEVny4MIoi1GnSaVDpSkJpjwMOq4LoumgQyZPHVnyQDovw/cVjX9bfHnoeJ9SO+cexrmfIc6sOgJpzSSdQ4Kr8HnN4rcIHdsz/iZ5AJ8PU+jgsWbVsU+hw/R+kFlw9JfGkuoYT5mPyYS+TLHKxvdyEwnqT1fSIvaWtAfheYni6yEcZ3PQwW01SJcLou6QkzaYA/3wM5DBlyonwmYC85wKHX12LVqugxtgGOON5KSDrk9LGuSaKZ9HCXye8Xvo9jTzCdeSzUSfU5Y8EKOW+/8K/sy5LtoLddA+X7HraCbQYRtLcMGxJvPYeR2ivdAS+tx08L2rxHzQ8a40d/i84nmia14rD5aoQ95HqzSYjI83XaIOmju6OMnou66wari2D3E+ow7Vs3Fhh+K7lUqHLi/8e8CtkvKxP9YRheo4Kf5Bdr+myUe7JB0C+q4ma+H/G7DlTOxFF8FQxt/bWaDvaroYVXOY91nGcSXnXOj8W4GWAISgAqpgQ6Bv3wg2gb4gfR5sz6us3CZ9vqY5YNIo8wd5lYUP
+  </data>
+ </layer>
+ <layer name="Tile Layer 3" width="50" height="37">
+  <data encoding="base64" compression="zlib">
+   eJzt12VOA1EYheGBCh7YAu6yBaRYC6wBd9kCroU14M4ecGsLW8AdtsDbEBIgQyDldjpfwkmeH5NMpt+Z9N72apraFFo1rQjFKIEDpVbFH2JAapm5DvVoQCOaBPboZeY+9GMAgxgS2GOamWcwiznMY0Fgj01m3sI2drCLPYE9zpj5HBe4xBWuFfcI43nhsMAKm8D35E8icychGSlIFdpDb28PJDG2z9fxXCfY9O8NRvT2dlUpMLCH3t4uMXp7u8To7e3SMm7RtAm4LZ/3dmlZZf41rGPDovbZJ6zxU4PW+TGze+CFT3GPFwP3qgdmf8QTnhX3+JhYAzsFkgz7z/dk0yEHuchDvsk6ldGhXKdHGXOWowKVcMKFKlSjxmQ9vkszc7agFW1oRwc60YVu9AjoMsyMIxjFGMYxATcmMSWggz+LzLmEZaxgFWtYx4aQDv7sM+sBDnGEY3jghU9QjxtmvcUd7vGARzwp7hAW5P8dEexhkYhCNGIQi7hf7NFmSrr97XclE1nIRg5yhfV4/12pQCWccKFKWA+JSQvhO54OcJ0X6sxcKvC7Uvtl5kaum0zUIxjnv/cz5l9jD+F7UnnGDOX6U3XGdNhDu/5UnTHNtv7+8/e8Anj1aSc=
+  </data>
+ </layer>
+ <objectgroup name="cats">
+  <object id="210" x="740.667" y="193.333"/>
+  <object id="211" x="274.667" y="412"/>
+  <object id="212" x="96" y="82"/>
+ </objectgroup>
+ <objectgroup name="coins">
+  <object id="221" x="136.667" y="509.333"/>
+  <object id="222" x="178.667" y="508.667"/>
+  <object id="223" x="225.333" y="509.333"/>
+  <object id="224" x="577.333" y="318"/>
+  <object id="225" x="578" y="286"/>
+  <object id="226" x="578.667" y="244.667"/>
+  <object id="227" x="320.667" y="123.333"/>
+  <object id="228" x="320.667" y="84.6667"/>
+  <object id="229" x="279.333" y="88"/>
+ </objectgroup>
+ <objectgroup name="thwompers">
+  <object id="230" x="272.667" y="458"/>
+ </objectgroup>
+ <objectgroup name="yarn_balls"/>
+ <objectgroup name="portals">
+  <object id="213" x="322" y="180"/>
+  <object id="219" x="576" y="354.667"/>
+  <object id="220" x="76" y="512"/>
+ </objectgroup>
+ <objectgroup name="zone 1">
+  <object id="233" x="405.333" y="214.667">
+   <polygon points="0,0 -154.667,-1.33333 -165.333,-72 -349.333,-77.3333 -382,-138 -342,-192.667 -30,-190.667 3.33333,-152.667"/>
+  </object>
+  <object id="234" x="473.333" y="253.333">
+   <polygon points="0,0 118.667,-118 324,-118.667 321.333,-12.6667 184,142 26.6667,140 0.666667,81.3333"/>
+  </object>
+  <object id="235" x="316.667" y="571.333">
+   <polygon points="0,0 33.3333,-42 33.3333,-232.667 -85.3333,-228.667 -172.667,-142.667 -242,-136 -297.333,-62 -254,3.33333"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="impassable">
+  <object id="214" x="314.667" y="399.333" width="14.6667" height="18.6667"/>
+  <object id="215" x="249.333" y="531.333" width="46.6667" height="12.6667"/>
+  <object id="216" x="358" y="72" width="17.3333" height="17.3333"/>
+  <object id="217" x="756" y="184" width="17.3333" height="13.3333"/>
+  <object id="218" x="714.667" y="219.333" width="47.3333" height="18"/>
+ </objectgroup>
+ <objectgroup name="zone 2"/>
+ <objectgroup name="lava_bubble_bursts"/>
+ <objectgroup name="saw_blades">
+  <object id="231" x="578.667" y="278"/>
+ </objectgroup>
+</map>
