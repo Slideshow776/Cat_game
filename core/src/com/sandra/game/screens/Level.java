@@ -485,6 +485,8 @@ public abstract class Level implements Screen {
             saw_blade.dispose();
         for (Entity cat1_part: cat1_parts)
             cat1_part.dispose();
+        for (Entity shadow: shadows)
+            shadow.dispose();
         generic_music.dispose();
         purr1.dispose();
         // b2d_world.dispose();
