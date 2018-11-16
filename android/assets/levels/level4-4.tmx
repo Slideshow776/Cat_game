@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="274">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="50" height="37" tilewidth="16" tileheight="16" infinite="0" nextobjectid="372">
  <tileset firstgid="1" source="beach.tsx"/>
  <layer name="Tile Layer 1" width="50" height="37">
   <data encoding="base64" compression="zlib">
@@ -27,17 +27,17 @@
   <object id="217" x="25.3333" y="122.667"/>
   <object id="218" x="398.667" y="33.3333"/>
   <object id="219" x="354.667" y="32.6667"/>
-  <object id="220" x="772.667" y="564"/>
-  <object id="221" x="722" y="562"/>
-  <object id="222" x="776.667" y="425.333"/>
-  <object id="223" x="777.333" y="468"/>
+  <object id="220" x="759.667" y="562"/>
+  <object id="221" x="708.5" y="561.5"/>
+  <object id="222" x="770.667" y="425.833"/>
+  <object id="223" x="768.333" y="466.5"/>
   <object id="224" x="636.667" y="230.667"/>
   <object id="225" x="691.333" y="230.667"/>
-  <object id="226" x="772" y="275.333"/>
-  <object id="227" x="772" y="327.333"/>
+  <object id="226" x="760" y="278.333"/>
+  <object id="227" x="763.5" y="327.333"/>
  </objectgroup>
  <objectgroup name="thwompers">
-  <object id="228" x="496.667" y="512.667"/>
+  <object id="228" x="494.167" y="520.167"/>
   <object id="229" x="208" y="305.333"/>
   <object id="230" x="544" y="210"/>
  </objectgroup>
@@ -122,9 +122,6 @@
   <object id="256" x="538.5" y="93.5">
    <polygon points="0,0 13,0.25 10.5,78.5 -1,79"/>
   </object>
-  <object id="257" x="538.25" y="243.75">
-   <polygon points="0,0 10.75,-1 17.5,19 63.25,21.5 63.25,45.5 49.75,48.5 16.25,49 -3.25,26"/>
-  </object>
   <object id="258" x="603" y="264.25">
    <polygon points="0,0 129.25,0.5 129.75,15.5 0.5,17.75"/>
   </object>
@@ -158,7 +155,101 @@
   <object id="273" x="745.333" y="393">
    <polygon points="0,0 50,-2 50,-14 9,-14.6667 -9.66667,-1.66667"/>
   </object>
+  <object id="370" x="537.5" y="245.5">
+   <polygon points="0,0 15.5,-1.5 14,17 24,25 23,48 1,31"/>
+  </object>
+  <object id="371" x="566" y="290.5">
+   <polygon points="0,0 -0.5,-21.5 31,-25.5 36.5,-5.5 22.5,0"/>
+  </object>
  </objectgroup>
- <objectgroup name="lava_bubble_bursts"/>
+ <objectgroup name="lava_bubble_bursts">
+  <object id="274" x="662.5" y="512"/>
+  <object id="275" x="702.5" y="512"/>
+  <object id="276" x="749.5" y="514"/>
+  <object id="277" x="784" y="514"/>
+  <object id="278" x="738" y="406"/>
+  <object id="279" x="766" y="384"/>
+  <object id="280" x="638" y="385"/>
+  <object id="281" x="617" y="415.5"/>
+  <object id="283" x="578" y="417"/>
+  <object id="284" x="540.5" y="416.5"/>
+  <object id="285" x="496.5" y="399.5"/>
+  <object id="286" x="553.5" y="517.5"/>
+  <object id="287" x="561.5" y="550.5"/>
+  <object id="288" x="561" y="579"/>
+  <object id="289" x="706.5" y="271.5"/>
+  <object id="290" x="663.5" y="272.5"/>
+  <object id="291" x="621" y="271"/>
+  <object id="292" x="576" y="277"/>
+  <object id="294" x="548" y="264"/>
+  <object id="295" x="463" y="382"/>
+  <object id="296" x="422" y="382"/>
+  <object id="297" x="386.5" y="383"/>
+  <object id="298" x="346" y="383"/>
+  <object id="299" x="308" y="382.5"/>
+  <object id="300" x="305" y="351.5"/>
+  <object id="301" x="303" y="423.5"/>
+  <object id="302" x="305.5" y="454"/>
+  <object id="304" x="308" y="481.5"/>
+  <object id="305" x="345.5" y="480"/>
+  <object id="306" x="386.5" y="484"/>
+  <object id="307" x="410.5" y="510.5"/>
+  <object id="308" x="446.5" y="513"/>
+  <object id="311" x="277.5" y="578.5"/>
+  <object id="312" x="240.5" y="582"/>
+  <object id="313" x="202" y="582.5"/>
+  <object id="314" x="281" y="484"/>
+  <object id="315" x="248" y="481.5"/>
+  <object id="317" x="208.5" y="481"/>
+  <object id="319" x="170.5" y="480.5"/>
+  <object id="320" x="131.5" y="480.5"/>
+  <object id="321" x="104" y="480.5"/>
+  <object id="322" x="81" y="503.5"/>
+  <object id="324" x="208.5" y="358.5"/>
+  <object id="325" x="189.5" y="383"/>
+  <object id="326" x="147" y="384.5"/>
+  <object id="327" x="96.5" y="385.5"/>
+  <object id="328" x="60.5" y="385.5"/>
+  <object id="329" x="18" y="384.5"/>
+  <object id="330" x="18.5" y="285.5"/>
+  <object id="331" x="42" y="288.5"/>
+  <object id="332" x="207" y="251"/>
+  <object id="333" x="205" y="217.5"/>
+  <object id="334" x="183.5" y="191"/>
+  <object id="335" x="174" y="143.5"/>
+  <object id="336" x="176.5" y="101"/>
+  <object id="337" x="77.5" y="179.5"/>
+  <object id="338" x="82" y="141.5"/>
+  <object id="339" x="82" y="106.5"/>
+  <object id="340" x="80.5" y="67"/>
+  <object id="341" x="79.5" y="27.5"/>
+  <object id="342" x="268.5" y="70"/>
+  <object id="343" x="268.5" y="35"/>
+  <object id="344" x="370.5" y="77.5"/>
+  <object id="345" x="408" y="78"/>
+  <object id="346" x="436.5" y="74.5"/>
+  <object id="347" x="444.5" y="34"/>
+  <object id="348" x="304" y="249"/>
+  <object id="349" x="303" y="219.5"/>
+  <object id="350" x="336.5" y="192"/>
+  <object id="351" x="380" y="190.5"/>
+  <object id="352" x="417" y="189"/>
+  <object id="353" x="447.5" y="210"/>
+  <object id="354" x="444.5" y="245"/>
+  <object id="355" x="435" y="278.5"/>
+  <object id="356" x="397" y="283.5"/>
+  <object id="357" x="543.5" y="149"/>
+  <object id="358" x="543.5" y="113.5"/>
+  <object id="359" x="558.5" y="83.5"/>
+  <object id="360" x="592" y="80"/>
+  <object id="361" x="629.5" y="79.5"/>
+  <object id="362" x="669" y="79"/>
+  <object id="363" x="700.5" y="79.5"/>
+  <object id="365" x="647.5" y="173.5"/>
+  <object id="366" x="676.5" y="175.5"/>
+  <object id="367" x="715.5" y="174.5"/>
+  <object id="368" x="757.5" y="177"/>
+  <object id="369" x="784" y="176"/>
+ </objectgroup>
  <objectgroup name="saw_blades"/>
 </map>

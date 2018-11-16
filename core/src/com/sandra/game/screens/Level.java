@@ -282,12 +282,13 @@ public abstract class Level implements Screen {
             yarn_ball.update(delta);
         }
 
-        for (Entity thwomper: thwompers) {
-            thwomper.update(delta);
-            for (Entity shadow: shadows) {
-                shadow.set_action(thwomper.get_action());
-                shadow.update(delta);
-            }
+        for (int i = 0; i < thwompers.size; i++) {
+            thwompers.get(i).update(delta);
+            shadows.get(i).set_action(thwompers.get(i).get_action());
+        }
+
+        for (Entity shadow: shadows) {
+            shadow.update(delta);
         }
 
         for (Entity cat1_part : cat1_parts) {
