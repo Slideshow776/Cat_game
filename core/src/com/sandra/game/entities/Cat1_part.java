@@ -24,7 +24,8 @@ public class Cat1_part extends Entity {
         this.b2d_world = b2d_world;
         this.top_part = top_part;
 
-        init_body();
+        init_body();        
+        this.body.setUserData(Constants.CAT1_IDLE_SPRITE_1 + "-" + id);
         velocity = new Vector2(0, 0);
         set_dead(true);
 
@@ -35,10 +36,8 @@ public class Cat1_part extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        if (top_part)
-            region = Assets.instance.cat1Assets.dead3;
-        else
-            region = Assets.instance.cat1Assets.dead2;
+        if (top_part) region = Assets.instance.cat1Assets.dead3;
+        else region = Assets.instance.cat1Assets.dead2;
             
         Utils.drawTextureRegion(
             batch,

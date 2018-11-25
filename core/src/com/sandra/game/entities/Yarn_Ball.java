@@ -21,6 +21,7 @@ public class Yarn_Ball extends Entity {
     private Vector2 original_velocity;
     private Direction direction;
     private TextureRegion region;
+    private float animation_time_seconds;
 
     public Yarn_Ball(Vector2 position, World b2d_world) {
         render_position = position;
@@ -36,7 +37,7 @@ public class Yarn_Ball extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         region = Assets.instance.yarnBallAssets.yarn_ball_animation.getKeyFrame(animation_time_seconds);
 
         // Directions
@@ -53,10 +54,9 @@ public class Yarn_Ball extends Entity {
                 (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0)) { // or if it stops completely
             body.setUserData(Constants.YARN_BALL_SPRITE_1);
             bounce_off_of_things();
-        }
-        
-        if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
-        else if (body.getLinearVelocity().x < 0) {direction = Enums.Direction.LEFT;}
+        } 
+        else if (body.getLinearVelocity().x > 0) {direction = Enums.Direction.RIGHT;} 
+        else {direction = Enums.Direction.LEFT;}
 
         render_position.set(
             body.getPosition().x - Constants.YARN_BALL_PIXEL_WIDTH / 2 / Constants.PPM,
@@ -64,10 +64,12 @@ public class Yarn_Ball extends Entity {
         );
     }
 
-    public void dispose() {}
+    public void dispose() {
+        b2d_world.destroyBody(body);
+    }
 
     private void bounce_off_of_things() { // imagine a cartesian coordinate system
-        if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||              // 1st quadrant
+        if (((body.getLinearVelocity().x < original_velocity.x) && body.getLinearVelocity().x >= 0) ||          // 1st quadrant
                     (body.getLinearVelocity().y < original_velocity.y) && body.getLinearVelocity().y >= 0) {
             body.setLinearVelocity(0, 0);
             body.applyLinearImpulse(velocity, body.getWorldCenter(), true);

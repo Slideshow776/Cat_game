@@ -55,7 +55,6 @@ public abstract class Level implements Screen {
     private Sound score1;
     private Sound coin1;
     private Sound bump1;
-    private Music generic_music;
 
     private DelayedRemovalArray<Entity> cat1s;
     private DelayedRemovalArray<Entity> coins;
@@ -99,6 +98,10 @@ public abstract class Level implements Screen {
 
     private int time;
 
+    private int choice;
+
+    private Array<Music> generic_music;
+
     public Level(Cat_game game, String level_filename) {
         this.game = game;
         pause = false;
@@ -128,9 +131,21 @@ public abstract class Level implements Screen {
         bump1 = Gdx.audio.newSound(Gdx.files.internal("sounds/yarn_ball_bump1.wav"));
 
         // music
-        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
-        generic_music.setLooping(true);
-        generic_music.setVolume(.1f);
+        Music music1 = Gdx.audio.newMusic(Gdx.files.internal("music/Spy Hunter.mp3"));
+        Music music2 = Gdx.audio.newMusic(Gdx.files.internal("music/video-game-7.wav"));
+        Music music3 = Gdx.audio.newMusic(Gdx.files.internal("music/8-punk-8-bit-music.mp3"));
+        Music music4 = Gdx.audio.newMusic(Gdx.files.internal("music/8-bit-music.mp3"));
+        generic_music = new Array<Music>();
+        generic_music.add(music1);
+        generic_music.add(music2);
+        generic_music.add(music3);
+        generic_music.add(music4);
+
+        Random random = new Random();
+        choice = random.nextInt(generic_music.size);
+
+        generic_music.get(choice).setLooping(true);
+        generic_music.get(choice).setVolume(.3f);
 
         // map
         map = new TmxMapLoader().load(level_filename);
@@ -380,8 +395,8 @@ public abstract class Level implements Screen {
             create_and_update_lava_bubble_burst(delta);
             if (transition_alpha > 0) { transition_alpha -= .03f; }
             else if (transition_alpha <= 0) { transition_alpha = 0; }
+            hud.update(delta, cat1Score, coinScore, time);
         }
-        hud.update(delta, cat1Score, coinScore, time);
     }
 
     @Override
@@ -445,13 +460,13 @@ public abstract class Level implements Screen {
     @Override
     public void pause() {
         pause = !pause;
-        generic_music.pause();
+        generic_music.get(choice).pause();
     }
 
     @Override
     public void resume() {
         pause = !pause;
-        generic_music.play();
+        generic_music.get(choice).play();
     }
 
     @Override
@@ -462,7 +477,7 @@ public abstract class Level implements Screen {
     @Override
     public void show() {
         purr1.play();
-        generic_music.play();
+        generic_music.get(choice).play();
     }
 
     @Override
@@ -486,14 +501,24 @@ public abstract class Level implements Screen {
             saw_blade.dispose();
         for (Entity cat1_part: cat1_parts)
             cat1_part.dispose();
-        for (Entity shadow: shadows)
+        for (Entity shadow : shadows)
             shadow.dispose();
-        generic_music.dispose();
-        purr1.dispose();
-        // b2d_world.dispose();
-        // b2d_Renderer.dispose();
-        // mapRenderer.dispose();
+        for (Entity bubble : lava_bubble_bursts)
+            bubble.dispose();
         hud.dispose();
         fade_transition.getTexture().dispose();
+        score1.dispose();
+        coin1.dispose();
+        purr1.dispose();
+        bump1.dispose();
+        map.dispose();
+        for (Music music : generic_music)
+            music.dispose();
+        map.dispose();
+        hud.dispose();
+        myContactListener.dispose();
+        // mapRenderer.dispose();
+        // b2d_world.dispose();
+        // b2d_Renderer.dispose();
     }
 }

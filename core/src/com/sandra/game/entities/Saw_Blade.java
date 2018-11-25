@@ -20,6 +20,7 @@ public class Saw_Blade extends Entity {
     private TextureRegion region;
     private Vector2 original_position;
     private boolean moving_right;
+    private float animation_time_seconds;
 
     public Saw_Blade(Vector2 position, World b2d_world) {
         this.b2d_world = b2d_world;
@@ -31,7 +32,7 @@ public class Saw_Blade extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         region = Assets.instance.sawBladeAssets.saw_blade_animation.getKeyFrame(animation_time_seconds);
         Utils.drawTextureRegion(
             batch,

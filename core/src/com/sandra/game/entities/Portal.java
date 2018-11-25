@@ -18,6 +18,7 @@ public class Portal extends Entity {
     private World b2d_world;
     private long animation_start_time;
     private TextureRegion region;
+    private float animation_time_seconds;
 
     public Portal(Vector2 position, World b2d_world) {
         render_position = position;
@@ -27,7 +28,7 @@ public class Portal extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         region = Assets.instance.portalAssets.portal_animation.getKeyFrame(animation_time_seconds);
         Utils.drawTextureRegion(batch, region, render_position.x, render_position.y, Constants.PORTAL_SCALE);
     }

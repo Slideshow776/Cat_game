@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -58,10 +59,10 @@ public class Menu implements Screen {
     private ButtonListener level_1_2_btn_listener;
     private Button level_1_3_btn;
     private ButtonListener level_1_3_btn_listener;
-    private Button level_2_1_btn;
-    private ButtonListener level_2_1_btn_listener;
     private Button level_1_4_btn;
     private ButtonListener level_1_4_btn_listener;
+    private Button level_2_1_btn;
+    private ButtonListener level_2_1_btn_listener;
     private Button level_2_2_btn;
     private ButtonListener level_2_2_btn_listener;
     private Button level_2_3_btn;
@@ -84,6 +85,7 @@ public class Menu implements Screen {
     private ButtonListener level_4_3_btn_listener;
     private Button level_4_4_btn;
     private ButtonListener level_4_4_btn_listener;
+	private Music generic_music;
 
     public Menu(Cat_game game, boolean should_scale) {
         this.game = game;
@@ -92,6 +94,12 @@ public class Menu implements Screen {
 
     @Override
     public void show() {
+        // music
+        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/Dash Runner.wav"));
+        generic_music.setLooping(true);
+        generic_music.setVolume(.5f);
+        generic_music.play();
+
         AssetManager assetManager = new AssetManager();
         Assets.instance.init(assetManager);
         
@@ -193,10 +201,14 @@ public class Menu implements Screen {
     public void resize(int width, int height) {}
 
     @Override
-    public void pause() {}
+    public void pause() {
+        generic_music.pause();
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+        generic_music.play();
+    }
 
     @Override
     public void hide() {}
@@ -205,6 +217,31 @@ public class Menu implements Screen {
     public void dispose() {
         stage.dispose();
         fade_transition.getTexture().dispose();
+        generic_music.dispose();
+        menu_title_tex.getTexture().dispose();
+        animation_region.getTexture().dispose();
+        background1.getTexture().dispose();
+        background2.getTexture().dispose();
+        fade_transition.getTexture().dispose();
+        generic_music.dispose();
+        Assets.instance.dispose();
+        menu_title_tex.getTexture().dispose();
+        level_1_1_btn.clear();
+        level_1_2_btn.clear();
+        level_1_3_btn.clear();
+        level_1_4_btn.clear();
+        level_2_1_btn.clear();
+        level_2_2_btn.clear();
+        level_2_3_btn.clear();
+        level_2_4_btn.clear();
+        level_3_1_btn.clear();
+        level_3_2_btn.clear();
+        level_3_3_btn.clear();
+        level_3_4_btn.clear();
+        level_4_1_btn.clear();
+        level_4_2_btn.clear();
+        level_4_3_btn.clear();
+        level_4_4_btn.clear();
     }
 
     private void groundWrapScrolling1() {

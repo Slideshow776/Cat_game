@@ -1,5 +1,6 @@
 package com.sandra.game.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -16,6 +17,7 @@ import com.sandra.game.utils.Constants;
 import com.sandra.game.utils.Enums;
 import com.sandra.game.utils.Utils;
 import com.sandra.game.utils.Enums.Action;
+import com.badlogic.gdx.audio.Sound;
 
 public class Thwomper extends Entity {    
     private World b2d_world;
@@ -30,7 +32,15 @@ public class Thwomper extends Entity {
     private Array<Integer> id_of_cats_beneath;
     
     private DelayedRemovalArray<Entity> entity_list;
+    private Sound angry;
+
+    private Sound attacking;
+
+    private Sound cat_scream;
     
+    private float animation_time_seconds;
+    private String userData;
+
     public Thwomper(Vector2 position, World b2d_world, DelayedRemovalArray<Entity> entity_list) {
         this.b2d_world = b2d_world;
         this.entity_list = entity_list;
@@ -43,10 +53,13 @@ public class Thwomper extends Entity {
         move_increment = 0;
         ground = render_position.y;
         id_of_cats_beneath = new Array<Integer>(0);
+        angry = Gdx.audio.newSound(Gdx.files.internal("sounds/angry.wav"));
+        attacking = Gdx.audio.newSound(Gdx.files.internal("sounds/attacking.wav"));
+        cat_scream = Gdx.audio.newSound(Gdx.files.internal("sounds/cat_scream.wav"));
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         
         if (action == Enums.Action.IDLE) {
             region = Assets.instance.thwomperAssets.thwomper_idle_animation.getKeyFrame(animation_time_seconds);
@@ -62,7 +75,7 @@ public class Thwomper extends Entity {
     }
 
     public void update(float delta) {        
-        String userData = (String)body.getUserData();
+        userData = (String)body.getUserData();
         String[] collisionString = {};
         if (userData != null) collisionString = userData.split("-");
 
@@ -80,6 +93,7 @@ public class Thwomper extends Entity {
         
         if (action == Enums.Action.IDLE && collisionString[0].equals("cat_collision")) {
             action = Enums.Action.MOVING;
+            angry.play();
         } else if (action == Enums.Action.MOVING) {        
             if (render_position.y <= max_height) {
                 move_increment += 1 / Constants.PPM;
@@ -93,11 +107,13 @@ public class Thwomper extends Entity {
         } else if (action == Enums.Action.ATTACKING) {
             if (render_position.y >= ground) {
                 move_increment -= 12 / Constants.PPM;
+                attacking.play();
             } else {
                 action = Enums.Action.IDLE;
                 for (Entity cat: entity_list) {
                     for (int cat_to_die = 0; cat_to_die < id_of_cats_beneath.size; cat_to_die++){
                         if (cat.getId() == id_of_cats_beneath.get(cat_to_die)) {
+                            cat_scream.play();
                             cat.set_dead(true);
                         }
                     }
@@ -115,6 +131,9 @@ public class Thwomper extends Entity {
 
     public void dispose() {
         // b2d_world.destroyBody(body);
+        angry.dispose();
+        attacking.dispose();
+        cat_scream.dispose();
     }
 
     private void init_body() {

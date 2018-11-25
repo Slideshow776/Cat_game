@@ -2,6 +2,7 @@ package com.sandra.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
@@ -32,6 +33,7 @@ public class Score implements Screen {
     private boolean fading_in;
     private Sprite game_over;
     private boolean is_game_over;
+	private Music generic_music;
 
     public Score(Cat_game game, boolean is_all_cat1s_annihilated, int coins, int numCoins, int deadCat1s, int time) {
         this.game = game;	
@@ -42,7 +44,12 @@ public class Score implements Screen {
         bronze = silver = gold = false;
         if (deadCat1s == 0 && coins == numCoins && time >= 2*(Constants.TIME/3)) gold = true; 
         else if (deadCat1s == 0 && coins >= numCoins/2 && time >= 1*(Constants.TIME/3)) silver = true; 
-        else bronze = true;  
+        else bronze = true;        
+        
+        // music
+        generic_music = Gdx.audio.newMusic(Gdx.files.internal("music/Fast Ace.wav"));
+        generic_music.setLooping(true);
+        generic_music.setVolume(.75f);
     }
 
     @Override
@@ -69,6 +76,8 @@ public class Score implements Screen {
         fade_transition .setPosition(0, 0);
         transition_alpha = 1f;
         fading_in = true;
+
+        generic_music.play();
     }
 
     @Override
@@ -99,8 +108,16 @@ public class Score implements Screen {
     }
     
     public void resize(int width, int height) {}
-	public void pause() {pause = true;}
-	public void resume() {pause = false;}
+	public void pause() {
+        pause = true;
+        generic_music.pause();
+    }
+
+	public void resume() {
+        pause = false;
+        generic_music.play();
+    }
+
     public void hide() {}
 
     @Override
@@ -110,6 +127,7 @@ public class Score implements Screen {
         bronze_title.getTexture().dispose();
         silver_title.getTexture().dispose();
         gold_title.getTexture().dispose();
+        generic_music.dispose();
     }
 
     private void update(float delta) {
@@ -127,6 +145,7 @@ public class Score implements Screen {
         } else if (transition_alpha < 1f) {
             transition_alpha += .008f;
         } else {
+            dispose();
             ((Cat_game) Gdx.app.getApplicationListener()).setScreen(new Menu(game, true));
         }
     }

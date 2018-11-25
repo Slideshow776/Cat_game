@@ -1,5 +1,6 @@
 package com.sandra.game.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,20 +18,20 @@ import com.sandra.game.utils.Utils;
 import com.sandra.game.utils.Enums.Action;
 import com.sandra.game.utils.Enums.Direction;
 import com.sandra.game.utils.Enums;
+import com.badlogic.gdx.audio.Sound;
 
 public class Cat1 extends Entity {
     private World b2d_world;
-
     private TextureRegion region;
     private float animation_start_time;
-
 	private Action action;
     private Direction direction;
-
     private DelayedRemovalArray<Entity> dusts;
     private float dust_timer;
-
 	private Animation<TextureRegion> spawning_animation;
+    private boolean swimming;
+    private Sound splash;
+    private float animation_time_seconds;
 
     public Cat1(Vector2 position, World b2d_world, int id) {
         render_position = position;
@@ -49,10 +50,12 @@ public class Cat1 extends Entity {
         blood_timer = 0;
         set_spawning(true);
         spawning_animation = Assets.instance.cat1Assets.spawning_animation;
+        swimming = false;
+        splash = Gdx.audio.newSound(Gdx.files.internal("sounds/splash.wav"));
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
 
         for (Entity dust : dusts) dust.render(batch);        
 
@@ -100,10 +103,16 @@ public class Cat1 extends Entity {
         if (body.getUserData() == "zone_count_up") {
             body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
             zone_count += 1;
+            swimming = false;
         }
         else if (body.getUserData() == "zone_count_down") {
             body.setUserData(Constants.CAT1_IDLE_SPRITE_1);
             zone_count -= 1;
+        }
+
+        if (zone_count == 0 && !swimming) {
+            swimming = true;
+            splash.play();
         }
 
         if (zone_count == 0) {
@@ -121,6 +130,10 @@ public class Cat1 extends Entity {
 
     public void dispose() {
         b2d_world.destroyBody(body);
+        splash.dispose();
+        // region.getTexture().dispose();
+        for (Entity dust : dusts)
+            dust.dispose();
     }
 
     private void update_dust(float delta) {
@@ -128,7 +141,7 @@ public class Cat1 extends Entity {
         if(dust_timer >= Constants.DUST_GENERATION_RATIO) {
             if (action == Enums.Action.SLIDING && 
                 (Math.abs(body.getLinearVelocity().x) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100 || // magic numbers
-                Math.abs(body.getLinearVelocity().y) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100) ) {
+                    Math.abs(body.getLinearVelocity().y) > Math.abs(Constants.ENTETIES_MAX_VELOCITY)*100) ) {
                 dusts.add(new Dust(
                     new Vector2(
                         render_position.x - Constants.CAT1_HALF_WIDTH,
@@ -140,7 +153,10 @@ public class Cat1 extends Entity {
         }
         
         for (Entity dust : dusts)
-            if (dust.get_delete()) { dusts.removeValue(dust, false); }
+            if (dust.get_delete()) { 
+                dust.dispose();
+                dusts.removeValue(dust, false); 
+            }
 
         for (Entity dust : dusts) { dust.update(delta); }
     }

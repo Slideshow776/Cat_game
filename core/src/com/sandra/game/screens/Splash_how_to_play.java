@@ -46,7 +46,10 @@ public class Splash_how_to_play implements Screen {
 		if(!pause) {update();}
 	}
 
-	public void dispose() {splash_image.getTexture().dispose();}
+	public void dispose() {
+		splash_image.getTexture().dispose();
+	}
+	
 	public void resize(int width, int height) {}
 	public void hide() {dispose();}	
 	public void pause() {pause = true;}

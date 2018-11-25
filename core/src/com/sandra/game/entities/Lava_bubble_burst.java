@@ -12,6 +12,8 @@ public class Lava_bubble_burst extends Entity {
     private float start_time;
     private long animation_start_time;
     private TextureRegion region;
+    private float elapsed_time_seconds;
+    private float animation_time_seconds;
 
     public Lava_bubble_burst(Vector2 position) {
         render_position = position;
@@ -21,13 +23,13 @@ public class Lava_bubble_burst extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         region = Assets.instance.lavaBubbleBurstAssets.lava_bubble_burst_animation.getKeyFrame(animation_time_seconds);
         Utils.drawTextureRegion(batch, region, render_position);
     }
 
     public void update(float delta) {
-        float elapsed_time_seconds = Utils.secondsSince(start_time);
+        elapsed_time_seconds = Utils.secondsSince(start_time);
         if (elapsed_time_seconds > Constants.LAVA_BUBBLE_BURST_DURATION) { 
             delete = true;
         }

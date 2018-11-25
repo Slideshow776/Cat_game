@@ -11,6 +11,7 @@ import com.sandra.game.utils.Utils;
 public class Shadow extends Entity {
     private long animation_start_time;
     private TextureRegion region;
+    private float animation_time_seconds;
 
     public Shadow(Vector2 position) {
         render_position = new Vector2(position.x - .095f, position.y);
@@ -20,7 +21,7 @@ public class Shadow extends Entity {
     }
 
     public void render(SpriteBatch batch) {
-        float animation_time_seconds = Utils.secondsSince(animation_start_time);
+        animation_time_seconds = Utils.secondsSince(animation_start_time);
         
         if (action == Enums.Action.IDLE) {
             animation_start_time = TimeUtils.nanoTime();
