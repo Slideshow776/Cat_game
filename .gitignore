@@ -1,3 +1,13 @@
+## Project
+*.jks
+*.pepk
+gps-notes.txt
+project assets/spank fury project hack/*
+
+## LibGDX
+android/assets/images/included/packed/*
+ANDROID PROJECT FIX.bat
+
 ## Java
 
 *.class
@@ -18,6 +28,9 @@ www-test/
 .gwt-tmp/
 
 ## Android Studio and Intellij and Android in general
+/android/debug/
+/android/release
+debug.keystore
 /android/libs/armeabi/
 /android/libs/armeabi-v7a/
 /android/libs/arm64-v8a/
@@ -118,6 +131,8 @@ Thumbs.db
 !/ios/xcode/*.xcodeproj/xcshareddata
 !/ios/xcode/*.xcodeproj/project.pbxproj
 /ios/xcode/native/
+/ios/IOSLauncher.app
+/ios/IOSLauncher.app.dSYM
 
 /ios-moe/xcode/*.xcodeproj/*
 !/ios-moe/xcode/*.xcodeproj/xcshareddata
